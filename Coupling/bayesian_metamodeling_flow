@@ -1,0 +1,57 @@
+digraph Bayesian_Metamodeling {
+	nodesep=0.5 rankdir=LR ranksep=2 splines=ortho
+	subgraph cluster_ode {
+		fillcolor="#FFFACD" fontname="Arial-Bold" label="Bossa & Sahli ODE 2023" style=filled
+		age_baseline [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		apoe4_status [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		amyloid_baseline [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		tau_baseline [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		amyloid_2yr [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		tau_2yr [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		tau_self_dynamic [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		amyloid_self_dynamic [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		amyloid_drive_tau [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		memory_result_baseline [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		clinical_stage_baseline [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		memory_result_yr5 [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		clinical_stage_yr5 [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+	}
+	subgraph cluster_sustain {
+		fillcolor="#FFFACD" fontname="Arial-Bold" label="Vogel SuStaIn" style=filled
+		Region_0_zscore [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		Region_1_zscore [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		Region_2_zscore [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		Region_3_zscore [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		Region_4_zscore [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		Region_5_zscore [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		Region_6_zscore [fillcolor="#ADD8E6" fontname=Arial shape=box style="filled,rounded"]
+		Prob_subtype_0 [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		Prob_subtype_1 [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		Prob_subtype_2 [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+		Expected_stage [fillcolor="#F08080" fontname=Arial shape=box style="filled,rounded"]
+	}
+	subgraph cluster_coupling {
+		fillcolor="#F0FFF0" fontname="Arial-Bold" label="Coupling Layers" penwidth=0 style=filled
+		"Tau Dynamics" [fillcolor="#90EE90" fixedsize=true fontname=Arial shape=circle style=filled width=1.5]
+		"Disease Stage" [fillcolor="#90EE90" fixedsize=true fontname=Arial shape=circle style=filled width=1.5]
+		"Subtype" [fillcolor="#90EE90" fixedsize=true fontname=Arial shape=circle style=filled width=1.5]
+	}
+	
+	Prob_subtype_0 -> "Tau Dynamics"
+	Prob_subtype_1 -> "Tau Dynamics"
+	Prob_subtype_2 -> "Tau Dynamics"
+	tau_self_dynamic -> "Tau Dynamics"
+	
+	Expected_stage -> "Disease Stage"
+	Prob_subtype_0 -> "Disease Stage"
+	Prob_subtype_1 -> "Disease Stage"
+	Prob_subtype_2 -> "Disease Stage"
+	clinical_stage_yr5 -> "Disease Stage"
+	
+	apoe4_status -> "Subtype"
+	tau_self_dynamic -> "Subtype"
+	memory_result_yr5 -> "Subtype"
+	"Subtype" -> Prob_subtype_0
+	"Subtype" -> Prob_subtype_1
+	"Subtype" -> Prob_subtype_2
+}

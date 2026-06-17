@@ -1,0 +1,56 @@
+{
+  "artifact_id": "5672e7002b8e4fffa045b6b7ba98de79",
+  "backend": "sbi_npe",
+  "backend_payload": "tmp\\surrogate_artifacts\\5672e7002b8e4fffa045b6b7ba98de79\\backend_payload.json",
+  "created_at": "2026-06-17T12:35:03.197608+00:00",
+  "dataset_digest": "86248a1725553c88078bc256543f28c13ffd3037b814a3629de20e64c59ca2e6",
+  "dependency_versions": {
+    "numpy": "2.4.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.4",
+    "sbi": "0.26.1",
+    "scipy": "1.17.1",
+    "torch": "2.12.0"
+  },
+  "io_signature": {
+    "inputs_ordered": [
+      "age_baseline",
+      "apoe4_status",
+      "amyloid_baseline",
+      "tau_baseline",
+      "amyloid_2yr",
+      "tau_2yr"
+    ],
+    "outputs_ordered": [
+      "tau_self_dynamic",
+      "amyloid_self_dynamic",
+      "amyloid_drive_tau",
+      "memory_result_baseline",
+      "clinical_stage_baseline",
+      "memory_result_yr5",
+      "clinical_stage_yr5"
+    ]
+  },
+  "seed": 123,
+  "spec_digest": "33a65ddaef5e80f2a91f77d4e52a4c1fd56b2383e0f478f51365cebcbb1125ea",
+  "spec_name": "ad_ode_surrogate_sbi",
+  "variable_lists": {
+    "inputs": [
+      "age_baseline",
+      "apoe4_status",
+      "amyloid_baseline",
+      "tau_baseline",
+      "amyloid_2yr",
+      "tau_2yr"
+    ],
+    "outputs": [
+      "tau_self_dynamic",
+      "amyloid_self_dynamic",
+      "amyloid_drive_tau",
+      "memory_result_baseline",
+      "clinical_stage_baseline",
+      "memory_result_yr5",
+      "clinical_stage_yr5"
+    ]
+  }
+}

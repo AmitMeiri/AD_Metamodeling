@@ -1,0 +1,52 @@
+{
+  "artifact_id": "10562c940a6c43d39851925cebb2cb49",
+  "backend": "sbi_npe",
+  "backend_payload": "tmp\\surrogate_artifacts\\10562c940a6c43d39851925cebb2cb49\\backend_payload.json",
+  "created_at": "2026-05-22T09:49:58.891000+00:00",
+  "dataset_digest": "6dbc904543683f56dbdb08075d6d69923d323f9b66c6625dbc7cac7f3063bbfd",
+  "dependency_versions": {
+    "numpy": "2.4.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.4",
+    "sbi": "0.26.1",
+    "scipy": "1.17.1",
+    "torch": "2.10.0"
+  },
+  "io_signature": {
+    "inputs_ordered": [
+      "region_0_zscore",
+      "region_1_zscore",
+      "region_2_zscore",
+      "region_3_zscore",
+      "region_4_zscore",
+      "region_5_zscore",
+      "region_6_zscore"
+    ],
+    "outputs_ordered": [
+      "prob_subtype_0",
+      "prob_subtype_1",
+      "prob_subtype_2",
+      "expected_stage"
+    ]
+  },
+  "seed": 123,
+  "spec_digest": "c1ff52b957eba624eef772a23a58ba7cc05862e20ee495d037a6734035103d6f",
+  "spec_name": "sustain_surrogate_sbi",
+  "variable_lists": {
+    "inputs": [
+      "region_0_zscore",
+      "region_1_zscore",
+      "region_2_zscore",
+      "region_3_zscore",
+      "region_4_zscore",
+      "region_5_zscore",
+      "region_6_zscore"
+    ],
+    "outputs": [
+      "prob_subtype_0",
+      "prob_subtype_1",
+      "prob_subtype_2",
+      "expected_stage"
+    ]
+  }
+}

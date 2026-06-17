@@ -1,0 +1,21 @@
+# Trajectory Analysis for dataset: tau_sim_10k (Optimal Model: 3 Subtypes)
+
+This automated analysis evaluates the spatial pathways discovered by the SuStaIn model, categorizing them according to standard clinical phenotypes (e.g., Vogel et al. 2021).
+
+## Estimated Subtype 1 (Prevalence: 36.3%)
+**Phenotype Classification:** Neocortical-Leaning / Atypical Pathway
+- **Early Stages:** According to the estimated PVD (`PVD_estimated.png`), the very first regions to show tau accumulation (Z=1, red squares on the far left) are the **Precuneus**, followed closely by the **Fusiform** and the **Parahippocampal**.
+- **Clinical Characteristics & Progression:** Tau accumulation begins outside the classic limbic center, showing early vulnerability in regions like the Precuneus or temporal neocortex. Clinically, this pattern corresponds to atypical Alzheimer's phenotypes (like medial temporal-sparing), where executive, language, or visuospatial deficits appear early, prior to severe memory loss.
+
+## Estimated Subtype 2 (Prevalence: 49.5%)
+**Phenotype Classification:** Classic Limbic (Braak-like) Pathway
+- **Early Stages:** According to the estimated PVD (`PVD_estimated.png`), the very first regions to show tau accumulation (Z=1, red squares on the far left) are the **Entorhinal**, followed closely by the **Parahippocampal** and the **Middle Temporal**.
+- **Clinical Characteristics & Progression:** The pathology originates strictly in the medial temporal lobe, which is the hallmark of classic Braak tau staging. It typically spreads adjacently before reaching neocortical areas. Clinically, this trajectory is heavily associated with early and severe amnestic (memory) symptoms.
+
+## Estimated Subtype 3 (Prevalence: 14.2%)
+**Phenotype Classification:** Neocortical-Leaning / Atypical Pathway
+- **Early Stages:** According to the estimated PVD (`PVD_estimated.png`), the very first regions to show tau accumulation (Z=1, red squares on the far left) are the **Middle Temporal**, followed closely by the **Fusiform** and the **Entorhinal**.
+- **Clinical Characteristics & Progression:** Tau accumulation begins outside the classic limbic center, showing early vulnerability in regions like the Precuneus or temporal neocortex. Clinically, this pattern corresponds to atypical Alzheimer's phenotypes (like medial temporal-sparing), where executive, language, or visuospatial deficits appear early, prior to severe memory loss.
+
+**Note on Continuity (How to read the PVD):**
+The squares on the PVD represent the exact *stage* (time point) where a region crosses a new threshold (e.g., Z=1 to Z=2). The absence of a square in subsequent stages does NOT mean the tau disappeared; it simply means the region is *maintaining* its pathological state while other regions cross their thresholds. Tau accumulation is strictly monotonic in this model.

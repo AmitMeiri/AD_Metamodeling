@@ -1,0 +1,199 @@
+<svg width="100%" viewBox="0 0 1100 780" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Bayesian Metamodeling Flow</title>
+
+  <defs>
+    <!-- Double-ended marker: both ends get an open chevron -->
+    <marker id="endG" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M8 1L2 5L8 9" fill="none" stroke="#2e7d32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="endB" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M8 1L2 5L8 9" fill="none" stroke="#1565c0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="endR" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M8 1L2 5L8 9" fill="none" stroke="#c62828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="startG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M8 1L2 5L8 9" fill="none" stroke="#2e7d32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="startB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M8 1L2 5L8 9" fill="none" stroke="#1565c0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="startR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M8 1L2 5L8 9" fill="none" stroke="#c62828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1100" height="780" fill="#FFFDE7"/>
+
+  <!-- Title -->
+  <text x="550" y="36" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#33270a" letter-spacing="1.5">BAYESIAN METAMODELING FLOW</text>
+  <line x1="60" y1="46" x2="1040" y2="46" stroke="#c8b400" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ══════════════════════════════════════
+       LEFT BOX 1: Bossa & Sahli ODE 2023
+  ══════════════════════════════════════ -->
+  <rect x="30" y="62" width="430" height="310" rx="14" fill="#fffef5" stroke="#b8a000" stroke-width="1.5"/>
+  <rect x="30" y="62" width="430" height="38" rx="14" fill="#fff9c4" stroke="#b8a000" stroke-width="1.5"/>
+  <rect x="30" y="85" width="430" height="15" fill="#fff9c4"/>
+  <text x="245" y="86" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#5a4200">Bossa &amp; Sahli ODE 2023</text>
+
+  <!-- Section labels -->
+  <text x="95" y="118" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#1565c0" letter-spacing="0.5">INPUTS</text>
+  <text x="355" y="118" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c62828" letter-spacing="0.5">OUTPUTS</text>
+  <line x1="240" y1="106" x2="240" y2="363" stroke="#e0cc60" stroke-width="1" opacity="0.6" stroke-dasharray="4 3"/>
+
+  <!-- ODE Input pills (blue) — 6 items, y starting 128, step 30 -->
+  <rect x="40" y="128" width="140" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="110" y="143" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">age_baseline</text>
+
+  <rect x="40" y="158" width="140" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="110" y="173" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">apoe4_status</text>
+
+  <rect x="40" y="188" width="140" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="110" y="203" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">amyloid_baseline</text>
+
+  <rect x="40" y="218" width="140" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="110" y="233" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">tau_baseline</text>
+
+  <rect x="40" y="248" width="140" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="110" y="263" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">amyloid_2yr</text>
+
+  <rect x="40" y="278" width="140" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="110" y="293" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">tau_2yr</text>
+
+  <!-- ODE Output pills (red) — 7 items -->
+  <rect x="252" y="128" width="190" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="347" y="143" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">tau_self_dynamic</text>
+
+  <rect x="252" y="158" width="190" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="347" y="173" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">amyloid_self_dynamic</text>
+
+  <rect x="252" y="188" width="190" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="347" y="203" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">amyloid_drive_tau</text>
+
+  <rect x="252" y="218" width="190" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="347" y="233" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">memory_result_baseline</text>
+
+  <rect x="252" y="248" width="190" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="347" y="263" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">clinical_stage_baseline</text>
+
+  <rect x="252" y="278" width="190" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="347" y="293" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">memory_result_yr5</text>
+
+  <rect x="252" y="308" width="190" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="347" y="323" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">clinical_stage_yr5</text>
+
+  <!-- ══════════════════════════════════════
+       LEFT BOX 2: Vogel SuStaIn
+  ══════════════════════════════════════ -->
+  <rect x="30" y="400" width="430" height="280" rx="14" fill="#fffef5" stroke="#b8a000" stroke-width="1.5"/>
+  <rect x="30" y="400" width="430" height="38" rx="14" fill="#fff9c4" stroke="#b8a000" stroke-width="1.5"/>
+  <rect x="30" y="423" width="430" height="15" fill="#fff9c4"/>
+  <text x="245" y="424" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#5a4200">Vogel SuStaIn</text>
+
+  <!-- Section labels -->
+  <text x="95" y="456" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#1565c0" letter-spacing="0.5">INPUTS</text>
+  <text x="355" y="456" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c62828" letter-spacing="0.5">OUTPUTS</text>
+  <line x1="240" y1="444" x2="240" y2="672" stroke="#e0cc60" stroke-width="1" opacity="0.6" stroke-dasharray="4 3"/>
+
+  <!-- SuStaIn Input pills (blue) — 7 regions -->
+  <rect x="40" y="463" width="150" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="115" y="478" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">Region_0_zscore</text>
+
+  <rect x="40" y="493" width="150" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="115" y="508" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">Region_1_zscore</text>
+
+  <rect x="40" y="523" width="150" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="115" y="538" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">Region_2_zscore</text>
+
+  <rect x="40" y="553" width="150" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="115" y="568" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">Region_3_zscore</text>
+
+  <rect x="40" y="583" width="150" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="115" y="598" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">Region_4_zscore</text>
+
+  <rect x="40" y="613" width="150" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="115" y="628" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">Region_5_zscore</text>
+
+  <rect x="40" y="643" width="150" height="22" rx="11" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="115" y="658" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#0d3b6e">Region_6_zscore</text>
+
+  <!-- SuStaIn Output pills (red) — merged to 2: Prob_subtypes + Expected_stage -->
+  <rect x="252" y="493" width="185" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="344" y="508" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">Prob_subtypes</text>
+
+  <rect x="252" y="613" width="185" height="22" rx="11" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="344" y="628" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#7b1a1a">Expected_stage</text>
+
+  <!-- ══════════════════════════════════════
+       RIGHT: Coupling Layer Circles
+  ══════════════════════════════════════ -->
+  <rect x="665" y="62" width="390" height="618" rx="16" fill="#f0fff0" stroke="#7ab87a" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text x="860" y="88" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#2e5e2e" letter-spacing="0.8">COUPLING LAYERS</text>
+
+  <!-- Node A: Tau Dynamics -->
+  <circle cx="860" cy="210" r="72" fill="#c8f0c8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="860" y="204" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#1b4d1b">Tau</text>
+  <text x="860" y="222" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#1b4d1b">Dynamics</text>
+
+  <!-- Node B: Disease Stage -->
+  <circle cx="860" cy="410" r="72" fill="#c8f0c8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="860" y="404" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#1b4d1b">Disease</text>
+  <text x="860" y="422" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#1b4d1b">Stage</text>
+
+  <!-- Node C: Subtype -->
+  <circle cx="860" cy="610" r="72" fill="#c8f0c8" stroke="#2e7d32" stroke-width="2"/>
+  <text x="860" y="614" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#1b4d1b">Subtype</text>
+
+  <!-- ══════════════════════════════════════
+       UNDIRECTED CONNECTIONS (double-ended)
+       All lines: marker-start + marker-end
+  ══════════════════════════════════════ -->
+
+  <!-- ODE: tau_self_dynamic (right=442, y=139) ↔ Tau Dynamics (left=788) -->
+  <path d="M442 139 C570 139, 710 185, 788 196" fill="none" stroke="#c62828" stroke-width="1.7" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- ODE: tau_self_dynamic (right=442, y=139) ↔ Subtype (left=788, cy=610) -->
+  <path d="M442 139 C580 139, 710 560, 788 592" fill="none" stroke="#c62828" stroke-width="1.7" stroke-dasharray="5 2.5" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- ODE: clinical_stage_yr5 (right=442, y=319) ↔ Disease Stage (left=788, cy=410) -->
+  <path d="M442 319 C600 319, 710 385, 788 398" fill="none" stroke="#c62828" stroke-width="1.7" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- ODE: apoe4_status (right=180, y=169) ↔ Subtype -->
+  <path d="M180 169 C310 169, 520 540, 788 600" fill="none" stroke="#1565c0" stroke-width="1.7" marker-start="url(#startB)" marker-end="url(#endB)"/>
+
+  <!-- ODE: memory_result_yr5 (right=442, y=289) ↔ Subtype -->
+  <path d="M442 289 C600 289, 720 540, 788 608" fill="none" stroke="#c62828" stroke-width="1.7" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- SuStaIn: Prob_subtypes (right=437, y=504) ↔ Tau Dynamics -->
+  <path d="M437 504 C580 504, 710 290, 788 228" fill="none" stroke="#c62828" stroke-width="1.7" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- SuStaIn: Prob_subtypes (right=437, y=504) ↔ Disease Stage -->
+  <path d="M437 504 C580 504, 710 430, 788 418" fill="none" stroke="#c62828" stroke-width="1.7" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- SuStaIn: Prob_subtypes (right=437, y=504) ↔ Subtype -->
+  <path d="M437 504 C580 504, 710 580, 788 598" fill="none" stroke="#c62828" stroke-width="1.7" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- SuStaIn: Expected_stage (right=437, y=624) ↔ Disease Stage -->
+  <path d="M437 624 C600 624, 720 490, 788 430" fill="none" stroke="#c62828" stroke-width="1.7" marker-start="url(#startR)" marker-end="url(#endR)"/>
+
+  <!-- ══════════════════════════════════════
+       LEGEND
+  ══════════════════════════════════════ -->
+  <rect x="30" y="726" width="680" height="34" rx="8" fill="#fffde7" stroke="#c8b400" stroke-width="1"/>
+  <rect x="46" y="736" width="52" height="14" rx="7" fill="#e3f0fb" stroke="#1565c0" stroke-width="1"/>
+  <text x="104" y="747" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#0d3b6e">Input variable</text>
+
+  <rect x="200" y="736" width="52" height="14" rx="7" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="258" y="747" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#7b1a1a">Output variable</text>
+
+  <circle cx="370" cy="743" r="7" fill="#c8f0c8" stroke="#2e7d32" stroke-width="1.2"/>
+  <text x="383" y="747" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#1b4d1b">Coupling node</text>
+
+  <line x1="470" y1="743" x2="516" y2="743" stroke="#c62828" stroke-width="1.8" marker-start="url(#startR)" marker-end="url(#endR)"/>
+  <text x="522" y="747" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#7b1a1a">Coupling connection</text>
+
+  <line x1="618" y1="743" x2="664" y2="743" stroke="#1565c0" stroke-width="1.8" stroke-dasharray="5 2.5" marker-start="url(#startB)" marker-end="url(#endB)"/>
+  <text x="670" y="747" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#0d3b6e">Cross-cluster link</text>
+</svg>

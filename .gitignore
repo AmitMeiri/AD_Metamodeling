@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE and Editor configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Testing and Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# NOTE: The following directories are explicitly NOT ignored based on project needs:
+# tmp/ (Used by the metamodel framework for sampling)
+# Library_Changes/ (Contains essential modified library files)
+# surrogate_artifacts/ or other training checkponts are NOT ignored here.
+# Surrogate model training runs (logs/events)
+SuStaIn_2021/Surrogate_SuStaIn/sustain_joint_project/runs/
+ode_2023/Surrogate/alzheimer_joint_project/runs/

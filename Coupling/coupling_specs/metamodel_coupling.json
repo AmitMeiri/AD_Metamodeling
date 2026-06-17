@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "name": "ode_sustain_coupling",
+  "ppl_backend": "pymc",
+  "surrogate_refs": [
+    "C:/Project/AD_Metamodeling/ode_2023/Surrogate/tmp/surrogate_artifacts/5672e7002b8e4fffa045b6b7ba98de79/artifact.json",
+    "C:/Project/AD_Metamodeling/SuStaIn_2021/Surrogate_SuStaIn/tmp/surrogate_artifacts/10562c940a6c43d39851925cebb2cb49/artifact.json"
+  ],
+  "variables": [
+    {
+      "name": "age_baseline",
+      "type": "scalar"
+    },
+    {
+      "name": "apoe4_status",
+      "type": "scalar"
+    },
+    {
+      "name": "amyloid_baseline",
+      "type": "scalar"
+    },
+    {
+      "name": "tau_baseline",
+      "type": "scalar"
+    },
+    {
+      "name": "amyloid_2yr",
+      "type": "scalar"
+    },
+    {
+      "name": "tau_2yr",
+      "type": "scalar"
+    },
+    {
+      "name": "tau_self_dynamic",
+      "type": "scalar"
+    },
+    {
+      "name": "amyloid_self_dynamic",
+      "type": "scalar"
+    },
+    {
+      "name": "amyloid_drive_tau",
+      "type": "scalar"
+    },
+    {
+      "name": "memory_result_yr5",
+      "type": "scalar"
+    },
+    {
+      "name": "clinical_stage_yr5",
+      "type": "scalar"
+    },
+    {
+      "name": "region_0_zscore",
+      "type": "scalar"
+    },
+    {
+      "name": "region_1_zscore",
+      "type": "scalar"
+    },
+    {
+      "name": "region_2_zscore",
+      "type": "scalar"
+    },
+    {
+      "name": "region_3_zscore",
+      "type": "scalar"
+    },
+    {
+      "name": "region_4_zscore",
+      "type": "scalar"
+    },
+    {
+      "name": "region_5_zscore",
+      "type": "scalar"
+    },
+    {
+      "name": "region_6_zscore",
+      "type": "scalar"
+    },
+    {
+      "name": "prob_subtype_0",
+      "type": "scalar"
+    },
+    {
+      "name": "prob_subtype_1",
+      "type": "scalar"
+    },
+    {
+      "name": "prob_subtype_2",
+      "type": "scalar"
+    },
+    {
+      "name": "expected_stage",
+      "type": "scalar"
+    },
+    {
+      "name": "suStIn_global_tau",
+      "type": "scalar"
+    }
+  ],
+  "priors": [
+    {
+      "variable": "age_baseline",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "apoe4_status",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "amyloid_baseline",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "tau_baseline",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "amyloid_2yr",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "tau_2yr",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "region_0_zscore",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "region_1_zscore",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "region_2_zscore",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "region_3_zscore",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "region_4_zscore",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "region_5_zscore",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    },
+    {
+      "variable": "region_6_zscore",
+      "distribution": {
+        "kind": "normal",
+        "loc": 0.0,
+        "scale": 1.0
+      }
+    }
+  ],
+  "couplings": [
+    {
+      "kind": "gaussian_link",
+      "source": "expected_stage,prob_subtype_0,prob_subtype_1,prob_subtype_2",
+      "target": "clinical_stage_yr5",
+      "transform": {
+        "kind": "sustain_to_ode_stage"
+      },
+      "sigma": 0.2
+    },
+    {
+      "kind": "deterministic",
+      "source": "region_0_zscore,region_1_zscore,region_2_zscore,region_3_zscore,region_4_zscore,region_5_zscore,region_6_zscore",
+      "target": "suStIn_global_tau",
+      "transform": {
+        "kind": "sum"
+      }
+    },
+    {
+      "kind": "directional_potential",
+      "source": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
+      "target": "tau_self_dynamic",
+      "transform": {
+        "kind": "velocity_modifier_score",
+        "weights": [
+          1.0,
+          -0.3,
+          0.5
+        ]
+      },
+      "sigma": 0.5
+    },
+    {
+      "kind": "gaussian_link",
+      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_yr5",
+      "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
+      "transform": {
+        "kind": "clinical_subtype_scorer",
+        "beta": 1.0
+      },
+      "sigma": 0.25
+    }
+  ]
+}

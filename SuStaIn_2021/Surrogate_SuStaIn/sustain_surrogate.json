@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "name": "sustain_surrogate_sbi",
+  "artifact_id": "sust_art",
+  "kind": "conditional",
+  "inputs": [
+    "region_0_zscore",
+    "region_1_zscore",
+    "region_2_zscore",
+    "region_3_zscore",
+    "region_4_zscore",
+    "region_5_zscore",
+    "region_6_zscore"
+  ],
+  "outputs": [
+    "prob_subtype_0",
+    "prob_subtype_1",
+    "prob_subtype_2",
+    "expected_stage"
+  ],
+  "backend": "sbi_npe",
+  "backend_config": {
+    "density_estimator": "maf",
+    "max_num_epochs": 80,
+    "training_batch_size": 32,
+    "learning_rate": 0.0005,
+    "validation_fraction": 0.1,
+    "stop_after_epochs": 20,
+    "show_train_summary": false,
+    "summary_samples": 256
+  },
+  "dataset_ref": {
+    "run_store_root": "sustain_joint_project"
+  },
+  "seed": 123,
+  "summary_config": {
+    "kind": "index",
+    "index": 0
+  }
+}

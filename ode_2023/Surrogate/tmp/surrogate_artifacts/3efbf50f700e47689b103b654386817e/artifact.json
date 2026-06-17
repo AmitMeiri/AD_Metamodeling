@@ -1,0 +1,52 @@
+{
+  "artifact_id": "3efbf50f700e47689b103b654386817e",
+  "backend": "sbi_npe",
+  "backend_payload": "tmp\\surrogate_artifacts\\3efbf50f700e47689b103b654386817e\\backend_payload.json",
+  "created_at": "2026-06-16T13:00:11.147211+00:00",
+  "dataset_digest": "ad67d2895770920945a22c3476d4f18d7590a69ca1daa8dad4a83531c84cfc35",
+  "dependency_versions": {
+    "numpy": "2.4.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.4",
+    "sbi": "0.26.1",
+    "scipy": "1.17.1",
+    "torch": "2.10.0"
+  },
+  "io_signature": {
+    "inputs_ordered": [
+      "age_baseline",
+      "apoe4_status",
+      "amyloid_baseline",
+      "tau_baseline",
+      "amyloid_2yr",
+      "tau_2yr"
+    ],
+    "outputs_ordered": [
+      "tau_self_dynamic",
+      "amyloid_self_dynamic",
+      "amyloid_drive_tau",
+      "memory_cognitive_test_result",
+      "clinical_stage"
+    ]
+  },
+  "seed": 123,
+  "spec_digest": "39777d276e0d0ccf4b8aead3a73ab9da3368e99ea382f0240ebb2a6dea14bf22",
+  "spec_name": "ad_ode_surrogate_sbi",
+  "variable_lists": {
+    "inputs": [
+      "age_baseline",
+      "apoe4_status",
+      "amyloid_baseline",
+      "tau_baseline",
+      "amyloid_2yr",
+      "tau_2yr"
+    ],
+    "outputs": [
+      "tau_self_dynamic",
+      "amyloid_self_dynamic",
+      "amyloid_drive_tau",
+      "memory_cognitive_test_result",
+      "clinical_stage"
+    ]
+  }
+}
