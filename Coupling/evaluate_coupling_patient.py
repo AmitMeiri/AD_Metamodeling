@@ -11,7 +11,10 @@ from contextlib import redirect_stdout
 import re
 import argparse
 
-sys.path.insert(0, "C:/Project/metamodeler_codex_scaffold_docs-develop/src")
+# NOTE: The hardcoded `sys.path.insert(0, "C:/Project/...")` paths that were previously here 
+# have been intentionally removed. This script now relies natively on the fact that the 
+# `bayesian_metamodeling` framework is installed in your Python environment (via `pip install -e .`), 
+# which is the standard Python way of doing things. This ensures portability across different machines.
 from bayesian_metamodeling.tutorial import run_mm_cli
 from bayesian_metamodeling.surrogates.backends import load_backend_model
 
@@ -84,9 +87,9 @@ def run_coupled_samples(patient, patient_id, spec_path, ode_s, sus_s, n_draws=25
     matches = re.findall(r'sample_id=([a-f0-9]+)', out)
     if not matches:
         raise ValueError(f"Could not find sample_id in output: {out}")
-    sample_id = matches[-1]
-    
-    dataset_path = Path("C:/Project/metamodeler_codex_scaffold_docs-develop/tmp/metamodel_samples") / sample_id / "samples_dataset.json"
+    import bayesian_metamodeling
+    framework_root = Path(bayesian_metamodeling.__file__).parent.parent.parent
+    dataset_path = framework_root / "tmp" / "metamodel_samples" / sample_id / "samples_dataset.json"
     with open(dataset_path, 'r') as f_json:
         data = json.load(f_json)
         

@@ -2,9 +2,10 @@ import json
 import sys
 from pathlib import Path
 
-# Add the root directory of the bayesian metamodeling framework to the Python path 
-# so we can import the command line interface (CLI) runner.
-sys.path.insert(0, "C:/Project/metamodeler_codex_scaffold_docs-develop/src")
+# NOTE: The hardcoded `sys.path.insert(0, "C:/Project/...")` paths that were previously here 
+# have been intentionally removed. This script now relies natively on the fact that the 
+# `bayesian_metamodeling` framework is installed in your Python environment (via `pip install -e .`), 
+# which is the standard Python way of doing things. This ensures portability across different machines.
 from bayesian_metamodeling.tutorial import run_mm_cli
 
 # Helper to find the latest trained surrogate payload dynamically

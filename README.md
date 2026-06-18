@@ -69,26 +69,39 @@ AD_Metamodeling/
 
 ---
 
-## 3. Requirements & System Dependencies
+## 3. Installation & Running Guide (Environment Setup)
 
-To run the coupling simulation and evaluation, the following environments and libraries must be installed:
+To run the coupling simulation and evaluation smoothly, you need to set up a Python environment. 
 
-### 3.1 Python Environment
-*   **Python Version**: 3.10+ (Recommended: 3.10 or 3.11)
-*   **Key Libraries**: `numpy`, `pandas`, `matplotlib`, `seaborn`, `pymc`, `pytensor`, `sbi`, `pydantic` (V2).
-*   *For a complete list of packages, install the root requirements file*:
-    ```bash
-    pip install -r requirements.txt
-    ```
+> [!IMPORTANT]
+> **Environment Golden Rule:** You must install BOTH the project's dependencies AND the external metamodeling library into the **exact same single Python environment**. Do NOT create separate environments for them. The environment can be named anything you like.
 
-### 3.2 The Metamodeling Library (`bayesian_metamodeling`)
-This project runs on top of the external framework library developed by Dr. Barak Raveh:
-*   **Official Package Name**: `bayesian_metamodeling` (scaffold-docs framework)
-*   **Installation**: The library must be installed in your environment in editable mode:
-    ```bash
-    cd /path/to/metamodeler_codex_scaffold_docs-develop
-    pip install -e .
-    ```
+Follow these simple steps from your terminal/command prompt:
+
+### Step 1: Create and Activate a Single Environment
+Create a clean Python 3.10+ virtual environment (using Conda, PyCharm, or Python's `venv`) and activate it.
+
+### Step 2: Install Dependencies (Choose Your Track)
+While your single environment is active, install the libraries based on your goal:
+
+**Track A: I just want to run the coupling test & surrogates (Lightweight)**
+If you are the end-user and just want to run the pre-trained metamodel forecasts, you don't need heavy compilers. Run:
+```bash
+pip install -r requirements_coupling_only.txt
+```
+
+**Track B: I am a developer and want to run the original base models (Heavy)**
+If you want to re-run the heavy base ODE or SuStaIn MCMC models from scratch, run the full list:
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Install the External Metamodeling Library
+Now, install the custom `bayesian_metamodeling` framework directly into that **same** environment. Navigate to wherever you downloaded the external framework and install it in "editable" mode (`-e .`):
+```bash
+cd /path/to/metamodeler_codex_scaffold_docs-develop
+pip install -e .
+```
 *   **CLI Interface**: Once installed, the library exposes the `bayesmm` CLI tool.
     *   **Compile a Model**:
         ```bash
@@ -101,13 +114,18 @@ This project runs on top of the external framework library developed by Dr. Bara
 
 
 ### 3.3 Dynamic Path Configuration (Safety Guide)
-When running evaluation scripts directly via Python, ensure your `PYTHONPATH` includes the source directory of the framework so the code can run safely. 
+When running the evaluation scripts, they expect the `bayesian_metamodeling` framework to be installed in your environment (as done via `pip install -e .` in step 3.2). 
 
-The evaluation script [evaluate_coupling_patient.py](file:///C:/Project/AD_Metamodeling/Coupling/evaluate_coupling_patient.py) handles this automatically by dynamically prepending the repository path at startup:
-```python
-sys.path.insert(0, "C:/Project/metamodeler_codex_scaffold_docs-develop/src")
+If you cloned the external library to a custom location and did not install it via pip, you must ensure your `PYTHONPATH` environment variable includes the `src/` directory of the cloned framework before running the scripts, for example:
+
+**On Linux/macOS:**
+```bash
+export PYTHONPATH="/path/to/metamodeler_codex_scaffold_docs-develop/src:$PYTHONPATH"
 ```
-*Note: If you move the project or external library folder, update this path or ensure the environment variable `PYTHONPATH` is set.*
+**On Windows (PowerShell):**
+```powershell
+$env:PYTHONPATH = "C:\path\to\metamodeler_codex_scaffold_docs-develop\src;" + $env:PYTHONPATH
+```
 
 ---
 

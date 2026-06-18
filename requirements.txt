@@ -1,0 +1,28 @@
+# ==============================================================================
+# NOTE: The external 'bayesian_metamodeling' library is INTENTIONALLY OMITTED 
+# from this file. Because it is a private/local library, adding its local path
+# here would break the installation for anyone cloning the repository to a 
+# different folder. You MUST install it manually as detailed in the README.
+# ==============================================================================
+
+# --- AD ODE Model Dependencies ---
+cmdstanpy>=1.0.0
+torch>=2.0.0
+sbi>=0.21.0
+
+# --- SuStaIn Model Dependencies ---
+scikit-learn>=1.0.0
+tqdm>=4.60.0
+dill
+multiprocess
+pathos
+
+# --- Metamodeling & Shared Data Science Dependencies ---
+numpy>=1.20.0
+scipy>=1.7.0
+pandas>=1.3.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+pymc
+pytensor
+pydantic
