@@ -31,16 +31,21 @@ Below is the conceptual layout of the project, highlighting the core components 
 ```
 AD_Metamodeling/
 ├── README.md                           # This root README file
-├── requirements.txt                    # Project-wide dependencies
+├── requirements.txt                    # Full developer dependencies for base models
+├── requirements_coupling_only.txt      # Lightweight dependencies for running the coupling
+├── .gitignore                          # Ignored files configuration
 │
 ├── ode_2023/                           # AD-ODE Temporal Model
 │   ├── README.md                       # ODE model documentation & directionality guide
-│   ├── run_ode_surrogate.py            # Code to run ODE simulations & generate data
-│   ├── walkthough_base_model.md        # Technical breakdown of ODE kinetics
+│   ├── ad_ode_demo_posterior.pkl       # Base model trained MCMC parameter matrix
+│   ├── reproduce_figures.py            # Generates original paper figures from data
+│   ├── test_indices.py                 # Utility to extract ODE parameters
 │   └── Surrogate/                      # Neural network surrogate folder
-│       ├── surrogate_config.json       # Autoregressive flow architecture
+│       ├── walkthrough.md              # Technical breakdown of NPE Surrogate
+│       ├── ad_ode_surrogate.json       # Autoregressive flow architecture config
+│       ├── build_training_data.py      # Extracts base model data for surrogate
 │       ├── preprocess_surrogate.py     # Surrogate preprocessing & training runner
-│       ├── validate_surrogate.py       # Surrogate performance evaluation
+│       ├── validate_ode_subject.py     # Surrogate performance evaluation
 │       └── tmp/surrogate_artifacts/    # Trained surrogate weights & payload
 │
 ├── SuStaIn_2021/                       # SuStaIn Spatial Model
@@ -49,7 +54,9 @@ AD_Metamodeling/
 │   ├── walkthrough_base_model.md       # Technical explanation of pySuStaIn MCMC
 │   ├── sim_zscore_output/              # Simulation results, PVD plots, & pickle files
 │   └── Surrogate_SuStaIn/              # Neural network surrogate folder
-│       ├── sustain_surrogate.json      # autogressive flow surrogate layout
+│       ├── walkthrough_surrogate_model.md # Technical breakdown of NPE Surrogate
+│       ├── sustain_surrogate.json      # Autoregressive flow architecture config
+│       ├── build_training_data.py      # Extracts base model data for surrogate
 │       ├── preprocess_surrogate.py     # Surrogate training runner
 │       ├── validate_test_subject.py    # Test subject validation script
 │       └── tmp/surrogate_artifacts/    # Trained surrogate weights & payload
