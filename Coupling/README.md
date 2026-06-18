@@ -33,6 +33,8 @@ Before understanding the coupling mechanics, it is crucial to know the inputs an
 
 ## Architecture & Process Overview
 
+![Bayesian Metamodeling Flow Architecture](bayesian_metamodeling_flow.svg)
+
 The framework creates a joint posterior over the two independent surrogate models by explicitly linking specific variables with `gaussian_link` noise models. During MCMC sampling (via PyMC), the solver adjusts the internal latent parameters of both models until they reach an agreement guided by these soft constraints.
 
 > [!CAUTION]
