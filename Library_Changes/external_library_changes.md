@@ -8,17 +8,9 @@ This document details the modifications made to the external framework library `
 
 ## Summary of Changes
 
-- **New Files**: 6
+- **New Files**: 0
 - **Deleted Files**: 0
 - **Modified Files**: 6
-
-### New Files
-- `[NEW] src\bayesian_metamodeling.egg-info\PKG-INFO`
-- `[NEW] src\bayesian_metamodeling.egg-info\SOURCES.txt`
-- `[NEW] src\bayesian_metamodeling.egg-info\dependency_links.txt`
-- `[NEW] src\bayesian_metamodeling.egg-info\entry_points.txt`
-- `[NEW] src\bayesian_metamodeling.egg-info\requires.txt`
-- `[NEW] src\bayesian_metamodeling.egg-info\top_level.txt`
 
 ## Detailed Code Changes
 
