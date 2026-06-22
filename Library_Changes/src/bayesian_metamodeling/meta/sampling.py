@@ -156,7 +156,7 @@ def _sample_core(
             # For sampling approximation, directional potential applies a heuristic shift
             sigma = float(factor.sigma or 1.0)
             for i, target_name in enumerate(target_names):
-                shift = sigma * transformed * 0.05
+                shift = (transformed * 0.05) / sigma
                 samples[target_name] += shift
         else:
             sigma = float(factor.sigma or DEFAULT_COUPLING_SIGMA)

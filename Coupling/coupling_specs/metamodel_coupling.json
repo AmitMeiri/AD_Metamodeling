@@ -236,7 +236,7 @@
           0.5
         ]
       },
-      "sigma": 0.5
+      "sigma": 2.0
     },
     {
       "kind": "gaussian_link",

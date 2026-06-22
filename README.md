@@ -34,6 +34,7 @@ AD_Metamodeling/
 ├── requirements.txt                    # Full developer dependencies for base models
 ├── requirements_coupling_only.txt      # Lightweight dependencies for running the coupling
 ├── .gitignore                          # Ignored files configuration
+├── TODO.md                             # Future assignments and roadmap
 │
 ├── ode_2023/                           # AD-ODE Temporal Model
 │   ├── README.md                       # ODE model documentation & directionality guide

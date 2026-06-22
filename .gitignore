@@ -29,3 +29,6 @@ htmlcov/
 # Surrogate model training runs (logs/events)
 SuStaIn_2021/Surrogate_SuStaIn/sustain_joint_project/runs/
 ode_2023/Surrogate/alzheimer_joint_project/runs/
+
+# Project Materials
+Material/

@@ -52,6 +52,7 @@ spec = {
     { "name": "amyloid_drive_tau", "type": "scalar" },
     { "name": "memory_result_yr5", "type": "scalar" },
     { "name": "clinical_stage_yr5", "type": "scalar" },
+    { "name": "clinical_stage_baseline", "type": "scalar" },
     { "name": "region_0_zscore", "type": "scalar" },
     { "name": "region_1_zscore", "type": "scalar" },
     { "name": "region_2_zscore", "type": "scalar" },
@@ -94,7 +95,7 @@ spec = {
       # Different subtypes decline at different spatial burdens.
       "kind": "gaussian_link",
       "source": "expected_stage,prob_subtype_0,prob_subtype_1,prob_subtype_2",
-      "target": "clinical_stage_yr5",
+      "target": "clinical_stage_baseline",
       "transform": { "kind": "sustain_to_ode_stage" },
       "sigma": 0.2
     },
@@ -108,12 +109,12 @@ spec = {
       # Subtype-Driven Velocity Potential
       # Directionally pushes the ODE's intrinsic velocity based on the spatial pathway.
       # S = (P_0 * 1.0) + (P_1 * -0.3) + (P_2 * 0.5)
-      # Log-Prob Bonus = sigma * tau_self_dynamic * S
+      # Log-Prob Bonus = (1 / sigma) * tau_self_dynamic * S
       "kind": "directional_potential",
       "source": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "target": "tau_self_dynamic",
       "transform": { "kind": "velocity_modifier_score", "weights": [1.0, -0.3, 0.5] },
-      "sigma": 0.5
+      "sigma": 2.0
     },
     {
       # Clinical Subtype Prior

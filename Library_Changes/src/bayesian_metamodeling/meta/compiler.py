@@ -118,10 +118,10 @@ class CompiledMetaModel:
                     if not np.allclose(targets, transformed, atol=_DETERMINISTIC_TOL):
                         total += _DETERMINISTIC_PENALTY
                 elif factor.coupling_type == "directional_potential":
-                    # Directional Potential: Add (sigma * Target * Transformed_Score) to the log-probability
-                    # This pushes the sampler to maximize the reward naturally.
+                    # Directional Potential: Add (1/sigma * Target * Transformed_Score) to the log-probability
+                    # This pushes the sampler to maximize the reward naturally, with larger sigma being weaker.
                     sigma = float(factor.sigma or 1.0)
-                    total += sigma * np.sum(targets * transformed)
+                    total += (1.0 / sigma) * np.sum(targets * transformed)
                 else:
                     sigma = float(factor.sigma or DEFAULT_COUPLING_SIGMA)
                     var = sigma**2

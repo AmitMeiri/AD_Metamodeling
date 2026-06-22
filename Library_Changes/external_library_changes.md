@@ -126,10 +126,10 @@ This document details the modifications made to the external framework library `
 +                    if not np.allclose(targets, transformed, atol=_DETERMINISTIC_TOL):
 +                        total += _DETERMINISTIC_PENALTY
 +                elif factor.coupling_type == "directional_potential":
-+                    # Directional Potential: Add (sigma * Target * Transformed_Score) to the log-probability
++                    # Directional Potential: Add (1/sigma * Target * Transformed_Score) to the log-probability
 +                    # This pushes the sampler to maximize the reward naturally.
 +                    sigma = float(factor.sigma or 1.0)
-+                    total += sigma * np.sum(targets * transformed)
++                    total += (1.0 / sigma) * np.sum(targets * transformed)
                  else:
                      sigma = float(factor.sigma or DEFAULT_COUPLING_SIGMA)
                      var = sigma**2
@@ -246,7 +246,7 @@ This document details the modifications made to the external framework library `
 +            # For sampling approximation, directional potential applies a heuristic shift
 +            sigma = float(factor.sigma or 1.0)
 +            for i, target_name in enumerate(target_names):
-+                shift = sigma * transformed * 0.05
++                shift = (transformed * 0.05) / sigma
 +                samples[target_name] += shift
          else:
              sigma = float(factor.sigma or DEFAULT_COUPLING_SIGMA)

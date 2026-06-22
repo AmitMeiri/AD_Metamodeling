@@ -87,6 +87,7 @@ def run_coupled_samples(patient, patient_id, spec_path, ode_s, sus_s, n_draws=25
     matches = re.findall(r'sample_id=([a-f0-9]+)', out)
     if not matches:
         raise ValueError(f"Could not find sample_id in output: {out}")
+    sample_id = matches[-1]
     import bayesian_metamodeling
     framework_root = Path(bayesian_metamodeling.__file__).parent.parent.parent
     dataset_path = framework_root / "tmp" / "metamodel_samples" / sample_id / "samples_dataset.json"

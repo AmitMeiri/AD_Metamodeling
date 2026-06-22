@@ -59,8 +59,8 @@ We bridged the two models across three core domains using custom mathematical tr
   *(Notice how the Classic Limbic subtype $P_1$ receives a negative weight, explicitly pushing its intrinsic velocity down to simulate the biological plateau).*
 - **Mathematical Formula (Directional Potential)**:
   The `directional_potential` coupling constraint then applies this score as a direct penalty/bonus to the PyMC Log-Probability landscape during sampling:
-  $$ \text{Log-Probability\_Bonus} = \sigma \times \Big( \text{tau\_self\_dynamic} \times S \Big) $$
-  *(Where $\sigma$ is the tuning parameter for the strength of the "wind").*
+  $$ \text{Log-Probability\_Bonus} = \frac{1}{\sigma} \times \Big( \text{tau\_self\_dynamic} \times S \Big) $$
+  *(Where $\sigma$ behaves consistently with other soft constraints: a larger $\sigma$ corresponds to a weaker wind push).*
 
 ---
 
