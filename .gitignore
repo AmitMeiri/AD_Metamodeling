@@ -32,3 +32,9 @@ ode_2023/Surrogate/alzheimer_joint_project/runs/
 
 # Project Materials
 Material/
+
+# Temporary Scratch Directories & Generated Specs
+scratch/
+Coupling/scratch/
+temp_spec_*.json
+

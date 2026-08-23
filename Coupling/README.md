@@ -20,28 +20,48 @@ Before understanding the coupling mechanics, it is crucial to know the inputs an
 
 ---
 
-## File Map
+## File Map & Asset Inventory
 
-- **`build_coupling.py`**: The primary script that defines the structural coupling specifications (JSON) and executes the Bayesian metamodeling compiler to build and cache the PyMC models for various time horizons (`dt`).
-- **`evaluate_coupling_patient.py`**: An execution script that loads a pre-compiled coupling JSON spec, accepts mock patient data, and runs NUTS MCMC sampling to generate a personalized patient forecast, saving output visualizations to the project root and `scratch/`.
-- **[Coupling_Test.md](/Coupling/Coupling_Test.md)**: A test specification detailing the patient archetypes (Subject 1: Conflict, Subject 2: Amplification) used to verify and staging-test the mathematical compromise/reinforcement of the coupled system.
-- **`coupling_specs/`**: The generated `metamodel_coupling_dt*.json` schema files produced by `build_coupling.py`.
-- **`scratch/`**: Output directory for generated visualizations, test scripts, and temporary patient specs.
-- **`patient_coupling_evaluation.png`**: The comparative plot visual showing uncoupled vs coupled joint posterior distributions for the test subjects.
+- **`build_coupling.py`**: The primary Python script that defines the mathematical integration schema between the ODE and SuStaIn surrogates and builds the JSON metamodel spec.
+- **`evaluate_coupling_patient.py`**: The main execution harness that loads the compiled coupling specification, initializes patient baseline priors, runs joint MCMC sampling, and plots comparative posteriors.
+- **[`Coupling_Test.md`](Coupling_Test.md)**: Test methodology document detailing patient archetypes (Subject 1: Conflict, Subject 2: Amplification) and theoretical prediction expectations.
+- **`bayesian_meamodeling_flow.svg`**: Architectural flow diagram visualizing the surrogate inputs/outputs and the three central coupling nodes.
+- **`patient_coupling_evaluation.png`**: Actual empirical visualization plot produced by `evaluate_coupling_patient.py` showing uncoupled vs. coupled joint posteriors.
+- **`patient_coupling_expected.png`**: Comparison plot representing theoretical expectations per `Coupling_Test.md` to evaluate model behavior against reality.
+- **`coupling_specs/`**: Directory containing compiled metamodel specifications (e.g. `metamodel_coupling.json`).
+- **`scratch/`**: Temporary directory for scratch scripts, temporary patient specs, and intermediate test files (ignored by Git).
 
 ---
 
-## Architecture & Process Overview
+## Architecture & Metamodel Sampling Mechanism
 
-![Bayesian Metamodeling Flow Architecture](bayesian_metamodeling_flow.svg)
+![Bayesian Metamodeling Flow Architecture](bayesian_meamodeling_flow.svg)
 
-The framework creates a joint posterior over the two independent surrogate models by explicitly linking specific variables with `gaussian_link` noise models. During MCMC sampling (via PyMC), the solver adjusts the internal latent parameters of both models until they reach an agreement guided by these soft constraints.
+### How Joint Sampling & Inference Works
+
+The joint sampling and inference process does **not** evaluate the models in separate isolation to manually stitch them together afterward. Instead, the framework compiles the individual surrogates (`SurrogateLikelihoodFactorIR`) and cross-model coupling links (`CouplingFactorIR`) into a single, unified probabilistic graph using PyMC.
+
+#### 1. Graph Compilation (`bayesmm meta build`)
+The framework parses the JSON specification and builds an Intermediate Representation (IR) containing:
+* **`SurrogateLikelihoodFactorIR`**: Evaluates the subsystem log-probabilities $\log P_{\text{ODE}}(Y)$ and $\log P_{\text{SuStaIn}}(X)$.
+* **`CouplingFactorIR`**: Evaluates the Gaussian link penalties, deterministic transforms, and directional potential bonuses connecting cross-model variables.
+
+#### 2. Joint MCMC Sampling (`bayesmm meta sample`)
+Inference is executed over this joint graph using a **Markov Chain Monte Carlo (MCMC)** algorithm—specifically **Random Walk Metropolis**. PyMC automatically selects Metropolis-Hastings because the neural normalizing flow surrogates (`sbi_npe`) function as black-box Python functions without symbolic PyTensor gradients.
+
+#### 3. Total Log-Probability Summation
+At every MCMC step $t$, candidate values for all model variables across both subsystems are proposed. The compiler calculates the total joint log-probability score by summing the individual surrogate log-priors with the coupling log-likelihood penalties:
+
+$$\log P_{\text{Total}}(X, Y \mid \text{data}) = \log P_{\text{SuStaIn}}(X) + \log P_{\text{ODE}}(Y) + \sum_{i=1}^{3} \log P_{\text{Coupling}_i}(Y \mid X)$$
+
+#### 4. Convergence to Consensus
+The Random Walk Metropolis sampler uses this combined score to accept or reject proposals. If the surrogates predict plausible values but the coupling penalty is high (the models contradict each other), $\log P_{\text{Total}}$ drops sharply and the candidate state is rejected. This drives the MCMC chain away from parameter regions of conflict, drawing thousands of joint samples that converge toward a reconciled biological consensus.
+
+---
 
 > [!CAUTION]
-> **Baseline Sampling Engine Limitation (Post-Draw Approximation)**:
-> In the framework's baseline sampler (`bayesian_metamodeling/meta/sampling.py`), coupling is **not** resolved as a true joint posterior. Instead, the engine draws independent random samples from the source priors, runs them forward through the transform, and then **completely overwrites the target variables** with the transformed value plus noise.
->
-> Consequently, the target variable's own prior distributions and uncoupled surrogate predictions are **entirely ignored** during sampling. It functions as a forward simulation mapping rather than true joint probabilistic constraint resolution.
+> **Baseline Sampler vs. Joint MCMC Engine**:
+> In the framework's baseline sampler (`bayesian_metamodeling/meta/sampling.py`), coupling is evaluated via prior propagation (forward-only simulation). For true joint probabilistic constraint resolution where information flows bidirectionally, the PyMC joint engine (`--method joint`) must be used.
 
 We bridged the two models across three core domains using custom mathematical transformations (detailed in `bayesian_metamodeling_architectural_flow_updated`).
 
@@ -107,6 +127,32 @@ We bridged the two models across three core domains using custom mathematical tr
   Finally, a Temperature-Scaled Softmax generates the target probabilities:
   $$ P(\text{Subtype}_i) = \frac{\exp(\beta \cdot \text{Raw Scores}[i])}{\sum_{j=0}^{2} \exp(\beta \cdot \text{Raw Scores}[j])} $$
 - **⚠️ TUNNING REQUIRED**: The softmax temperature (`beta=1.0`) and the gaussian constraint variance (`sigma=0.25`) are currently placeholders. If the prior is too strong (the sampler ignores the brain scan), $\sigma$ must be relaxed or $\beta$ decreased. **We must tune these hyperparameters empirically using a real dataset of patients with both clinical history and brain scans. The same goes for how we weighted the variables to calculate the raw scores**
+
+---
+
+## Cross-Model Inference with Partial Data (Missing Model Inputs)
+
+A fundamental advantage of the Bayesian Metamodeling framework is its ability to perform **cross-domain inference when a patient has inputs available for only one of the two models**.
+
+Because MCMC samples over the unified joint probability density $P(\text{Model}_1, \text{Model}_2 \mid \text{Observed Data})$, information flows bidirectionally across the coupling links. Any unmeasured input is automatically integrated out and constrained by whatever partial evidence is available.
+
+### 1. Case 1: You Only Have SuStaIn Data (PET Scan Only)
+* **Setup**: Pin the patient's known regional Z-scores for SuStaIn in the spec; leave the ODE inputs unconstrained (assigning default population priors).
+* **Coupling Mechanism**: SuStaIn evaluates the spatial stage ($X$) and subtype probabilities. The coupling links (`sustain_to_ode_stage` and `velocity_modifier_score`) propagate information forward across the bridge into the ODE variables ($Y$).
+* **Outcome**: The metamodel predicts future memory decline (`memory_result_yr5`), kinetic rates (`tau_self_dynamic`), and clinical stage scores **even though no longitudinal ODE tests were performed**.
+
+### 2. Case 2: You Only Have ODE Data (Clinical History Only)
+* **Setup**: Pin the patient's known clinical inputs (Age, APOE4 status, baseline Amyloid/Tau/Memory); leave SuStaIn's regional Z-scores unconstrained.
+* **Coupling Mechanism**: The ODE surrogate evaluates longitudinal trajectories. The coupling links (`clinical_subtype_scorer` and `directional_potential`) **backpropagate** information into SuStaIn's parameters.
+* **Outcome**: The metamodel imputes the patient's expected spatial stage (`expected_stage`) and subtype probabilities (`prob_subtype_0..2`), **predicting what their unmeasured brain PET scan would look like**.
+
+### 3. Summary of Inference Scenarios
+
+| Available Patient Data | Spec Configuration | Metamodel Prediction Capability |
+| :--- | :--- | :--- |
+| **Only SuStaIn (PET Scan)** | Pin Regional Z-Scores; unconstrain ODE | Predicts future memory decline, kinetic velocity, and clinical stage. |
+| **Only ODE (Clinical History)** | Pin Age, APOE4, Baseline Biomarkers; unconstrain SuStaIn | Imputes spatial disease stage and spatial subtype classification. |
+| **Both Models (Full Data)** | Pin all known baseline inputs | Resolves spatial/temporal discrepancies and collapses prediction uncertainty. |
 
 ---
 

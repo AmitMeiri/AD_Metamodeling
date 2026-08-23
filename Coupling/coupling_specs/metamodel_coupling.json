@@ -52,6 +52,10 @@
       "type": "scalar"
     },
     {
+      "name": "clinical_stage_baseline",
+      "type": "scalar"
+    },
+    {
       "name": "region_0_zscore",
       "type": "scalar"
     },
@@ -210,7 +214,7 @@
     {
       "kind": "gaussian_link",
       "source": "expected_stage,prob_subtype_0,prob_subtype_1,prob_subtype_2",
-      "target": "clinical_stage_yr5",
+      "target": "clinical_stage_baseline",
       "transform": {
         "kind": "sustain_to_ode_stage"
       },
@@ -240,7 +244,7 @@
     },
     {
       "kind": "gaussian_link",
-      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_yr5",
+      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline",
       "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "transform": {
         "kind": "clinical_subtype_scorer",

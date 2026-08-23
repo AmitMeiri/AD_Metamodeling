@@ -45,7 +45,7 @@ def get_uncoupled_samples(patient, n_draws=500):
     
     return ode_samples, sustain_samples
 
-def run_coupled_samples(patient, patient_id, spec_path, ode_s, sus_s, n_draws=250):
+def run_coupled_samples(patient, patient_id, spec_path, ode_s, sus_s, n_draws=5000):
     out_dir = Path("C:/Project/AD_Metamodeling/Coupling")
     scratch_dir = out_dir / "scratch"
     scratch_dir.mkdir(parents=True, exist_ok=True)
@@ -66,14 +66,25 @@ def run_coupled_samples(patient, patient_id, spec_path, ode_s, sus_s, n_draws=25
         spec["priors"].append({ "variable": f"region_{i}_zscore", "distribution": { "kind": "normal", "loc": patient['zscores'][i], "scale": 0.05 } })
         
     spec['priors'].append({"variable": "tau_self_dynamic", "distribution": {"kind": "normal", "loc": float(np.mean(ode_s[:, 0])), "scale": max(float(np.std(ode_s[:, 0])), 0.01)}})
-    spec['priors'].append({"variable": "memory_result_yr5", "distribution": {"kind": "normal", "loc": float(np.mean(ode_s[:, 5])), "scale": max(float(np.std(ode_s[:, 5])), 0.01)}})
-    spec['priors'].append({"variable": "clinical_stage_yr5", "distribution": {"kind": "normal", "loc": float(np.mean(ode_s[:, 6])), "scale": max(float(np.std(ode_s[:, 6])), 0.01)}})
-    
+    spec['priors'].append({"variable": "memory_result_baseline", "distribution": {"kind": "normal", "loc": float(np.mean(ode_s[:, 3])), "scale": max(float(np.std(ode_s[:, 3])), 0.01)}})
+    # -------------------------------------------------------------------------
+    # STEP 1: Inject Uncoupled Surrogate Statistics as Priors
+    # -------------------------------------------------------------------------
+    # MCMC requires starting prior bounds for free parameters. We extract the 
+    # mean and standard deviation from the uncoupled predictions to initialize them.
+    spec['priors'].append({"variable": "clinical_stage_baseline", "distribution": {"kind": "normal", "loc": float(np.mean(ode_s[:, 4])), "scale": max(float(np.std(ode_s[:, 4])), 0.01)}})
     spec['priors'].append({"variable": "prob_subtype_0", "distribution": {"kind": "normal", "loc": float(np.mean(sus_s[:, 0])), "scale": max(float(np.std(sus_s[:, 0])), 0.01)}})
     spec['priors'].append({"variable": "prob_subtype_1", "distribution": {"kind": "normal", "loc": float(np.mean(sus_s[:, 1])), "scale": max(float(np.std(sus_s[:, 1])), 0.01)}})
     spec['priors'].append({"variable": "prob_subtype_2", "distribution": {"kind": "normal", "loc": float(np.mean(sus_s[:, 2])), "scale": max(float(np.std(sus_s[:, 2])), 0.01)}})
     spec['priors'].append({"variable": "expected_stage", "distribution": {"kind": "normal", "loc": float(np.mean(sus_s[:, 3])), "scale": max(float(np.std(sus_s[:, 3])), 0.01)}})
     
+    # -------------------------------------------------------------------------
+    # STEP 2: Compile Metamodel & Sample Joint Posteriors
+    # -------------------------------------------------------------------------
+    # 1. bayesmm 'meta build' instantiates:
+    #    - SurrogateLikelihoodFactorIR from 'surrogate_refs' (ODE & SuStaIn likelihoods)
+    #    - CouplingFactorIR from 'couplings' (Gaussian links and potential constraints)
+    # 2. bayesmm 'meta sample' executes Random Walk Metropolis MCMC across the joint space.
     spec_path_temp = scratch_dir / f"temp_spec_{patient_id}.json"
     spec_path_temp.write_text(json.dumps(spec, indent=2))
     spec_path_str = str(spec_path_temp).replace('\\', '/')
@@ -81,7 +92,7 @@ def run_coupled_samples(patient, patient_id, spec_path, ode_s, sus_s, n_draws=25
     f = io.StringIO()
     with redirect_stdout(f):
         run_mm_cli('meta', 'build', spec_path_str)
-        run_mm_cli('meta', 'sample', spec_path_str, '--draws', str(n_draws), '--tune', '50', '--chains', '2', '--seed', '42')
+        run_mm_cli('meta', 'sample', spec_path_str, '--draws', str(n_draws), '--tune', '1000', '--chains', '2', '--seed', '42')
     out = f.getvalue()
     
     matches = re.findall(r'sample_id=([a-f0-9]+)', out)
@@ -125,7 +136,7 @@ def evaluate_all(patients, spec_path):
     for patient in patients:
         print(f"Evaluating {patient['id']}...")
         ode_s, sus_s = get_uncoupled_samples(patient, n_draws=500)
-        c_vars = run_coupled_samples(patient, patient['id'], spec_path, ode_s, sus_s, n_draws=250)
+        c_vars = run_coupled_samples(patient, patient['id'], spec_path, ode_s, sus_s, n_draws=5000)
         
         results[patient['id']] = {
             'uncoupled_ode': ode_s,
@@ -179,8 +190,8 @@ def main():
         ode_s, sus_s, c_vars = res['uncoupled_ode'], res['uncoupled_sustain'], res['coupled']
         
         u_tau = ode_s[:, 0]
-        u_mem = ode_s[:, 5]  # memory_result_yr5 is output index 5
-        u_clin = np.clip(np.round(ode_s[:, 6]), 0, 2)  # clinical_stage_yr5 is output index 6
+        u_mem = ode_s[:, 3]  # memory_result_baseline is output index 3
+        u_clin = np.clip(np.round(ode_s[:, 4]), 0, 2)  # clinical_stage_baseline is output index 4
         
         u_prob0 = sus_s[:, 0]
         u_prob1 = sus_s[:, 1]
@@ -190,8 +201,8 @@ def main():
             return np.array(c_vars[name]).flatten()
             
         c_tau = ext('tau_self_dynamic')
-        c_mem = ext('memory_result_yr5')
-        c_clin = np.clip(np.round(ext('clinical_stage_yr5')), 0, 2)
+        c_mem = ext('memory_result_baseline')
+        c_clin = np.clip(np.round(ext('clinical_stage_baseline')), 0, 2)
         c_prob0 = ext('prob_subtype_0')
         c_prob1 = ext('prob_subtype_1')
         c_stage = ext('expected_stage')
@@ -206,9 +217,9 @@ def main():
         ax = axes[0, col]
         sns.kdeplot(x=u_tau, y=u_mem, color='#007aff', alpha=0.5, fill=True, ax=ax, label='Uncoupled')
         sns.kdeplot(x=c_tau, y=c_mem, color='#e74c3c', alpha=0.5, fill=True, ax=ax, label='Coupled')
-        ax.set_title(f"{p['title']}\n\nJoint: Tau Rate vs Memory", fontweight='bold', fontsize=12)
+        ax.set_title(f"{p['title']}\n\nJoint: Tau Rate vs Memory (Baseline)", fontweight='bold', fontsize=12)
         ax.set_xlabel('Tau Self Dynamic Rate')
-        ax.set_ylabel('Memory Deficit (Lower is Better)')
+        ax.set_ylabel('Memory Deficit (Baseline, Lower is Better)')
         
         plot_kde(axes[1, col], u_prob0, c_prob0, "SuStaIn Subtype 0 (Atypical) Probability", "Probability", False)
         plot_kde(axes[2, col], u_prob1, c_prob1, "SuStaIn Subtype 1 (Limbic) Probability", "Probability", False)
@@ -216,7 +227,7 @@ def main():
         if col == 0:
             axes[3, col].legend()
             
-        plot_kde(axes[4, col], u_clin, c_clin, "ODE Clinical Stage", "Stage", True, [0, 1, 2])
+        plot_kde(axes[4, col], u_clin, c_clin, "ODE Clinical Stage (Baseline)", "Stage", True, [0, 1, 2])
         if col == 0:
             axes[4, col].legend()
             

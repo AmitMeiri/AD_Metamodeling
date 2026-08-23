@@ -1,0 +1,3580 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+% Necessary Commands:
+\usepackage{autobreak}
+\usepackage{relsize}
+% Set vertical space before and after dislpay equations to be longer for better redability:
+\AtBeginDocument{\setlength\abovedisplayskip{12pt}}
+\AtBeginDocument{\setlength\belowdisplayskip{12pt}}
+\AtBeginDocument{\setlength\belowdisplayshortskip{12pt}}
+\AtBeginDocument{\setlength\belowdisplayshortskip{12pt}}
+
+
+% Emlarge the distance between rows of equations in \align enviorment
+\setlength{\jot}{10pt}
+
+% Set space between words to be wider:
+\spaceskip=1.3\fontdimen2\font plus 1\fontdimen3\font minus 1.5\fontdimen4\font
+
+% Convert the Lyx colors into more pleasent colors:
+\usepackage{xcolor}
+\definecolor{blue}{RGB}{12,97,197}
+\definecolor{green}{RGB}{0,128,40}
+\definecolor{red}{RGB}{235,16,16}
+\definecolor{brown}{RGB}{154,58,0}
+\definecolor{orange}{RGB}{231,135,26}
+\definecolor{purple}{RGB}{94,53,177}
+
+% Convert the QED Symbol at the end of proofs to a solid black square (credit: Yakir Oz):
+\usepackage{amssymb}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Make the layout more similar to Hebrew Article, which I am more used to:
+\renewcommand*{\@seccntformat}[1]{\hspace{0.5cm}\csname the#1\endcsname\hspace{0.5cm}} 
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{20}{20}\bfseries}{\thesection}{10pt}{}
+\titleformat{\subsection}{\fontsize{15}{15}\bfseries}{\thesubsection}{10pt}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{10pt}{}
+
+% Create disjoint union symbols:
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+\newcommand{\kaliLargeLand}{\mathop{\mathlarger{\mathlarger{\mathlarger{\land}}}}}
+
+\newcommand{\indep}{\perp \!\!\! \perp}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+Style Section
+	Font
+	  Series     Medium
+	  Shape      Smallcaps
+	  Size       Larger
+	  Series     Bold
+	EndFont
+	TocLevel 1
+End
+
+
+Style Section*
+	Font
+	  Series     Medium
+	  Shape      Smallcaps
+	  Size      Larger
+	  Series     Bold
+	EndFont
+End
+
+
+Style Solution
+
+	LabelString           "פיתרון: "
+End
+
+
+Style Notation
+
+	LabelString           "סימון  \thetheorem: "
+End
+
+Style Theorem
+
+	LabelString           "משפט \thetheorem: "
+End
+
+Style Property
+
+	LabelString           "תזכורת: "
+End
+\end_local_layout
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "David"
+\font_sans "default" "David"
+\font_typewriter "default" "David"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing other 1.2
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 2cm
+\rightmargin 3cm
+\bottommargin 3cm
+\headheight 0cm
+\headsep 0cm
+\footskip 2cm
+\secnumdepth -2
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "C:/Users/amitm/OneDrive - huji.ac.il/HUJI/Lyx Templates/MacrosEnglish.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size giant
+Metamodeling of Alzheimer's Disease - Project Summary
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size larger
+Advisors:
+\series default
+ Prof.
+ Shahar Arzy & Dr.
+ Barak Raveh
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Author:
+\series default
+ Amit Meiri
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Abstract
+\end_layout
+
+\begin_layout Standard
+[To be written in the end]
+\end_layout
+
+\begin_layout Part
+Introduction
+\end_layout
+
+\begin_layout Standard
+explain what's the problem and why it's important
+\end_layout
+
+\begin_layout Standard
+Give a broad context for that - with citations
+\end_layout
+
+\begin_layout Standard
+Present a motivation both from AD side-clinical side, and modeling side
+ and computational side (how modeling uses probablistic tools)
+\end_layout
+
+\begin_layout Subsection
+Alzheimer's Disease
+\end_layout
+
+\begin_layout Standard
+One of the most infamous neurodegenrative diseases, which is also the most
+ common cause of dementia
+\begin_inset CommandInset citation
+LatexCommand cite
+key "who_dementia_2026"
+literal "false"
+
+\end_inset
+
+, is Alzheimer's Disease (AD).
+ Its definition keeps changing over the years, yet it is increasingly recognized
+ as a heterogeneous, multifactorial and multifaceted disorder, associated
+ with neurological, psychiatric, and systemic comorbidities.
+ It operates across several interconnected domains, including cognitive-behavior
+al symptomatology, underlying biological mechanisms, varying neuroanatomical
+ networks, and complex genetic variability.
+ These vast complexity and heterogenity are the root cause of the ongoing
+ struggle to understand the disease and develop suitable treatments for
+ different patients.
+\end_layout
+
+\begin_layout Standard
+To give a short background of AD research, historically, research and clinical
+ diagnosis have focused heavily on core hallmark biomarkers, like the abnormal
+ extracellular accumulation of Amyloid-Beta (
+\begin_inset Formula $A\beta$
+\end_inset
+
+) protein plaques and the intracellular aggregation of hyperphosphorylated
+ Tau protein tangles
+\begin_inset CommandInset citation
+LatexCommand cite
+key "jack_tracking_2013"
+literal "false"
+
+\end_inset
+
+.
+ While
+\begin_inset Formula $A\beta$
+\end_inset
+
+ often marks early pathological changes, the spatial spread of Tau pathology
+ correlates more directly with localized neurodegeneration and cognitive
+ decline.
+ Adding to this complexity is genetic variability and genetic profiles which
+ are known to influence the disease, such as carrying the Apolipoprotein
+ E4 (APOE4) allele, which stands out as the strongest genetic risk factor,
+ significantly accelerating pathology onset and altering disease progression
+ across different patient populations
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kakkar_comprehensive_2025"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Traditional diagnostic and predictive frameworks usually rely on limited-fields
+ mechanisms, such as the biological markers we mentioned, cellular characeterist
+ic and inter-cellular interactions, behavioral or anatomical charateristics,
+ or genetic factors.
+ Understanding the interplay between these diverse changes under AD is essential
+ to define and identify disease phenotypes for targeted interventions, all
+ while available disease data tends to be noisy, sparse and spread across
+ entirely different scales and measures.
+\end_layout
+
+\begin_layout Standard
+Therefore, a suitable unifying methodology/framework is required to handle
+ said diversity.
+ Such framework should be capable of connecting the different faces of the
+ disease and generate reliable, extensive predictions of how diverse factors
+ drive disease progression.
+\end_layout
+
+\begin_layout Subsection
+The Metamodeling Approach
+\end_layout
+
+\begin_layout Standard
+This presents a computational challenge.
+ Forcing every dimension of the AD pathology into a single mathematical
+ representation is inherently impractical.
+ We suggest and examine here a divide-and-conquer strategy, which is the
+ 
+\series bold
+bayesian metamodeling
+\series default
+.
+ It is based on utilizing smaller, specialized models that each capture
+ a particular facet of AD, and then fuse/couple them together under a bayesian
+ probabilistic framework - the metamodel
+\begin_inset CommandInset citation
+LatexCommand cite
+key "raveh_bayesian_2021"
+literal "false"
+
+\end_inset
+
+.
+ This strategy allows a highly adaptive model.
+ The metamodel can continously evolve alongside new clinical and biological
+ disoveries, on two fronts: first, by having the flexibility to change,
+ update or replace the individual submodels themselves; and second, by dynamical
+ly adjusting the probablistic connections between the submodels, which are
+ based on current scientific knowledge
+\begin_inset CommandInset citation
+LatexCommand cite
+key "neve-oz_bayesian_2024"
+literal "false"
+
+\end_inset
+
+.
+ Thus, discoveries from one specific field can influence the mathematical
+ constraints of other domains, ensuring that our computational tools can
+ continuously adapt to the growing complex knowledge of the disease - which
+ makes this strategy highly suitable to the multifaceted and heterogenous
+ problem of AD.
+\end_layout
+
+\begin_layout Standard
+Exploring the bayesian metamodeling strategy offers computational and modeling
+ advantages for analyzing any complex system, not limited to AD, diseases
+ or even biology in general.
+ It overcomes the rigidity of monolithic architectures, by allowing different
+ computational approaches, such as mechanistic equations and data-driven
+ algorithm to interact and enrich each other under a unifying framework.
+ Furthermore, understanding the use of probablistic tools provides a benefical
+ way to manage uncertainty and reduce expensive models computations.
+\end_layout
+
+\begin_layout Standard
+Here, we attempted to create a metamodel of characterization and prediction
+ of AD progression in patients that combines two partial models, corresponding
+ to two different essential aspects of understanding the disease for specific
+ patients.
+ The first partial model describes the temporal dynamics, kinetic rates
+ and clinical decline rates of biomarkers
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bossa_multidimensional_2023"
+literal "false"
+
+\end_inset
+
+; and the second identifies distinct spatiotemporal trajectories of cortical
+ tau deposition to stratify patients into phenotypic subtypes and progression
+ trajectories
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vogel_four_2021"
+literal "false"
+
+\end_inset
+
+.
+ Both models are probabilistic, and we aim to show that formulated whithin
+ a probabilistic framework, the unified metamodel combines their distinct
+ representations to calibrate prediction certainties and infereces, yielding
+ more robust and reliable forecasts of AD progression.
+\end_layout
+
+\begin_layout Part
+Results
+\end_layout
+
+\begin_layout Standard
+We explored the bayesian metamodling approach for Alzheimer's Disease progressio
+n using two known models out of the literature.
+ In order to utilize them in the bayesian metamodeling framework, we converted
+ each model to a probablistic surrogate model, so we can couple them, infer
+ and sample in a joint probabilistic space.
+\end_layout
+
+\begin_layout Standard
+Thus the bayesian metamodeling process we did can be summarized to 3 stages:
+\end_layout
+
+\begin_layout Standard
+1.
+ Individual Model Surrogate Training
+\end_layout
+
+\begin_layout Standard
+2.
+ Creating a Coupling Architecture
+\end_layout
+
+\begin_layout Standard
+3.
+ Sample and infer from the joint coupled probablistic framework
+\end_layout
+
+\begin_layout Subsection
+1.
+ Individual Model Surrogate Training
+\end_layout
+
+\begin_layout Subsubsection
+General
+\end_layout
+
+\begin_layout Standard
+Each surrogate model we used is a fast, probabilistic emulator that replaces
+ an expensive computational model with a probability density function.
+ Mathematicaly, it models the conditional probability distirbution of the
+ model outputs given the inputs:
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\Theta}|\boldsymbol{x}\right)
+\]
+
+\end_inset
+
+where 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ - inputs: parameters, initial conditions, patient baseline characteristic
+ and measurments
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{\Theta}$
+\end_inset
+
+ - outputs: predicted future states, disease proggression coefficients,
+ biomarkers levels, classification probabilities, etc.
+\end_layout
+
+\begin_layout Standard
+Thus the trained surrogate evaluates the probability density of a given
+ prediction 
+\begin_inset Formula $\boldsymbol{\Theta}$
+\end_inset
+
+ and can also draw samples out of the conditioned model's output distribution
+ 
+\begin_inset Formula $\boldsymbol{\Theta}\sim p\left(\boldsymbol{\Theta}|\boldsymbol{x}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The surrogate model could be obtained by any approach for modeling statistical
+ distribution, where the major tradeoffs between methods are often expressivenes
+s and interpretability
+\begin_inset CommandInset citation
+LatexCommand cite
+key "raveh_bayesian_2021"
+literal "false"
+
+\end_inset
+
+.
+ Since we are dealing with complex models, we chose to focus on the expressivity
+ of the surrogates and implemented both surrogates using modern simulation
+ based inference (SBI
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cranmer_frontier_2020"
+literal "false"
+
+\end_inset
+
+) methods.
+ Specifically, using the original model we created a large set of pairs
+ of inputs 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ and their corresponding outputs 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+, which created the training dataset.
+ Then, we used a neural posterior estimator (NPE) to fit a deep generative
+ neural network directly to the dataset.
+ This network approxiamtes the true distribution of the model 
+\begin_inset Formula $p\left(\boldsymbol{\Theta}|\boldsymbol{x}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Full simulations outputs might be high-dimensional and complex, and their
+ internal mechanics might make full-state probability modeling computationally
+ hard/intractable.
+ Therefore, selecting specific inputs and outputs for the surrogate to model
+ can serve as an essential solution that defines a compact and usable probablist
+ic description.
+ The surrogates only needs to learn the essential causal relationships of
+ the original complex model's inputs-outputs which are relevant to the broader
+ metamodel.
+ The selection of variables for the surrogate is meaningful, as it establishes
+ what information propagates within the metamodel, and should be done with
+ the later coupling and forward and backward propagation of information
+ between models in mind.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+The Models
+\end_layout
+
+\begin_layout Paragraph
+First Model - The ODE model
+\end_layout
+
+\begin_layout Standard
+The first and main model is the ODE-based model of AD presented by Bossa
+ and Sahli in 
+\begin_inset Quotes eld
+\end_inset
+
+A multidimensional ODE-based model of Alzheimer’s disease progression
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bossa_multidimensional_2023"
+literal "false"
+
+\end_inset
+
+.
+ It uses longitudinal differential equations to track a state vector of
+ continuous disease-burden variables, like Amyloid-Beta, Tau, and cognitive
+ domain scores.
+ Using personalized bayesian fitting, the model infers probability distributions
+ over the differential eqution rate matrix from the patient's data, estimating
+ each paramaer as a distribution rather than a single fixed value.
+ It then uses these parameters to forecast future trajectories of the variables.
+ Importantly, it also uses an ordered logistic GLM to calculate a weighted
+ disease burden score, which is used to assign probabilities for clinical
+ diagnostic of the AD severity: Cognitive Normal (CN), Mild Cognitive Impairment
+ (MCI) and Dementia (AD).
+\end_layout
+
+\begin_layout Standard
+Simply put, its inputs are a patient's demographics and their observerd
+ longitudinal biomarker and cognitive measurements; and its outputs are
+ the estimated rate distributions, and possibly the trajectory forecast
+ for future biomarkers levels and clinical diagnostic probabilities.
+\end_layout
+
+\begin_layout Standard
+To replace it with a probablistic surrogate model, we chose to focus only
+ on some of the parameters:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Surrogate inputs:
+\series default
+ Age, APOE4 status, Amyloid-Beta baseline + 2-year measure, Tau baseline
+ + 2-year measure
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Surrogate outputs: 
+\series default
+Tau self-dynamics rate, Amyloid-Beta self-dynamics rate, Amyloid-Beta affect
+ on Tau rate, cognitive memory result baseline + 5 year, clinical stage
+ result baseline + year.
+\end_layout
+
+\begin_layout Standard
+We successfully trained a surrogate model over data derived from the original
+ model, as can be observed in the figures below that compare both the data
+ distributions in general, and specific patients predictions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ode_2023/Surrogate/surrogate_ode_plots/combined_figure_1.png
+	scale 9
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Validation and performance of the surrogate model Neural Posterior Estimator
+ (NPE) surrogate against original ODE MCMC baseline samples
+\series default
+.
+ 
+\series bold
+(A)
+\series default
+ 
+\series bold
+Marginal Distributions (Posterior vs.
+ Learned Surrogate)
+\series default
+.
+ One-dimensional marginal probability densities comparing ground-truth MCMC
+ posterior samples from the continuous-time ODE model (gray shaded histograms)
+ against sample draws generated by the Masked Autoregressive Flow (MAF)
+ NPE surrogate (blue stepped lines).
+ Plots depict Aβ self-dynamics (
+\begin_inset Formula $v_{00}$
+\end_inset
+
+, log-scale density), Tau self-dynamics (
+\begin_inset Formula $v_{11}$
+\end_inset
+
+, linear density), and 5-year forecasted Memory deficit scores (log-scale
+ density).
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+(B) Pairwise Joint Distributions and Density Contours
+\series default
+.
+ Two-dimensional joint distributions of MCMC samples (gray points/hexbins)
+ overlaid with surrogate kernel density estimation (KDE) contours enclosing
+ the 50% and 90% highest density intervals (blue lines).
+ Pearson correlation coefficients (
+\begin_inset Formula $r$
+\end_inset
+
+) for MCMC baselines and surrogate draws are displayed in the upper-left
+ of each panel.
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+(C) Surrogate Conditional Means and 95% Credible Intervals
+\series default
+.
+ Conditional inference generated by the surrogate for four distinct patient
+ archetypes: Age 65 / APOE4– (green circle), Age 65 / APOE4+ (orange circle),
+ Age 85 / APOE4– (blue square), and Age 85 / APOE4+ (red square).
+ Point estimates represent conditional means, with horizontal and vertical
+ error bars indicating 95% credible intervals (CIs).
+ The soft yellow highlighted area (APOE4 Effect) denotes the systematic
+ pathological shift in kinetic rate constants and cognitive decline driven
+ by APOE4 carrier status.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ode_2023/Surrogate/surrogate_ode_plots/panel_d_ode_validation_dynamics.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Individual Subject Validation: Biological Kinetic Parameters.
+
+\series default
+ Comparison of ground-truth continuous-time ODE MCMC posterior distributions
+ (gray shaded densities) against sample draws generated by the SBI NPE surrogate
+ (solid blue lines) across four distinct patient archetypes:
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Subject A:
+\series default
+ Age 65, APOE4– (Younger, low genetic risk)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Subject B:
+\series default
+ Age 65, APOE4+ (Younger, high genetic risk)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Subject C:
+\series default
+ Age 85, APOE4– (Older, low genetic risk)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Subject D:
+\series default
+ Age 85, APOE4+ (Older, high genetic risk) Columns depict the posterior
+ probability densities for three key differential equation parameters: (
+\series bold
+Left
+\series default
+) Tau self-dynamics velocity (
+\begin_inset Formula $v_{11}$
+\end_inset
+
+), (
+\series bold
+Center
+\series default
+) Aβ self-dynamics velocity (
+\begin_inset Formula $v_{00}$
+\end_inset
+
+), and (
+\series bold
+Right
+\series default
+) Aβ→Tau causal driving rate (
+\begin_inset Formula $v_{10}$
+\end_inset
+
+).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ode_2023/Surrogate/surrogate_ode_plots/panel_d_ode_validation_clinical.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Individual Subject Validation: 5-Year Cognitive Forecasts and Diagnostic
+ Staging
+\series default
+.
+ Validation of 5-year longitudinal clinical predictions for Subjects A–D.
+ 
+\series bold
+(Left Column)
+\series default
+ Density distributions of 5-year predicted memory deficit scores (where
+ higher values indicate worse cognitive impairment), comparing MCMC baselines
+ (gray shaded) against surrogate predictions (blue line).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(Right Column) 
+\series default
+Probability bar charts for diagnostic category conversion at 5 years: 
+\series bold
+CN
+\series default
+ (Cognitively Normal), 
+\series bold
+MCI
+\series default
+ (Mild Cognitive Impairment), and 
+\series bold
+AD
+\series default
+ (Dementia).
+ Gray bars represent ground-truth MCMC GLM classifications; blue bars represent
+ NPE surrogate predictions.
+ Whiskers indicate 95% bootstrap confidence intervals.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Second Model - The SuStaIn model
+\end_layout
+
+\begin_layout Standard
+The second model we used is the spatial progression model presented by Vogel
+ et al.
+ in "Four distinct trajectories of tau deposition identified in Alzheimer’s
+ disease"
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vogel_four_2021"
+literal "false"
+
+\end_inset
+
+.
+ It is a subtype and stage inference (SuStaIn
+\begin_inset CommandInset citation
+LatexCommand cite
+key "young_uncovering_2018"
+literal "false"
+
+\end_inset
+
+) model that focuses on the biomarker Tau protein.
+ It maps cross-sectional biomarker accumulation across multiple brain regions
+ into distinct temporal pathways (subtypes) and sequential disease severity
+ stages.
+ Given sufficient training data, using Bayesian MCMC, the model automatically
+ discovers the distinct trajectory sequences and calculates a patient's
+ probabilistic placement across these subtypes and stages.
+ Crucially, rather than assuming a single uniform progression path, it estimates
+ posterior probability distributions for a patient belonging to each subtype
+ and occupying each stage of pathology.
+ That is, it firsts uses the entire training data to infer and characterize
+ the different possible subtypes of Tau progression/trajectory in AD, and
+ then it can be used to assign patients to a subtype of Tau trajectory and
+ their stage in it.
+\end_layout
+
+\begin_layout Standard
+Simply put, its inputs are a patient's cross-sectional regional Tau measurments
+ across different brain regions; and its outputs are the posterior probability
+ distributions for belonging to each disease subtype, and being at each
+ discrete progression stage.
+\end_layout
+
+\begin_layout Standard
+To replace it with a simpler probabilistic surrogate model, we chose to
+ focus on the regional Tau scores and collapsed the discrete stage probabilities
+ into a continous expected value that represents the stage within the trajactory
+:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Surrogate inputs:
+\series default
+ Regional Tau PET Z-scores across brain regions.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Surrogate outputs:
+\series default
+ A probability of belonging to each of the subtypes, and a single continuous
+ expected spatial stage.
+\end_layout
+
+\begin_layout Standard
+Here as well we sucessully trained the neural posterior estimator as a surrogate
+ model.
+ We used simulated data with 7 stages for each subtypes and 3 Tau trajectory
+ subtypes overall.
+ We can observe its results and performances in the graphs below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename SuStaIn_2021/Surrogate_SuStaIn/surrogate_sustain_plots/combined_panels_abc.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Performance and validation of the SuStaIn Neural Posterior Estimator (NPE)
+ surrogate against original model baselines
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(A) Marginal Densities (Fidelity Evaluation)
+\series default
+.
+ One-dimensional marginal probability density distributions comparing ground-tru
+th MCMC sample outputs from pySuStaIn (gray shaded histograms) against sample
+ draws generated by the NPE surrogate (blue stepped lines).
+ Panels depict Subtype 0 probability, Subtype 1 probability, Subtype 2 probabili
+ty, and continuous expected spatial stage (0–21).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(B) Classification Confidence and Pairwise Joint Distributions
+\series default
+.
+ Two-dimensional joint probability distributions plotting continuous expected
+ spatial stage (x-axis) against individual subtype classification probabilities
+ (y-axis).
+ Ground-truth MCMC samples are shown as log-binned hexbins (gray), overlaid
+ with surrogate kernel density estimation (KDE) contours enclosing the 50%
+ and 90% highest-density intervals (blue lines).
+ Displayed Pearson correlation coefficients (
+\begin_inset Formula $r$
+\end_inset
+
+) confirm accurate preservation of joint covariance.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(C) Biomarker Sensitivity Analysis (NPE Conditional Inference)
+\series default
+.
+ Conditional subtype classification trajectories under regional severity
+ sweeps.
+ Z-scores for Region 0 (Entorhinal cortex, classic limbic origin) and Region
+ 6 (Precuneus, atypical neocortical origin) are independently swept from
+ 0.0 to 5.0 while holding non-target regions at baseline ( 0.5 0.5).
+ Curves trace the dynamic transition probabilities for Subtype 0 (orange),
+ Subtype 1 (blue), and Subtype 2 (green).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename SuStaIn_2021/Surrogate_SuStaIn/surrogate_sustain_plots/panel_d_test_subjects.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Individual Subject Validation across Representative Patient Archetypes.
+
+\series default
+ Validation of the SuStaIn NPE surrogate against ground-truth original model
+ (MCMC) baseline outputs for three synthetic patient archetypes representing
+ distinct spatial progression profiles:
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 1: Early Stage
+\series default
+ (Mild/Prodromal) - Patient at early disease onset with low overall pathology.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 2: Subtype 0 (Classic Limbic)
+\series default
+ - Patient exhibiting strong medial temporal/limbic Z-score signatures.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 3: Subtype 1 (Atypical Neocortical)
+\series default
+ - Patient exhibiting strong neocortical Z-score signatures.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 4: Subtype 2 (Cortical-Leaning)
+\series default
+ - Patient exhibiting cortical-leaning Z-score signatures.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(Left Column) Subtype Classification Probabilities
+\series default
+.
+ Comparison of ground-truth pySuStaIn MCMC subtype probabilities (gray bars)
+ against sample means predicted by the NPE surrogate (blue bars).
+ Error bars on surrogate estimates represent 95% Bayesian credible intervals
+ (CIs).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(Right Column) Disease Stage Estimation
+\series default
+.
+ Continuous posterior probability density curves of the surrogate's estimated
+ spatial stage (expected_stage, blue shaded KDE curves).
+ Vertical dashed red lines indicate ground-truth MCMC expected stages; vertical
+ solid blue lines indicate surrogate posterior mean predictions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Newpage pagebreak
+\end_inset
+
+2.
+ Creating a Coupling Architecture
+\end_layout
+
+\begin_layout Subsubsection
+The General Coupling Framework
+\end_layout
+
+\begin_layout Standard
+In order to fuse the models and couple them inside one metamodel framework,
+ we had to make them operate in the same probability space: instead of calculati
+ng the probabilties of the outputs of the ODE-model (
+\begin_inset Formula $p\left(\boldsymbol{\Theta}_{ODE}|\boldsymbol{X}_{ODE}\right)$
+\end_inset
+
+) and the SuStaIn model (
+\begin_inset Formula $p\left(\boldsymbol{\Theta}_{SuStaIn}|\boldsymbol{X}_{SuStaIn}\right)$
+\end_inset
+
+) separately and independently, we needed to calculate their joint probability:
+ 
+\begin_inset Formula $p\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}|\boldsymbol{X}_{shared}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To do so, we created links between different variables of the two surrogate
+ models.
+ Those links push the models variables to agree - whether both models handle
+ the same variable and they are pushed to agree on its value; or that a
+ variable from one model is mathematically/evidently related to another,
+ and their values should sustain a certain relation or link.
+ The coupling links are things we force on the surrogates, which originate
+ from a meta view using real-world knowledge and biological and medical
+ premises or conclusions from other researches.
+\end_layout
+
+\begin_layout Standard
+Those coupling links (
+\begin_inset Formula $C$
+\end_inset
+
+) act as constraints on the joint distribution of the surrogates, and their
+ probabilities depend on their outputs.
+ That is, the greater the alignment between the two sub-models, the greater
+ the probability that the coupling link constraint is satisfied.
+\end_layout
+
+\begin_layout Standard
+This allows us, after applying the coupling constraints, to recalculate
+ the joint probability distribution function, using Bayes rule:
+\end_layout
+
+\begin_layout Standard
+Applying the constraints, 
+\begin_inset Formula $p\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)$
+\end_inset
+
+ becomes 
+\begin_inset Formula $p\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}|C\right)$
+\end_inset
+
+.
+ Using Bayes and our assumption that both surrogates are independent at
+ first (two different models (we omitted the obvious conditions of the inputs
+ 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+ for comfort):
+\begin_inset Formula 
+\begin{align*}
+p\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right) & =\frac{p\left(C|\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)\cdot p\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)}{p\left(C\right)}\\
+ & \propto p\left(C|\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)\cdot p\left(\boldsymbol{\Theta}_{ODE}\right)\cdot p\left(\boldsymbol{\Theta}_{SuStaIn}\right)
+\end{align*}
+
+\end_inset
+
+Since we can calculate both 
+\begin_inset Formula $p\left(\boldsymbol{\Theta}_{ODE}\right)$
+\end_inset
+
+, 
+\begin_inset Formula $p\left(\boldsymbol{\Theta}_{SuStaIn}\right)$
+\end_inset
+
+ with the surrogate models, it remains to define the probability score 
+\begin_inset Formula $p\left(C|\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right):=\phi\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)$
+\end_inset
+
+ .
+ This can be done in various ways given to our choice, and this is where
+ we defined the coupling itself.
+\end_layout
+
+\begin_layout Standard
+For example, if we wanted to make two specific different variables 
+\begin_inset Formula $\theta_{ODE},\theta_{SuStaIn}$
+\end_inset
+
+ to agree on their values, we could define a gaussian link between them,
+ such that
+\begin_inset Formula 
+\[
+\phi\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)=\ensuremath{\mathcal{N}}\left(\theta_{ODE};\theta_{SuStaIn},\sigma\right)=\ensuremath{\mathcal{N}}\left(\theta_{SuStaIn};\theta_{ODE},\sigma\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ determines the strength of the coupling.
+ Clearly the probability increases where they are similar and decreases
+ where the variables are far part; and the bigger 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ the greater is the decrease in probability score for each difference size.
+\end_layout
+
+\begin_layout Standard
+Notice that we can concatenate different couplings, so that 
+\begin_inset Formula 
+\[
+\phi\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)=\phi_{1}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)\cdot...\cdot\phi_{n}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After that, for any evaluation or sampling method we have over the entire
+ data we want to infer about, we can evaluate it using at least three scores:
+\end_layout
+
+\begin_layout Itemize
+The probability scores of the output as is calculated by each surrogate
+ model separately.
+\end_layout
+
+\begin_layout Itemize
+The probability score given by the coupling constraint we defined.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Material/metasamplingflowimg.jpg
+	scale 10
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A simple diagram of the information flow in the metamodel.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+The Coupling Links
+\end_layout
+
+\begin_layout Standard
+We used three coupling links between the two models, two Gaussians links
+ that operate on transformation of different variables from both surrogate
+ models, and one other kind of link between different variables (a 'directional
+ potential' link).
+ The linked variables can be viewed in Figure 7.
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+Directional Potential Link - Subtype-Driven Velocity/Tau Dynamics
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Coupled variables from ODE-model:
+\series default
+ Tau self rate (entry 
+\begin_inset Formula $v_{11}$
+\end_inset
+
+ in the ODE rate matrix)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Coupled Variable from SuStain model:
+\series default
+ Subtypes probabilities (probability of subtype 0, probability of subtype
+ 1, probability of subtype 2)
+\end_layout
+
+\begin_layout Standard
+Different real-world subtypes of Tau trajectories corresponded with different
+ Tau self spread rates
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vogel_four_2021"
+literal "false"
+
+\end_inset
+
+, so we infered 
+\series bold
+there should be a link between the probabilities of the subtype the SuStaIn
+ model outputs, and the Tau rate variable/entry in the ODE-model's output
+ of the rate matrix
+\series default
+.
+ In Vogel et al.'s research four subtypes were found, whereas in our simulated
+ data three subtypes were found.
+ Based on the main shared characteristic of our subtypes and the research's,
+ we decided to which subtypes we want to relate with a general faster rate
+ (subtypes 0, 2) and to what degree, and which with a slower Tau spread
+ rate (subtype 1).
+\end_layout
+
+\begin_layout Standard
+Since the values of the spread rate and the probabilities of subtypes are
+ completely unrelated, there was no logic to make them or a transformation
+ of them linked with a gaussian to push toward similarity.
+ Therefore we constructed the coupling constraint such that a bigger lean
+ towards the faster subtypes rewards probabilistically bigger Tau rates,
+ and vice versa.
+ Further analysis of the coupling is viewed under Methods.
+ We named this score a 
+\begin_inset Quotes eld
+\end_inset
+
+directional potential
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+It is important to note that there wasn't a profound experimental base to
+ the magnitude of the score we assigined for each subtype, and the scores
+ and weights should be tested against massive real patients data.
+\end_layout
+
+\begin_layout Paragraph*
+Gaussian Link 1 - Disease Stage
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Coupled variables from ODE-model:
+\series default
+ clinical stage
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Coupled Variable from SuStain model:
+\series default
+ (Tau spread) expected stage, Subtypes probabilities (probability of subtype
+ 0, probability of subtype 1, probability of subtype 2)
+\end_layout
+
+\begin_layout Standard
+An increasing SuStaIn stage was strongly associated with worse global cognition
+ and with a more advanced AD clinical diagnose
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vogel_four_2021"
+literal "false"
+
+\end_inset
+
+.
+ T
+\series bold
+herefore, a higher probability for a higher Tau expected stage should be
+ linked with a higher probability for a worse clinical stage
+\series default
+ (CN to AD).
+ Furthermore, since different subtypes experience the same Tau spread magnitude
+ in different degrees in different areas, the subtype also has a relation
+ to the decrease in cognitive decline and different cognitive skills.
+ Since in the current surrogate models we chose to focus on the memory decline
+ (rather than language or praxis), we needed the link between the Tau stage
+ and the clinical stage to factor that.
+ I.e.
+ a subtype that is related to memory-areas (subtype 1 in our case) should
+ be related to a faster decline in earlier stages.
+\end_layout
+
+\begin_layout Standard
+Therefore we created a gaussian link between the clinical stage outputed
+ by the ODE model, and a transformation of the SuStaIn model's Tau stage,
+ weighted by the subtypes probabilities to give a bigger score for a bigger
+ decline for patients with the appropriate decline.
+ The transformation was required since we cannot directly link the clinical
+ stage which is in range of 
+\begin_inset Formula $[0.0,2.0]$
+\end_inset
+
+ to the Tau stage which is in range of 
+\begin_inset Formula $[1,N]$
+\end_inset
+
+ where 
+\begin_inset Formula $N$
+\end_inset
+
+ is the maximal number of stages defined by the SuStaIn model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\phi_{2}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)=\mathcal{N}\left(clinicalStage_{ODE};f_{2}\left(expectedStage_{SuStaIn},subtypeProbs_{SuStaIn}\right),\sigma_{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once again, the sepcific mathematical transformation we used (and is elaborated
+ in Methods) isn't a result of a thourough research on massive real data,
+ but more of a reasonable trial-and-error on simulated data, and can and
+ should be revised in the future.
+\end_layout
+
+\begin_layout Paragraph
+Gaussian Link 2 - Clinical Subtype Prior
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Coupled variables from ODE-model:
+\series default
+ APOE4 status, Tau self rate (
+\begin_inset Formula $v_{11}$
+\end_inset
+
+), cognitive memory score
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Coupled Variable from SuStain model:
+\series default
+ Subtypes probabilities (probability of subtype 0, probability of subtype
+ 1, probability of subtype 2)
+\end_layout
+
+\begin_layout Standard
+While the SuStaIn model predicts the probabilities for the patient's belonging
+ to the different subtypes purely based on Tau PET brain scans, Vogel et
+ al.
+ showed each subtype has its own prominent characteristics, both of the
+ disease progression and of the patient demographics as well, for example
+ the gene they carry
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vogel_four_2021"
+literal "false"
+
+\end_inset
+
+.
+ Therefore we concluded there should be a link between other patients characater
+itics given by the ODE-model to the probabilities given by the SuStaIn model.
+\end_layout
+
+\begin_layout Standard
+Based on real world findings, we defined a formula to calculate the probabilitie
+s for each subtype based on data from the ODE model - where for example
+ carrying the APOE4 gene increases the proability for certain subtypes,
+ and better memory abilitiies increase the probability of another (see Methods
+ for elaboration).
+ Then we defined a gaussian coupling between these raw calculated probabilities
+ and the model-given subtypes probabilities.
+ Thus an allignment with certain subtype characteritic increases the score
+ where the probability given to it is greater:
+\begin_inset Formula 
+\[
+\phi_{3}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)=\mathcal{N}\left(subtypeProbs_{SuStaIn};f_{3}\left(\boldsymbol{\Theta}_{ODE}\right),\sigma_{3}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here as well, the formula we used to calculate the probabilties, though
+ based on real conclusion, should be revised and modified upon testing the
+ metamodel with massive real data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Coupling/bayesian_metamodeling_flow.svg
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Architecture of the joint Bayesian metamodel coupling the AD-ODE temporal
+ model and the SuStaIn spatial progression model.
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(Left Box - Bossa & Sahli ODE 2023):
+\series default
+ Inputs (blue pills) comprise baseline demographics (age_baseline, apoe4_status)
+ and 2-year longitudinal biomarker assays (amyloid, tau).
+ Outputs (red pills) encompass kinetic rate constants (e.g., tau_self_dynamic)
+ and 5-year cognitive/clinical trajectories (memory_result_yr5, clinical_stage_y
+r5).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(Left Box - Vogel SuStaIn):
+\series default
+ Inputs (blue pills) consist of cross-sectional regional Tau PET Z-scores
+ across 7 brain regions (Region_0 to Region_6).
+ Outputs (red pills) include spatial subtype probabilities (Prob_subtypes)
+ and overall progression severity (Expected_stage).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(Right Box - Coupling Layers):
+\series default
+ Three central probabilistic coupling nodes (green circles) integrate the
+ two subsystems:
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Tau Dynamics Node:
+\series default
+ Modifies the ODE's continuous tau accumulation velocity (tau_self_dynamic)
+ based on SuStaIn's spatial subtype classification (Prob_subtypes).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Disease Stage Node:
+\series default
+ Connects SuStaIn spatial severity (Expected_stage) and subtype profile
+ to ODE clinical diagnostic scores (clinical_stage_baseline/yr5) and memory
+ impairment (memory_result_yr5).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Subtype Re-weighting Node:
+\series default
+ Feeds genetic risk (apoe4_status) and ODE kinetic rates back into SuStaIn's
+ subtype classification node (Prob_subtypes).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+———
+\end_layout
+
+\begin_layout Subsection
+3.
+ Sampling and Inferring from the Joint Coupled Framework
+\end_layout
+
+\begin_layout Standard
+After we established the coupling between the two models, we used the combined
+ metamodel to sample and infer about patients, instead of using each model
+ separaetly.
+ This was done using a Markov Chain Monte Carlo (MCMC) algorithm, specifically
+ Random Walk Metropolis, which compiles both models and the couplings into
+ a unified probabilistic graph.
+ This is because our surrogate models, although expressie, use neural networks
+ which are like a black-box for us, and we can't use to our benefit the
+ exact shape and kind of the distributions themselves.
+\end_layout
+
+\begin_layout Standard
+Given patients data 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+ we want to infer about - whether we want to get either the variables, i.e.
+ the original models outputs, with the highest probability, or to get the
+ means, we need to sample from the joint distribution.
+ At evert step, candidate values for all model variables across both subsystems
+ are proposed.
+ Instead of calculating the probability score itself, the compiler calculates
+ the total joing log-probability score (which allows products to become
+ sum).
+ Since the joint probability given the coupling is given by
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}|\right)\propto p_{ODE}\left(\boldsymbol{\Theta}_{ODE}\right)\cdot p_{SuStaIn}\left(\boldsymbol{\Theta}_{SuStaIn}\right)\cdot\prod_{i=1}^{3}\phi_{i}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)
+\]
+
+\end_inset
+
+ we get that 
+\begin_inset Formula 
+\[
+log\ p\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)=logp_{ODE}\left(\boldsymbol{\Theta}_{ODE}\right)+p_{SuStaIn}\left(\boldsymbol{\Theta}_{SuStaIn}\right)+\sum_{i=1}^{3}\phi_{i}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)+Constant
+\]
+
+\end_inset
+
+ Therefore, all the compiler needs to do is to sum the individual surrogate
+ log-priors with the coupling log-likelihood penalties/rewards.
+ This way, the MCMC compiler balances the priors with the couplings we defined.
+ If the surrogates predict plausible values but the coupling penalty is
+ high, the overall score drops and this state will be rejected, which drives
+ the MCMC away from that parameter region, until it reaches an area that
+ is both plausible and reconciles with the biological coupling we forced.
+\end_layout
+
+\begin_layout Standard
+Furthermore, because MCMC samples over this unified joint distribution,
+ our metamodel can naturally handle incomplete patient profiles.
+ If inputs for one of the models are missing (e.g., having regional PET scans
+ but no longitudinal clinical history), information flows bidirectionally
+ across the couplings to infer the unmeasured model's parameters and cross-predi
+ct its outputs.
+\end_layout
+
+\begin_layout Standard
+We simulated a prediction for 2 patients, and we defined their data profiles
+ to represent two distinct patient profiles - one aimed for conflict between
+ the models, and one for amplification.
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+Defining the patients and the Expectations
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+For Subject 1
+\series default
+, we defined a direct contradiction between the spatial presentation and
+ the temporal/genetic characteristic: A patient that should have a fast-progress
+ive disease, but its sapatial features match a subtype with a slower progression
+ (subtype 1).
+ We also added a contradictory between the clinical stage given by the ODE
+ which we aimed for to be not advanced, and a relatively advanced Tau progressio
+n stage from the SuStain model.
+\end_layout
+
+\begin_layout Standard
+Using each model separately to infer, we expected first the SuStaIn model
+ to predict a hight probability for subtype 1, and for the ODE model to
+ predict a high Tau progression rate along with a not yet advanced clinical
+ stage.
+ However when predicting using the metamodel, we expected the contradiction
+ to reduce the confidence in the original subtype classification in favor
+ of another that suits a faster progression, and that simultaneously the
+ ODE model's clinical forecast to be dragged worse by the advanced Tau stage.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+For Subject 2
+\series default
+, we defined a profile that align with both models, where spatial and temporal/g
+enetic features mutually reinforce each other.
+ We aimed for the ODE model to have a severe state which is expressed in
+ high biomarkers with a fast progression that is related to a certain Tau
+ subtype (subtype 0); and for the SuStaIn model to have a severe Tau stage
+ with spatial features that also relate to that subtype.
+\end_layout
+
+\begin_layout Standard
+We expected the coupling metamodel to predict yet the same scores and prediction
+, but amplified.
+ That is - increase the proabbility of high and severe scores and the certainty/
+probability for subtype 0, as well as lower the variance for other parameters
+ that align between the two models, since they reinforce each other.
+\end_layout
+
+\begin_layout Standard
+The results of the uncoupled models alongside with the expected results
+ of the metamodel are presented below in Figure X.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Coupling/patient_coupling_expected.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Theoretical expected behavior of coupled joint distributions (red) relative
+ to uncoupled surrogate baselines (blue) across two distinct clinical test
+ profiles.
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Figure 8:
+\series default
+ 
+\end_layout
+
+\begin_layout Standard
+(
+\series bold
+Left Column - Subject 1: Fast-Progression Limbic Contradiction / Conflict
+ Resolving):
+\series default
+ Patient profile with fast biological Tau growth rate, APOE4-negative status,
+ and Limbic-predominant PET Z-scores.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 0:
+\series default
+ Joint 2D distribution of Tau self-dynamic rate vs.
+ Memory deficit (higher is worse).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 1:
+\series default
+ SuStaIn Subtype 0 (Atypical) probability density.
+ Expected coupling (red) surges.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 2:
+\series default
+ SuStaIn Subtype 1 (Limbic) probability density.
+ Expected coupling (red) drops sharply (penalized by fast rate and APOE4-
+ status).
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 3: 
+\series default
+ODE Tau self-dynamic velocity (
+\begin_inset Formula $v_{11}$
+\end_inset
+
+).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 4:
+\series default
+ ODE Clinical Stage diagnostic probabilities (CN, MCI, Dementia).
+ Expected coupling (red) worsens diagnostic probabilities, correcting the
+ uncoupled naive "healthy" forecast.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 5:
+\series default
+ SuStaIn expected spatial progression stage.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space \space{}
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+(Right Column - Subject 2: Mutual Amplification):
+\series default
+ 
+\begin_inset Newline newline
+\end_inset
+
+Patient profile with maxed-out neocortical PET Z-scores, extreme Tau velocity,
+ and APOE4-positive status.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 0: 
+\series default
+Joint 2D distribution showing variance collapse into a sharp point cluster.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 1:
+\series default
+ SuStaIn Subtype 0 (Atypical) probability density.
+ Expected coupling (red) surges with a sharp spike.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 2:
+\series default
+ SuStaIn Subtype 1 (Limbic) probability density.
+ Expected coupling (red) collapses to with a sharp spike.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 3:
+\series default
+ ODE Tau self-dynamic velocity (
+\begin_inset Formula $v_{11}$
+\end_inset
+
+).
+ Expected coupling (red) amplifies further right with sharp variance collapse.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 4:
+\series default
+ ODE Clinical Stage diagnostic probabilities.
+ Expected coupling (red) escalates to almost entirely Dementia.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 5:
+\series default
+ SuStaIn expected spatial progression stage.
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After testing the subjects with our metamodel, some expectations were met
+ and some weren't, as is described in the following figure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Coupling/patient_coupling_evaluation.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Empirical MCMC coupling evaluation comparing uncoupled surrogate baselines
+ (blue) to actual coupled metamodel posterior distributions (red).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Figure 9: (Left Column - Subject 1: Fast-Progression Limbic Contradiction
+ / Conflict Resolving):
+\series default
+ Patient profile with fast biological Tau growth, APOE4-negative status,
+ and Limbic PET Z-scores.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Row 0:
+\series default
+ Joint 2D distribution of Tau self-dynamic rate vs.
+ Memory deficit.
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Row 1:
+\series default
+ SuStaIn Subtype 0 (Atypical) probability density (22.3%→28.1%).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 2:
+\series default
+ SuStaIn Subtype 1 (Limbic) probability density (47.8%→43.5%, flattened peak).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 3:
+\series default
+ ODE Tau self-dynamic velocity (
+\begin_inset Formula $v_{11}$
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 4:
+\series default
+ ODE Clinical Stage diagnostic probabilities.
+ Coupled result successfully corrects naive ODE prediction (shifting clinical
+ stage 1.224→0.802, increasing CN probability).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 5:
+\series default
+ SuStaIn expected spatial progression stage (11.29).
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(Right Column - Subject 2: Mutual Amplification):
+\series default
+ Patient profile with maxed-out neocortical PET Z-scores, extreme Tau velocity,
+ and APOE4-positive status.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Row 0:
+\series default
+ Joint 2D distribution showing empirical MCMC sampling dispersion.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 1:
+\series default
+ SuStaIn Subtype 0 (Atypical) probability density (diverged: dropped 34.0%→16.4%).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 2:
+\series default
+ SuStaIn Subtype 1 (Limbic) probability density (diverged: surged 27.2%→66.8%).
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 3:
+\series default
+ ODE Tau self-dynamic velocity (
+\begin_inset Formula $v_{11}$
+\end_inset
+
+) (worked: amplified right 0.077→+0.088).
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 4:
+\series default
+ ODE Clinical Stage diagnostic probabilities (MCI dominant at 1.254).
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Row 5:
+\series default
+ SuStaIn expected spatial progression stage (15.77).
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+Successes:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Clinical Stage Reconciliation:
+\series default
+ In Subject 1, SuStaIn’s spatial stage successfully corrected the naive
+ ODE clinical forecast, reconciling clinical predictions with spatial reality.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Conflict Resolution:
+\series default
+ Fast tau growth and APOE4-negative status in Subject 1 properly flattened
+ Limbic confidence and shifted probability toward Atypical Subtype 0.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Velocity Amplification:
+\series default
+ In Subject 2, neocortical spatial saturation successfully accelerated ODE
+ tau velocity
+\end_layout
+
+\begin_layout Paragraph
+Model Divergences:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Subtype Inversion:
+\series default
+ Contrary to expected Atypical dominance, Subject 2's Subtype 0 collapsed
+ while Limbic surged.
+ The binary APOE4+ weight in clinical_subtype_scorer overpowered the PET
+ Z-scores, highlighting a key target for recalibration.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Sampling Dispersion:
+\series default
+ Soft coupling tolerances and Random Walk Metropolis sampling introduced
+ posterior dispersion rather than variance collapse.
+\end_layout
+
+\begin_layout Part
+Discussion
+\end_layout
+
+\begin_layout Standard
+[T.B.D]
+\end_layout
+
+\begin_layout Part
+Methods
+\end_layout
+
+\begin_layout Standard
+In this section, we present the technical methodology and computational
+ framework used to construct, couple, and evaluate the Bayesian metamodel.
+ All models were implemented in Python.
+ All source code, simulation scripts, surrogate training configurations,
+ compiled coupling specifications, and evaluations are available in the
+ project GitHub repository at 
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/amitm/AD_Metamodeling."
+target "https://github.com/amitm/AD_Metamodeling."
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+1.
+ The Sub-models
+\end_layout
+
+\begin_layout Subsubsection
+Bossa and Sahli ODE Disease Progression Model
+\end_layout
+
+\begin_layout Standard
+The original ODE model uses longitudinal patient data to map the continuous-time
+ cascade of Alzheimer's disease biomarkers via differential equations.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Model Variables, Inputs and Outputs:
+\end_layout
+
+\begin_layout Standard
+The inputs to the ODE model consist of baseline patient features—specifically
+ patient Age, binary APOE4 genetic status, and initial baseline biomarker/cognit
+ive measurements:
+\begin_inset Formula 
+\[
+x(0)=\left[A\beta,Tau,Language,Memory,Praxis\right]
+\]
+
+\end_inset
+
+The continuous temporal progression of these five latent disease burden
+ variables is governed by a linear system of ordinary differential equations:
+\begin_inset Formula 
+\[
+\frac{dx\left(t\right)}{dt}=A\cdot\left(x(t)-v_{0}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ is an offset vector and 
+\begin_inset Formula $A$
+\end_inset
+
+ is the 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ patient-specific rate velocity matrix computed as
+\begin_inset Formula 
+\[
+A=v+Age\cdot w_{Age}+APOE4\cdot w_{APOE}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $v$
+\end_inset
+
+ represents the baseline 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ interaction matrix (where diagonal elements 
+\begin_inset Formula $v_{ii}$
+\end_inset
+
+ dictate intrinsic self-accumulation rates and off-diagonal elements
+\begin_inset Formula $v_{ij}$
+\end_inset
+
+ dictate driving forces of 
+\begin_inset Formula $i$
+\end_inset
+
+ on 
+\begin_inset Formula $j$
+\end_inset
+
+, such as Amyloid driving Tau accumulation), while 
+\begin_inset Formula $w_{Age}$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{APOE}$
+\end_inset
+
+ are demographic and genetic sensitivity matrices that modulate these accumulati
+on rates based on patient age and APOE4 status.
+\end_layout
+
+\begin_layout Standard
+By solving this linear system analytically using matrix exponentials, the
+ model generates three primary types of outputs:
+\begin_inset Newline newline
+\end_inset
+
+(1) continuous multi-year trajectory forecasts for future biomarker levels
+ and cognitive component scores (such as 2-year and 5-year Memory deficits),
+\begin_inset Newline newline
+\end_inset
+
+(2) inferred personalized kinetic rate constants extracted directly from
+ matrix 
+\begin_inset Formula $v$
+\end_inset
+
+ (such as tau_self_dynamic 
+\begin_inset Formula $v_{11}$
+\end_inset
+
+, and 
+\begin_inset Newline newline
+\end_inset
+
+(3) diagnostic category probabilities for Cognitively Normal, MCI, and Dementia,
+ summarized into a continuous expected clinical stage score 
+\begin_inset Formula $CS\in\left[0.0,2.0\right]$
+\end_inset
+
+ using an ordered logistic GLM.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+How it works:
+\end_layout
+
+\begin_layout Standard
+Training (Learning the Equations): During the initial training phase (via
+ MCMC), the model computes a probability distribution for every coefficient
+ in the differential equations.
+ This is done on an as large as possible database of AD patients, where
+ each must be with at least two different measurement times (in gaps of
+ months or years).
+ Each coefficient represents exactly how one biological variable influences
+ another.
+\end_layout
+
+\begin_layout Standard
+We then solved the ODE system forward in time via matrix exponentials to
+ simulate 2-year and 5-year biomarker trajectories.
+ These synthetically generated trajectories established our baseline model
+ dynamics and were later used as the dataset for surrogate model training.
+\end_layout
+
+\begin_layout Standard
+Causal Constraints: The researchers explicitly built biological facts into
+ these equations.
+ For example, the model dictates that Amyloid Beta drives Tau pathology,
+ and Tau pathology drives Memory decline.
+ Importantly, it enforces that the reverse is not true (e.g., worsening memory
+ does not cause Tau to accumulate; the coefficient for that is constrained
+ to zero).
+\end_layout
+
+\begin_layout Standard
+Personalization: Once the population-level coefficient distributions are
+ established, the model can take a specific patient's current data and fit
+ an updated, personalized parameter distribution just for them.
+\end_layout
+
+\begin_layout Standard
+Prediction: Only after calculating these personalized differential equation
+ parameters can the model simulate the patient's trajectory forward in time
+ to output forecasts for clinical classification and future biomarkers.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Note:
+\series default
+ While Bossa and Sahli originally trained their population differential
+ equation parameters using real longitudinal patient data from the Alzheimer’s
+ Disease Neuroimaging Initiative (ADNI) cohort, our project relied entirely
+ on synthetically generated patient profiles.
+ Rather than using real clinical patient records, we synthetically constructed
+ 4,000 patient profiles by randomly sampling baseline features (uniform
+ Age between 60–90 and binary APOE4 status) and drawing initial baseline
+ states (
+\begin_inset Formula $c_{0}$
+\end_inset
+
+) from pre-computed population posterior parameter matrices (
+\begin_inset Formula $v$
+\end_inset
+
+, 
+\begin_inset Formula $w_{Age}$
+\end_inset
+
+, 
+\begin_inset Formula $w_{APOE}$
+\end_inset
+
+ ,
+\begin_inset Formula $v_{0}$
+\end_inset
+
+).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space \space{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To compute the clinical stage 
+\begin_inset Formula $CS$
+\end_inset
+
+, the model uses a linear predictor 
+\begin_inset Formula $\eta$
+\end_inset
+
+ which represents the patient's overall disease load, calculated as a weighted
+ combination of their biomarker values:
+\begin_inset Formula 
+\[
+\eta=\sum_{j=1}^{5}x_{j}(t)\cdot\beta_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using this linear predictor, the model calculates the probability of the
+ patient belonging to each of three ordered clinical categories (1 = Cognitively
+ Normal (CN), 2 = Mild Cognitive Impairment (MCI), 3 = Dementia (AD)) using
+ cutpoint thresholds 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+P\left(CN\right) & =sigmoid\left(c_{1}-\eta\right)\\
+P\left(MCI\right) & =sigmoid\left(c_{2}-\eta\right)-sigmoid\left(c_{1}-\eta\right)\\
+P\left((AD\right) & =1-sigmoid\left(c_{2}-\eta\right)
+\end{align*}
+
+\end_inset
+
+Then, to represent this probabilistic classification as a continuous variable
+ suitable for normalizing flows and regression links, the model computes
+ the Expected Clinical Stage Score:
+\begin_inset Formula 
+\[
+CS=0\cdot P\left(CN\right)+1\cdot P\left(MCI\right)+2\cdot P\left(AD\right)
+\]
+
+\end_inset
+
+This score smoothly maps the patient's condition to the clinical categories:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left[0.0,0.5\right]$
+\end_inset
+
+ CN
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\ensuremath{(0.5,1.5]}$
+\end_inset
+
+ MCI
+\end_layout
+
+\begin_layout Itemize
+(1.5, 2.0] AD
+\end_layout
+
+\begin_layout Subsubsection
+Vogel et al.
+ Subtype and Staging Inference (SuStaIn) Model
+\end_layout
+
+\begin_layout Standard
+The original SuStaIn model uses longitudinal or cross-sectional patient
+ data to map the temporal progression of disease biomarkers into distinct
+ trajectories (subtypes).
+ It models how different regions of the brain accumulate pathology (e.g.,
+ Tau) over time.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Model Variables, Inputs and Outputs:
+\end_layout
+
+\begin_layout Standard
+The SuStaIn model, in general, regardless to the specific AD use, is a spatiotem
+poral disease progression framework designed to untangle disease heterogeneity
+ from cross-sectional data.
+ Its inputs consist of continuous regional biomarker measurements—here specifica
+lly Tau PET Z-scores 
+\begin_inset Formula $z=\left[z_{1},...,z_{N}\right]$
+\end_inset
+
+ measured across 
+\begin_inset Formula $N$
+\end_inset
+
+ distinct brain regions (such as the Entorhinal cortex, Precuneus, and Amygdala).
+ Disease progression within each subtype 
+\begin_inset Formula $s\in\left\{ 0,...,S-1\right\} $
+\end_inset
+
+ is modeled as an ordered sequence of discrete z-score threshold-crossing
+ events (e.g., Z-scores reaching 1.0, 2.0, or 3.0 in specific regions), dividing
+ spatial advancement into 
+\begin_inset Formula $N_{stages}$
+\end_inset
+
+ sequential stages, where 
+\begin_inset Formula $N_{stages}$
+\end_inset
+
+ is a hyperparameter.
+\end_layout
+
+\begin_layout Standard
+Given a patient's Z-score scan 
+\begin_inset Formula $\boldsymbol{z}$
+\end_inset
+
+ SuStaIn evaluates the likelihood 
+\begin_inset Formula $P\left(\boldsymbol{z}|s,k\right)$
+\end_inset
+
+ of observing that spatial pattern at stage 
+\begin_inset Formula $k$
+\end_inset
+
+ of subtype 
+\begin_inset Formula $s$
+\end_inset
+
+.
+ Applying Bayes' rule with learned population subtype prevalence fractions
+\begin_inset Formula $f_{s}$
+\end_inset
+
+ and a uniform prior over stages, the model computes a 2D Joint Posterior
+ Probability Matrix:
+\begin_inset Formula 
+\[
+P\left(s,k|\boldsymbol{z}\right)=\frac{P\left(\boldsymbol{z}|s,k\right)\cdot f_{s}}{\sum_{s'=0}^{S-1}\sum_{k'=0}^{N_{stages}}P\left(\boldsymbol{z}|s',k'\right)f_{s'}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Summing this matrix across stages yields the Subtype Probabilities, while
+ summing across subtypes yields the Stage Probabilities.
+ To enable compatibility with flow-based surrogate neural networks, we collapsed
+ the discrete stage vector into a single continuous scalar Expected Stage:
+\begin_inset Formula 
+\[
+ExpectedStage=\sum_{k=0}^{N_{stages}}k\cdot P\left(Stage\ k\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+How the Model Works
+\end_layout
+
+\begin_layout Standard
+Model training is performed on un-staged cross-sectional population datasets
+ using a hierarchical optimization framework that combines Expectation-Maximizat
+ion (EM) clustering with Markov Chain Monte Carlo (MCMC) sampling.
+ The EM step finds maximum-likelihood estimates for the regional event sequence
+ of each subtype and their population prevalence fractions 
+\begin_inset Formula $f_{s}$
+\end_inset
+
+.
+ Subsequently, MCMC sampling draws thousands of candidate event sequences
+ and fractions to quantify model uncertainty, while Cross-Validation Information
+ Criterion (CVIC) selects the optimal number of subtypes 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ During inference on a new patient scan 
+\begin_inset Formula $\boldsymbol{z}$
+\end_inset
+
+, SuStaIn bypasses trajectory optimization and directly evaluates the conditiona
+l likelihood 
+\begin_inset Formula $P\left(\boldsymbol{z}|s,k\right)$
+\end_inset
+
+ against the pre-trained MCMC sequence samples, returning instant, patient-speci
+fic subtype classification probabilities and spatial stage distributions.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Note:
+\series default
+ For our project implementation, rather than using restricted real-world
+ PET scan databases, we utilized the official synthetic data simulator provided
+ in the authors' pySuStaIn open-source repository
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vogel_four_2021"
+literal "false"
+
+\end_inset
+
+.
+ The simulator generates cross-sectional Z-score measurements across 7 key
+ brain regions: the Entorhinal cortex, Amygdala, Parahippocampal gyrus,
+ Fusiform gyrus, Inferior Temporal gyrus, Middle Temporal gyrus, and Precuneus.
+ Because each of the 7 regions evaluates 3 distinct Z-score threshold levels
+ (1.0, 2.0, and 3.0), the progression timeline is discretized into exactly
+ 21 total spatial stages (0 to 21), where Stage 0 represents a healthy baseline
+ and Stage 21 represents complete spatial saturation across all regions.
+\end_layout
+
+\begin_layout Standard
+We fitted the pySuStaIn algorithm across candidate models ranging from 1
+ to 3 subtypes and evaluated model performance using Cross-Validation Informatio
+n Criterion (CVIC).
+ The 3-subtype model achieved the lowest CVIC score, proving mathematically
+ optimal for capturing the spatial variance of the dataset.
+ The algorithm identified three distinct tau progression trajectories:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Subtype 0 -
+\series default
+ 
+\series bold
+Neocortical-Leaning/Atypical
+\series default
+ (36.3% population prevalence): An atypical pathway originating outside the
+ limbic center in the Precuneus and temporal neocortex, clinically linked
+ to early executive and visuospatial deficits.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Subtype 1 - Classic Limbic
+\series default
+ (49.5% population prevalence): The traditional Braak pathway originating
+ in the medial temporal lobe (Entorhinal cortex and Amygdala), characterized
+ by early memory impairment and a slower, plateauing overall progression
+ rate.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Subtype 2 - Cortical-Leaning Variant
+\series default
+ (14.2% population prevalence): A secondary neocortical variant originating
+ in the Middle Temporal gyrus that spreads rapidly across the cortex, exhibiting
+ fast accumulation kinetics similar to Subtype 0.
+\end_layout
+
+\begin_layout Subsubsection
+Implementing the Surrogate Models
+\end_layout
+
+\begin_layout Standard
+Before surrogate training begins, the computational simulator (whether the
+ ODE differential equation solver or the pySuStaIn algorithm) is run over
+ thousands of forward simulations across representative physiological parameter
+ ranges.
+ This creates a tabular training dataset consisting of paired input-output
+ vectors:
+\begin_inset Formula 
+\[
+\mathcal{D}=\left\{ \left(\boldsymbol{x}^{(1)},\boldsymbol{\Theta}^{(1)}\right),...,\left(\boldsymbol{x}^{(N)},\boldsymbol{\Theta}^{(N)}\right)\right\} 
+\]
+
+\end_inset
+
+where
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ 
+\series bold
+conditioning inputs
+\series default
+: Independent variables, initial conditions, baseline measurements, or demograph
+ic drivers (e.g., patient age, APOE4 status, or baseline regional Z-scores).
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{\Theta}$
+\end_inset
+
+ 
+\series bold
+target outputs:
+\series default
+ Dependent outcomes, rate parameters, future forecasts, or classification
+ probabilities (e.g., kinetic rate constants, 5-year memory deficit, spatial
+ subtype probabilities, or expected stage).
+\end_layout
+
+\begin_layout Standard
+Surrogate training is executed using the bayesian_metamodeling (bayemm)
+ library framework written by Dr.
+ Barak Raveh
+\begin_inset CommandInset citation
+LatexCommand cite
+key "raveh_metamodeler_codex_scaffold_docs"
+literal "false"
+
+\end_inset
+
+, via its sbi_npe (Simulation-Based Inference via Neural Posterior Estimation)
+ backend.
+\end_layout
+
+\begin_layout Standard
+Instead of fitting a standard deterministic regression model (which would
+ predict only a single average value and lose uncertainty), the framework
+ fits a deep generative neural network that models the entire conditional
+ probability density 
+\begin_inset Formula $p\left(\boldsymbol{\Theta}|\boldsymbol{x}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+NPE is a class of Simulation-Based Inference (SBI) algorithms designed to
+ estimate conditional probability distributions directly from simulated
+ dataset pairs without requiring an explicit, tractable analytical likelihood
+ function from the simulator.
+\end_layout
+
+\begin_layout Standard
+To represent complex, multi-modal, non-Gaussian probability distributions
+ p(y∣x), NPE utilizes Normalizing Flows, and the specific architecture we
+ used with out backend is a Masked Autoregressive Flow (MAF).
+ It factorizes the joint conditional density of the outputs into a product
+ of 1D conditional distributions using the chain rule of probability.
+ To compute this efficiently in a single forward neural network pass, MAF
+ applies binary masks to the weight matrices of standard feedforward neural
+ networks (Masked Autoencoder for Distribution Estimation, MADE).
+\end_layout
+
+\begin_layout Standard
+The neural network weights 
+\begin_inset Formula $\theta$
+\end_inset
+
+ are trained by minimizing the negative log-likelihood (NLL) over the dataset
+ using Adam optimization:
+\begin_inset Formula 
+\[
+\mathcal{L}\left(\boldsymbol{\Theta}\right)=-\frac{1}{N}\sum_{i=1}^{N}log\ p_{MAF}\left(\boldsymbol{\Theta}^{(i)}|\boldsymbol{x}^{(i)};\theta\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once NLL loss converges, the backend library bayesmm serializes the trained
+ neural network weights, feature normalization scalers, and input/output
+ schemas into json files.
+ During joint metamodel sampling, these saved artifacts are loaded as drop-in
+ probabilistic emulators, enabling instant density evaluation and sample
+ generation.
+\end_layout
+
+\begin_layout Paragraph
+ODE-model Surrogate Training
+\end_layout
+
+\begin_layout Standard
+To train the ODE surrogate model we constructed a 4,000-sample dataset by
+ integrating the differential equations forward in time using matrix exponential
+s from pre-computed MCMC parameter posteriors (found in ad_ode_demo_posterior.pkl
+).
+ As stated in the Results, the inputs and outputs we selected for the surrogate
+ were:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+inputs:
+\series default
+ age_baseline (sampled uniformly between 60–90 years), binary APOE4_status
+ (Bernouli 0.5), and 2-year longitudinal biomarker measurements (amyloid_baseline
+, tau_baseline, amyloid_2yr, tau_2yr)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+outputs:
+\series default
+ 2 of the intrinsic ODE kinetic rate parameters (tau_self_dynamic 
+\begin_inset Formula $v_{11}$
+\end_inset
+
+, amyloid_self_dynamic 
+\begin_inset Formula $v_{00}$
+\end_inset
+
+, amyloid_drive_tau 
+\begin_inset Formula $v_{10}$
+\end_inset
+
+), baseline_memory_score, 5-year forecasted memory score (memory_result_5yr),
+ and clinical stage scores (clinical_stage_baseline and clinical_stage_5yr).
+\end_layout
+
+\begin_layout Paragraph
+SuStaIn-model Surrogate Training
+\end_layout
+
+\begin_layout Standard
+To train the SuStaIn surrogate model, we constructed a 500-sample dataset
+ generated by running pySuStaIn's MCMC classification engine over synthetic
+ regional scan profiles (found in tau_sim_10k_simulated_data.pickle).
+ As stated in the Results, the inputs and outputs we selected for the surrogate
+ were:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Inputs:
+\series default
+ Continuous Tau PET Z-scores across 7 brain regions (region_0_zscore through
+ region_6_zscore).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Outputs:
+\series default
+ Marginal posterior probabilities for belonging to each discovered spatial
+ trajectory (prob_subtype_0, prob_subtype_1, prob_subtype_2), and the continuous
+ spatial disease stage (expected_stage).
+\end_layout
+
+\begin_layout Subsection
+2.
+ The Coupling
+\end_layout
+
+\begin_layout Standard
+We bridged the two models across three core domains using custom mathematical
+ transformations as detailed below.
+ Note that the metamodeling framework requires to define each coupling as
+ having a source with some variables and a target with other variables,
+ but the bidirectional property of the probability function and samplings
+ makes this a matter of pure notation which helps to distinguish the two
+ sides we couple.
+\end_layout
+
+\begin_layout Subsubsection
+1.
+ Subtype-Drive Velocity/Tau Dynamics
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Source (SuStaIn): 
+\series default
+Probabilities of the different subtypes (prob_subtype_0, prob_subtype_1,
+ prob_subtype_2)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Target (ODE):
+\series default
+ Tau self dynamic rate 
+\begin_inset Formula $v_{11}$
+\end_inset
+
+ (tau_self_dynamic)
+\end_layout
+
+\begin_layout Standard
+We defined a velocity_modifier_score transform that generates a modifier
+ score 
+\begin_inset Formula $S$
+\end_inset
+
+ using a weighted (
+\begin_inset Formula $W$
+\end_inset
+
+) sum of the different subtype probabilities (
+\begin_inset Formula $P$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+S=\sum_{i=0}^{2}\left(P_{i}\times W_{i}\right)
+\]
+
+\end_inset
+
+Where we set the weights such that the sum is equal to
+\begin_inset Formula 
+\[
+S=\left(P_{0}\cdot1.0\right)+\left(P_{1}\cdot(-0.3)\right)+\left(P_{2}\cdot0.5\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notice that the weights for subtypes 
+\begin_inset Formula $W_{0},W_{2}$
+\end_inset
+
+ are positive to indicate their relation to a different higher rate of Tau
+ spread, whereas the weight for subtype 1 (the classic lymbic) 
+\begin_inset Formula $W_{1}$
+\end_inset
+
+ is negative to indicate a relation to a slower rate.
+\end_layout
+
+\begin_layout Standard
+We wanted the link to have a linear directional potential, such that higher
+ probabilities for subtypes 0 and 2 favor higher Tau rates, and a higher
+ probability for subtype 1 will favor a lower rate.
+ Since the sampling and inference algorithms on the joint distribution use
+ log-likelhioods and logarithms of the probabilities, we chose the link
+ coupling constraint formula to be
+\begin_inset Formula 
+\begin{align*}
+log\ p\left(\text{Tau\_Dynamic\_Coupling}|\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right) & =log\ \phi_{1}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)\\
+ & =\frac{1}{\sigma_{1}}\times\left(\text{tau\_self\_dynamic}\times S\right)
+\end{align*}
+
+\end_inset
+
+ Where 
+\begin_inset Formula $\sigma_{1}=2.0$
+\end_inset
+
+ is the magnitude modifier - a larger 
+\begin_inset Formula $\sigma_{1}$
+\end_inset
+
+corresponds to a weaker reward/punishment.
+\end_layout
+
+\begin_layout Standard
+Since the log score is added to the other log probabilities, when comparing
+ between two tau_self_dynamic it is clear that a higher rate with a negative
+ modifier score 
+\begin_inset Formula $S$
+\end_inset
+
+ punishes the model whereas a positive score S rewards it, and vice versa
+ for a slower rate.
+\end_layout
+
+\begin_layout Subsubsection
+2.
+ Disease Stage
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Source (SuStaIn):
+\series default
+ The calculated Tau expected_stage weighted by the subtype probabilities
+ (prob_subtype_0, prob_subtype_1, prob_subtype_2)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Target (ODE):
+\series default
+ The continuous single clinical_stage
+\end_layout
+
+\begin_layout Standard
+In order to translate the SuStaIn's Tau expected stage, which is on a discrete
+ range of 0-21 to the continous variable in the ODE that tracks the clinical
+ stage continuously and is range of 
+\begin_inset Formula $\left[0.0,2.0\right]$
+\end_inset
+
+ we had to define a transformation.
+ Since the stage is simply a measure of how progressive the Tau spread in
+ the patient's brain and not a direct measure of the clinical stage, different
+ subtypes can have different clinical stages that are derived from the same
+ expected stage.
+ So our transformation took the subtype probabilities into consideration.
+\end_layout
+
+\begin_layout Standard
+Then we linked the clinical stage of the ODE to the transformed Tau expected
+ stage using a gaussian connection to reward outputs that sustain the relation
+ we defined.
+ The transformation and the gaussian link are detailed below.
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $x$
+\end_inset
+
+ be the SuStaIn's Tau expected_stage.
+ We defined two logistic progression curves targeting a max clinical severity
+ of 2.0.
+ One for Subtype 1 (limbic) and one for subtypes 0,2 which had more similar
+ characteristics.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Progression curve for Subtype 1
+\series default
+: rises faster at lower stages (midpoint anchor 10.0), since this subtype
+ is related to a faster clinic decline in earlier Tau stages.
+\begin_inset Formula 
+\[
+C_{limbic}\left(x\right)=\frac{2.0}{1+e^{-\alpha\left(x-10.0\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Progression curve for Subtypes 0, 2: 
+\series default
+rises slower, reaching dementia at higher stages (midpoint anchor 15.0).
+\begin_inset Formula 
+\[
+C_{Atypical}\left(x\right)=\frac{2.0}{1+e^{-\alpha\left(x-15.0\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where 
+\begin_inset Formula $\alpha=0.4$
+\end_inset
+
+ is a hyperparameter for the progression rate.
+\end_layout
+
+\begin_layout Standard
+The final expected clinical stage which is the transformation result is
+\begin_inset Formula 
+\[
+\text{Expected Clinical Stage (ECS)}=P\left(S_{1}\right)\cdot C_{limbic}\left(x\right)+\left(P\left(S_{0}\right)+P\left(S_{2}\right)\right)\cdot C_{Atypical}\left(x\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And thus the final coupling link is given by:
+\begin_inset Formula 
+\begin{align*}
+p\left(\text{clinical\_stage}|\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right) & =\phi_{2}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)\\
+ & =\frac{1}{\sqrt{2\pi\sigma_{2}^{2}}}exp\left(-\frac{\left(\text{ECS}-\text{expected\_stage}\right)^{2}}{2\sigma_{2}^{2}}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where we set 
+\begin_inset Formula $\sigma_{2}=0.2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once again, since the sampling and inference use logs, we get that 
+\begin_inset Formula 
+\[
+log\ \phi_{2}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)=-\frac{1}{2\sigma_{2}^{2}}\left(\text{ECS}-\text{expected\_stage}\right)^{2}+Constant
+\]
+
+\end_inset
+
+And it is easy to see that the more the two variables are similar, the smaller
+ the punishment to the probability assessment.
+\end_layout
+
+\begin_layout Subsubsection
+3.
+ Subtype Prior
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Sources (ODE): 
+\series default
+Disease progression parameters and results (APOE4_status, tau_self_dynamic,
+ memory_cognitive_test_result).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Targets (SuStaIn):
+\series default
+ Subtype probabilities (prob_subtype_0, prob_subtype_1, prob_subtype_2)
+\end_layout
+
+\begin_layout Standard
+Here we wanted to incorporate the patient's clinical history and charateristics
+ as another prior to set the probabilities of the Tau trajectory subtypes.
+ Using known empirical associations (carrying APOE4 gene and earlier severe
+ memory deficit favors the limbic subtype, rapid decline and favors the
+ other subtypes), we calculated scores for each subtype group: 
+\begin_inset Formula $S_{limbic}$
+\end_inset
+
+ for subtype 1, and 
+\begin_inset Formula $S_{Atypical}$
+\end_inset
+
+ for subtypes 0,2.
+ These scores were then passed through a softmax function to generate a
+ probability distribution that acts as a constraint on the SuStaIn mode's
+ own subtype predictions - to which we linked using a gaussian link.
+\end_layout
+
+\begin_layout Standard
+First, we map the continuous rate of tau spread tau_self_dynamic 
+\begin_inset Formula $v_{11}$
+\end_inset
+
+ to 
+\begin_inset Formula $[0,1)$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+V_{norm}=1-e^{-v_{11}}
+\]
+
+\end_inset
+
+Next, we clip the memory test score memory_cognitive_test_result 
+\begin_inset Formula $M$
+\end_inset
+
+ to ensure it is within 
+\begin_inset Formula $\left[0,1\right]$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+M_{norm}=clip\left(M,0,1\right)
+\]
+
+\end_inset
+
+Then, using also the binary APOE4_status 
+\begin_inset Formula $A$
+\end_inset
+
+, we calculated the scores for limbic and atypical phenotypes.
+ Notice that a higher memory score corresponds to a more damaged memory,
+ therefore it is added to the limbic score:
+\begin_inset Formula 
+\begin{align*}
+S_{limbic} & =\alpha_{1}A+\alpha_{2}\left(1-V_{norm}\right)+\alpha_{3}M_{norm}\\
+S_{Atypical} & =\alpha_{1}\left(1-A\right)+\alpha_{2}\left(V_{norm}\right)+\alpha_{3}\left(1-M_{norm}\right)
+\end{align*}
+
+\end_inset
+
+where we set 
+\begin_inset Formula $\alpha_{1}=\alpha_{2}=\alpha_{3}=1$
+\end_inset
+
+ hyperparameters.
+\end_layout
+
+\begin_layout Standard
+So we have 
+\begin_inset Formula $\text{RawScores}$
+\end_inset
+
+
+\begin_inset Formula $RS=\left[S_{Atypical},S_{limbic},S_{Atypical}\right]$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Finally, we set the softmax:
+\begin_inset Formula 
+\[
+CoupledP\left(Subtype_{i}\right)=\frac{exp\left(\beta\cdot RS[i]\right)}{\sum_{j=0}^{2}exp\left(\beta\cdot RS[j]\right)}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\beta=1$
+\end_inset
+
+ is a temperature hyperparameter.
+\end_layout
+
+\begin_layout Standard
+This result is linked to the SuStaIn's original prediction for the probabilities
+ using a gaussian just like for the transformed Tau expected stage, so overall
+ we get
+\begin_inset Formula 
+\begin{align*}
+p\left(\text{prob\_subtype\_i}|\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right) & =\phi_{3_{i}}\left(\boldsymbol{\Theta}_{ODE},\boldsymbol{\Theta}_{SuStaIn}\right)\\
+ & =\frac{1}{\sqrt{2\pi\sigma_{3}^{2}}}exp\left(-\frac{\left(\text{CoupledP\left(Subtype_{i}\right)}-\text{prob\_subtype\_i}\right)^{2}}{2\sigma_{3}^{2}}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where we set 
+\begin_inset Formula $\sigma_{3}=0.25$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+3.
+ Joint Inference
+\end_layout
+
+\begin_layout Standard
+[more technical explanation of sampling and inferring from the joint coupled
+ posterior - T.B.W after more experimenting with the joint library]
+\end_layout
+
+\begin_layout Standard
+For the joint sampling and the inference process the framework compiles
+ the individual surrogates (SurrogateLikelihoodFactorIR) and cross-model
+ coupling links (CouplingFactorIR) into a single, unified probabilistic
+ graph using PyMC.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "bibliography"
+options "bibtotoc,unsrt"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

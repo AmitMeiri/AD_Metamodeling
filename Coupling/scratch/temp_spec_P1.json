@@ -52,6 +52,10 @@
       "type": "scalar"
     },
     {
+      "name": "clinical_stage_baseline",
+      "type": "scalar"
+    },
+    {
       "name": "region_0_zscore",
       "type": "scalar"
     },
@@ -214,19 +218,19 @@
       }
     },
     {
-      "variable": "memory_result_yr5",
+      "variable": "memory_result_baseline",
       "distribution": {
         "kind": "normal",
-        "loc": 0.5293978417134695,
-        "scale": 0.6069041180997522
+        "loc": 0.8506708764326811,
+        "scale": 1.1540127394802047
       }
     },
     {
-      "variable": "clinical_stage_yr5",
+      "variable": "clinical_stage_baseline",
       "distribution": {
         "kind": "normal",
-        "loc": 0.6184381657674589,
-        "scale": 0.10720320351937013
+        "loc": 1.2393825880368905,
+        "scale": 0.5950382413444607
       }
     },
     {
@@ -266,7 +270,7 @@
     {
       "kind": "gaussian_link",
       "source": "expected_stage,prob_subtype_0,prob_subtype_1,prob_subtype_2",
-      "target": "clinical_stage_yr5",
+      "target": "clinical_stage_baseline",
       "transform": {
         "kind": "sustain_to_ode_stage"
       },
@@ -296,7 +300,7 @@
     },
     {
       "kind": "gaussian_link",
-      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_yr5",
+      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline",
       "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "transform": {
         "kind": "clinical_subtype_scorer",

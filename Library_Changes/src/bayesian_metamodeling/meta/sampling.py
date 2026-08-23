@@ -79,6 +79,9 @@ def _sample_core(
     for factor in ir.factors:
         if not isinstance(factor, CouplingFactorIR):
             continue
+        
+        # AD_Metamodeling Customization: Support multi-variable source inputs (comma-separated).
+        # We parse the comma-separated source string into a list of samples.
         if "," in factor.source:
             sources = [samples[s.strip()] for s in factor.source.split(",")]
             source = sources[0]
@@ -91,13 +94,16 @@ def _sample_core(
             beta = float(factor.transform.get("beta", 0.0))
             transformed = alpha * source + beta
         elif factor.transform.get("kind") == "sum":
+            # AD_Metamodeling Customization: Sum transform (sums inputs, e.g. regional Z-scores into global).
             transformed = sum(sources)
         elif factor.transform.get("kind") == "integration":
+            # AD_Metamodeling Customization: Euler kinetic integration step.
             dt = float(factor.transform.get("dt", 1.0))
             alpha = float(factor.transform.get("alpha", 1.0))
             beta = float(factor.transform.get("beta", 0.0))
             transformed = alpha * (sources[0] + sources[1] * dt) + beta
         elif factor.transform.get("kind") == "subtype_conditioned_stage":
+            # AD_Metamodeling Customization: Maps SuStaIn stage to ODE clinical stage.
             x = sources[0]
             p0 = sources[1]
             p1 = sources[2]
@@ -108,6 +114,7 @@ def _sample_core(
             
             transformed = (p1 * c_limbic) + ((p0 + p2) * c_atyp)
         elif factor.transform.get("kind") == "sustain_to_ode_stage":
+            # AD_Metamodeling Customization: Maps pySuStaIn stage to ODE stage.
             x = sources[0]
             p0 = sources[1]
             p1 = sources[2]
@@ -121,6 +128,7 @@ def _sample_core(
             
             transformed = (p1 * c_limbic) + ((p0 + p2) * c_atyp)
         elif factor.transform.get("kind") == "clinical_subtype_scorer":
+            # AD_Metamodeling Customization: Computes subtype propensity scoring based on APOE4, memory, and rate.
             beta_val = float(factor.transform.get("beta", 1.0))
             apoe4 = sources[0]
             vel = sources[1]
@@ -137,28 +145,32 @@ def _sample_core(
             exp_scores = np.exp(beta_val * raw_scores)
             transformed = exp_scores / np.sum(exp_scores, axis=0)
         elif factor.transform.get("kind") == "velocity_modifier_score":
+            # AD_Metamodeling Customization: Computes dot-product of probabilities with respective weights.
             weights = factor.transform.get("weights", [])
-            # Dynamic calculation of Score = sum(P_i * W_i)
-            # Sources are expected to be an array/list of probabilities
             transformed = sum(s * w for s, w in zip(sources, weights))
         else:
             transformed = source
 
+        # AD_Metamodeling Customization: Support multi-variable targets (comma-separated target names).
         target_names = [t.strip() for t in factor.target.split(",")] if "," in factor.target else [factor.target]
 
         if factor.coupling_type == "deterministic_transform":
+            # AD_Metamodeling Customization: Assign values to all target names.
+            # Handles array-valued output mapping correctly across multiple variables.
             for i, target_name in enumerate(target_names):
                 if len(target_names) > 1 and isinstance(transformed, np.ndarray) and transformed.shape[0] == len(target_names):
                     samples[target_name] = transformed[i]
                 else:
                     samples[target_name] = transformed
         elif factor.coupling_type == "directional_potential":
-            # For sampling approximation, directional potential applies a heuristic shift
+            # AD_Metamodeling Customization: Applies a heuristic shift mapping to simulate
+            # soft directional potential winds under prior propagation.
             sigma = float(factor.sigma or 1.0)
             for i, target_name in enumerate(target_names):
                 shift = (transformed * 0.05) / sigma
                 samples[target_name] += shift
         else:
+            # AD_Metamodeling Customization: Evaluates Gaussian noise for each target in a multi-variable mapping.
             sigma = float(factor.sigma or DEFAULT_COUPLING_SIGMA)
             _NUMPYRO_NOISE_SCALE_FACTOR = 1.05
             noise_scale = sigma if backend == "pymc" else sigma * _NUMPYRO_NOISE_SCALE_FACTOR
@@ -169,6 +181,36 @@ def _sample_core(
                     samples[target_name] = transformed[i] + noise
                 else:
                     samples[target_name] = transformed + noise
+
+    # Observed variables are known, so they are held at their value rather than drawn.
+    #
+    # Applied AFTER the couplings on purpose: a coupling would otherwise overwrite the
+    # very quantity you said you had measured. Note what this path can and cannot do —
+    # clamping propagates forward (anything downstream of an observed variable now flows
+    # from the measured value) but nothing flows backwards, because propagation never
+    # looks upstream. Conditioning in the inferential sense needs `--method joint`.
+    observed = {k: float(v) for k, v in (ir.observed or {}).items()}
+    for name, value in observed.items():
+        if name in samples:
+            samples[name] = np.full((chains, draws), value, dtype=float)
+    for factor in ir.factors:
+        if (
+            isinstance(factor, CouplingFactorIR)
+            and factor.source in observed
+            and factor.target not in observed
+        ):
+            source = samples[factor.source]
+            if factor.transform.get("kind") == "affine":
+                alpha = float(factor.transform.get("alpha", 1.0))
+                beta = float(factor.transform.get("beta", 0.0))
+                transformed = alpha * source + beta
+            else:
+                transformed = source
+            if factor.coupling_type == "deterministic_transform":
+                samples[factor.target] = transformed
+            else:
+                sigma = float(factor.sigma or DEFAULT_COUPLING_SIGMA)
+                samples[factor.target] = transformed + rng.normal(0.0, sigma, size=(chains, draws))
 
     sample_id = uuid4().hex
     out_dir = Path("tmp/metamodel_samples") / sample_id
@@ -188,6 +230,19 @@ def _sample_core(
         "chains": chains,
         "seed": seed,
         "variables": sample_vars,
+        # Name the sampler in the artifact. `sample_joint` records
+        # `method: "random_walk_metropolis"`, and without a counterpart here the two
+        # methods were distinguishable only by a *missing* key — so a propagate
+        # dataset and a joint dataset in the same store could not be told apart
+        # without re-deriving which command produced which. `surrogates_evaluated`
+        # is the consequential difference: this path calls the compiled model with
+        # `surrogates={}`, so surrogate likelihood factors contribute nothing and
+        # the draws are forward propagation, not conditioning.
+        "method": "prior_propagation",
+        "surrogates_evaluated": False,
+        # Same reason the joint path records it: the identical model with and without an
+        # observation answers two different questions, and the file must say which.
+        "observed": {k: float(v) for k, v in (ir.observed or {}).items()},
         "created_at": datetime.now(UTC).isoformat(),
     }
     inference_path = out_dir / "inference_data.json"
@@ -200,6 +255,7 @@ def _sample_core(
     registry_entry = {
         "sample_id": sample_id,
         "ir_name": ir.name,
+        "method": "prior_propagation",
         "backend": backend,
         "draws": draws,
         "tune": tune,

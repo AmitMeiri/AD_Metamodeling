@@ -29,6 +29,8 @@ class CouplingFactorIR(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     kind: Literal["coupling"] = "coupling"
+    # AD_Metamodeling Customization: Expand the allowed coupling type literals to support
+    # the custom soft "directional_potential" link used to reward parameter trends.
     coupling_type: Literal["equality_soft", "gaussian_link", "deterministic_transform", "directional_potential"]
     source: str
     target: str
@@ -55,6 +57,10 @@ class MetamodelIR(BaseModel):
     name: str
     variables: list[VariableIR]
     factors: list[PriorFactorIR | CouplingFactorIR | SurrogateLikelihoodFactorIR]
+    # Clamped variables: name -> known value. Not a factor, because it does not
+    # contribute a term to the density — it removes a dimension from the sample space.
+    # Defaulted so IR files written before conditioning existed still load.
+    observed: dict[str, float] = Field(default_factory=dict)
 
 
 def ir_to_json_dict(ir: MetamodelIR) -> dict[str, Any]:

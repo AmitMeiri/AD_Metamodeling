@@ -193,6 +193,84 @@ def plot_panel_c(model, df_orig):
     plt.savefig(SCRIPT_DIR / 'surrogate_sustain_plots' / 'panel_c_sensitivity.png', dpi=300, bbox_inches='tight')
     plt.close()
 
+def plot_combined_abc(df_orig, df_surr, model):
+    set_premium_style()
+    
+    fig = plt.figure(figsize=(18, 16))
+    fig.suptitle("Figure 1: Validation and Performance of the pySuStaIn Flow-Based NPE Surrogate", fontsize=18, fontweight='bold', y=0.99)
+    
+    gs = fig.add_gridspec(3, 1, height_ratios=[1, 1.1, 1.1], hspace=0.45)
+    
+    # Row 0: Panel A (Marginal Densities)
+    gs_a = gs[0].subgridspec(1, 4, wspace=0.28)
+    output_cols = [c for c in df_orig.columns if 'prob_subtype' in c] + ['expected_stage']
+    for i, var in enumerate(output_cols):
+        ax = fig.add_subplot(gs_a[0, i])
+        sns.histplot(df_orig[var], color='#7f8c8d', stat='density', alpha=0.4, label='SuStaIn (MCMC)', ax=ax, bins=35, edgecolor='none')
+        sns.histplot(df_surr[var], color='#007aff', stat='density', element='step', fill=False, label='Surrogate (NPE)', ax=ax, bins=35, linewidth=2)
+        title = var.replace('_', ' ').title()
+        ax.set_title(title, fontweight='bold', fontsize=11, pad=8)
+        ax.set_xlabel('Value', fontsize=10)
+        ax.set_ylabel('Density', fontsize=10)
+        if 'prob' in var:
+            ax.set_xlim(-0.05, 1.05)
+        sns.despine(ax=ax, trim=True)
+        if i == 0:
+            ax.legend(frameon=True, facecolor='white', edgecolor='none', shadow=True, fontsize=9)
+    fig.text(0.01, 0.96, "Panel A: Marginal Densities (Fidelity Evaluation)", fontsize=14, fontweight='bold')
+    
+    # Row 1: Panel B (Pairwise Joint Distributions)
+    gs_b = gs[1].subgridspec(1, 3, wspace=0.28)
+    subtype_cols = [c for c in df_orig.columns if 'prob_subtype' in c]
+    x_var = 'expected_stage'
+    for i, y_var in enumerate(subtype_cols):
+        ax = fig.add_subplot(gs_b[0, i])
+        ax.hexbin(df_orig[x_var], df_orig[y_var], gridsize=30, cmap='Greys', mincnt=1, bins='log', edgecolors='none', alpha=0.85)
+        sns.kdeplot(x=df_surr[x_var], y=df_surr[y_var], ax=ax, levels=[0.5, 0.9], colors=['#007aff'], linewidths=[1.5, 2.5], alpha=0.9)
+        r_orig, _ = pearsonr(df_orig[x_var], df_orig[y_var])
+        r_surr, _ = pearsonr(df_surr[x_var], df_surr[y_var])
+        ax.text(0.05, 0.95, f"MCMC r = {r_orig:.3f}\nSurrogate r = {r_surr:.3f}", 
+                transform=ax.transAxes, verticalalignment='top', fontsize=9, fontweight='medium',
+                bbox=dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.8, edgecolor='none'))
+        ax.set_xlabel('Expected Stage', fontsize=10)
+        ax.set_ylabel(y_var.replace('_', ' ').title(), fontsize=10)
+        ax.set_ylim(-0.05, 1.05)
+        sns.despine(ax=ax, trim=True)
+    fig.text(0.01, 0.64, "Panel B: Classification Confidence (Pairwise Joint Distributions)", fontsize=14, fontweight='bold')
+    
+    # Row 2: Panel C (Biomarker Sensitivity)
+    gs_c = gs[2].subgridspec(1, 2, wspace=0.28)
+    z_sweep = np.linspace(0, 5, 20)
+    baseline_z = 0.5
+    regions_to_sweep = [0, 6]
+    region_names = ['Entorhinal (Region 0)', 'Precuneus (Region 6)']
+    colors = ['#ff9500', '#007aff', '#34c759', '#ff3b30']
+    
+    for j, (sweep_idx, region_name) in enumerate(zip(regions_to_sweep, region_names)):
+        ax = fig.add_subplot(gs_c[0, j])
+        mean_probs = {s_col: [] for s_col in subtype_cols}
+        for z in z_sweep:
+            x_input = {f'region_{k}_zscore': np.array([z if k == sweep_idx else baseline_z]) for k in range(7)}
+            samples = model.sample(x_input, n=500, seed=42)[0]
+            for s_idx, s_col in enumerate(subtype_cols):
+                mean_probs[s_col].append(np.mean(samples[:, s_idx]))
+        for s_idx, s_col in enumerate(subtype_cols):
+            ax.plot(z_sweep, mean_probs[s_col], label=s_col.replace('_', ' ').title(), 
+                    linewidth=2.5, color=colors[s_idx % len(colors)])
+        ax.set_xlabel(f'{region_name} Z-Score (Severity)', fontsize=10)
+        ax.set_ylabel('Predicted Subtype Probability', fontsize=10)
+        ax.set_title(f'Sensitivity to {region_name}', fontweight='bold', fontsize=11, pad=8)
+        ax.set_ylim(-0.05, 1.05)
+        ax.grid(True, linestyle='--', alpha=0.5)
+        ax.legend(frameon=True, facecolor='white', edgecolor='none', shadow=True, fontsize=9)
+        sns.despine(ax=ax, trim=True)
+    fig.text(0.01, 0.31, "Panel C: Biomarker Sensitivity Analysis (NPE Conditional Inference)", fontsize=14, fontweight='bold')
+    
+    out_file = SCRIPT_DIR / 'surrogate_sustain_plots' / 'combined_panels_abc.png'
+    plt.savefig(out_file, dpi=300, bbox_inches='tight')
+    plt.close()
+    print(f"Combined figure saved successfully to {out_file} !")
+
 if __name__ == "__main__":
     create_directory()
     df_orig = load_data()
@@ -209,4 +287,8 @@ if __name__ == "__main__":
     print("Plotting Panel C: Sensitivity Analysis...")
     plot_panel_c(model, df_orig)
     
-    print("Successfully generated figures in surrogate_sustain_plots/ !")
+    print("Plotting Combined Figure (Panels A, B, C)...")
+    plot_combined_abc(df_orig, df_surr, model)
+    
+    print("Successfully generated all figures in surrogate_sustain_plots/ !")
+

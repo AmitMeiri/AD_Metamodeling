@@ -16,6 +16,10 @@ This project implements a **Bayesian Metamodeling** framework to integrate separ
 
 The **`Coupling`** directory acts as the central heart of this project. It defines the joint probabilistic constraints (coupling links) that mathematically bind these models together, allowing them to share information, resolve conflicts, and collapse prediction uncertainty during joint MCMC sampling.
 
+> [!NOTE]
+> **Cross-Model Inference with Partial Data**:
+> Because MCMC samples over the unified joint distribution, the metamodel can predict missing variables even if a patient has inputs for only one model (e.g. predicting 5-year memory decline from a SuStaIn PET scan alone, or imputing spatial stage from clinical history alone). See [Coupling/README.md](Coupling/README.md) for details.
+
 > [!CAUTION]
 > **Baseline Sampling Engine Limitation (Post-Draw Approximation)**:
 > In the framework's baseline sampler (`bayesian_metamodeling/meta/sampling.py`), coupling is **not** resolved as a true joint posterior. Instead, the engine draws independent random samples from the source priors, runs them forward through the transform, and then **completely overwrites the target variables** with the transformed value plus noise.
@@ -149,8 +153,8 @@ Because the standard `bayesian_metamodeling` library did not originally support 
     *   `velocity_modifier_score`: Computes dynamic dot-product velocity weights.
 
 ### Provided Files & Declarations
-*   All modifications are explicitly declared and mapped out in: [external_library_changes.md](AD_Metamodeling/Library_Changes/external_library_changes.md)
-*   For ease of deployment and direct reference, the fully updated Python source files containing these changes are provided under: [Library_Changes/src/](AD_Metamodeling/Library_Changes/src)
+*   All modifications are explicitly declared and mapped out in: [external_library_changes.md](Library_Changes/external_library_changes.md)
+*   For ease of deployment and direct reference, the fully updated Python source files containing these changes are provided under: [Library_Changes/src/](Library_Changes/src)
 
 ---
 
@@ -167,4 +171,4 @@ To run the joint MCMC coupling simulation for our test subjects and compare thei
     *   Draw uncoupled samples from both surrogate models.
     *   Inject uncoupled statistics as priors into the spec template.
     *   Call `bayesmm` to build and sample the coupled model.
-    *   Generate a detailed comparison plot at: [patient_coupling_evaluation.png](AD_Metamodeling/Coupling/patient_coupling_evaluation.png)
+    *   Generate a detailed comparison plot at: [patient_coupling_evaluation.png](Coupling/patient_coupling_evaluation.png)

@@ -20,6 +20,8 @@ class MetamodelVariableSpec(BaseModel):
 class MetamodelCouplingSpec(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
+    # AD_Metamodeling Customization: Expand allowed spec coupling kinds to include the 
+    # custom "directional_potential" soft potential link.
     kind: Literal["gaussian_link", "equality_soft", "deterministic", "directional_potential"]
     source: str = Field(min_length=1)
     target: str = Field(min_length=1)
@@ -44,3 +46,15 @@ class MetaModelSpec(BaseModel):
     variables: list[MetamodelVariableSpec] = Field(default_factory=list)
     couplings: list[MetamodelCouplingSpec] = Field(default_factory=list)
     priors: list[MetamodelPriorSpec] = Field(default_factory=list)
+    # Variables whose value you KNOW, mapped to that value: `{"y": 4.0}`.
+    #
+    # Without this the metamodel layer could only ever draw the full joint. There was no
+    # way to ask the question people actually bring to a metamodel — "given that I measured
+    # this one quantity, what does that imply about the others?" — because there was
+    # nowhere to say what was measured. Emulating it with a very tight prior is the
+    # workaround it replaces, and that workaround is bad: it puts the posterior on a thin
+    # ridge, which is exactly the geometry a coordinate-wise random walk cannot follow.
+    #
+    # An observed variable is clamped: never proposed, never drawn, held at its value while
+    # every factor that mentions it is evaluated there.
+    observed: dict[str, float] = Field(default_factory=dict)

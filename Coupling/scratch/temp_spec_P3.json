@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "name": "ode_sustain_coupling",
+  "name": "ode_sustain_coupling_dt1",
   "ppl_backend": "pymc",
   "surrogate_refs": [
     "C:/Project/AD_Metamodeling/ode_2023/Surrogate/tmp/surrogate_artifacts/5672e7002b8e4fffa045b6b7ba98de79/artifact.json",
@@ -44,11 +44,19 @@
       "type": "scalar"
     },
     {
-      "name": "memory_cognitive_test_result",
+      "name": "memory_result_baseline",
       "type": "scalar"
     },
     {
-      "name": "clinical_stage",
+      "name": "clinical_stage_baseline",
+      "type": "scalar"
+    },
+    {
+      "name": "memory_result_yr5",
+      "type": "scalar"
+    },
+    {
+      "name": "clinical_stage_yr5",
       "type": "scalar"
     },
     {
@@ -121,7 +129,7 @@
       "variable": "amyloid_baseline",
       "distribution": {
         "kind": "normal",
-        "loc": 0.5,
+        "loc": 0.01,
         "scale": 0.01
       }
     },
@@ -129,7 +137,7 @@
       "variable": "tau_baseline",
       "distribution": {
         "kind": "normal",
-        "loc": 850.0,
+        "loc": 0.05,
         "scale": 0.01
       }
     },
@@ -137,16 +145,16 @@
       "variable": "amyloid_2yr",
       "distribution": {
         "kind": "normal",
-        "loc": 0.6,
-        "scale": 0.01
+        "loc": 0.5,
+        "scale": 0.1
       }
     },
     {
       "variable": "tau_2yr",
       "distribution": {
         "kind": "normal",
-        "loc": 950.0,
-        "scale": 0.01
+        "loc": 850.0,
+        "scale": 20.0
       }
     },
     {
@@ -210,7 +218,7 @@
     {
       "kind": "gaussian_link",
       "source": "expected_stage,prob_subtype_0,prob_subtype_1,prob_subtype_2",
-      "target": "clinical_stage",
+      "target": "clinical_stage_baseline",
       "transform": {
         "kind": "sustain_to_ode_stage"
       },
@@ -225,22 +233,20 @@
       }
     },
     {
-      "kind": "directional_potential",
-      "source": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
-      "target": "tau_self_dynamic",
+      "kind": "gaussian_link",
+      "source": "tau_2yr,tau_self_dynamic",
+      "target": "suStIn_global_tau",
       "transform": {
-        "kind": "velocity_modifier_score",
-        "weights": [
-          1.0,
-          -0.3,
-          0.5
-        ]
+        "kind": "integration",
+        "dt": 1.0,
+        "alpha": 0.025,
+        "beta": 0.0
       },
-      "sigma": 0.5
+      "sigma": 0.2
     },
     {
       "kind": "gaussian_link",
-      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_cognitive_test_result",
+      "source": "apoe4_status,tau_self_dynamic,tau_2yr,memory_result_baseline",
       "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "transform": {
         "kind": "clinical_subtype_scorer",

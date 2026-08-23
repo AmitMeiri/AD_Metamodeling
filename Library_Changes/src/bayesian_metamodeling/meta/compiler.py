@@ -39,6 +39,9 @@ class CompiledMetaModel:
                     var = scale**2
                     total += -0.5 * (np.log(2 * np.pi * var) + ((x - loc) ** 2) / var)
             elif isinstance(factor, CouplingFactorIR):
+                # AD_Metamodeling Customization: Support multi-variable source inputs (comma-separated).
+                # Resolves to a list of floats (sources), while keeping a single 'source' variable (sources[0])
+                # for backwards compatibility with single-input relations.
                 if "," in factor.source:
                     sources = [float(values[s.strip()]) for s in factor.source.split(",")]
                     source = sources[0]
@@ -46,6 +49,8 @@ class CompiledMetaModel:
                     sources = [float(values[factor.source])]
                     source = sources[0]
                     
+                # AD_Metamodeling Customization: Support multi-variable targets (comma-separated).
+                # Target evaluation is represented as a numpy array for vector operations.
                 if "," in factor.target:
                     targets = np.array([float(values[t.strip()]) for t in factor.target.split(",")])
                     target = targets[0]
@@ -61,13 +66,17 @@ class CompiledMetaModel:
                     beta = float(factor.transform.get("beta", 0.0))
                     transformed = alpha * source + beta
                 elif relation == "sum":
+                    # AD_Metamodeling Customization: Sum transform (e.g. sum regional Z-scores into global burden).
                     transformed = sum(sources)
                 elif relation == "integration":
+                    # AD_Metamodeling Customization: Integration transform (Euler step calculation for biomarker kinetics).
                     dt = float(factor.transform.get("dt", 1.0))
                     alpha = float(factor.transform.get("alpha", 1.0))
                     beta = float(factor.transform.get("beta", 0.0))
                     transformed = alpha * (sources[0] + sources[1] * dt) + beta
                 elif relation == "subtype_conditioned_stage":
+                    # AD_Metamodeling Customization: Maps SuStaIn stage to ODE clinical stage using 
+                    # subtype-conditioned logistics.
                     x = sources[0]
                     p0 = sources[1]
                     p1 = sources[2]
@@ -78,6 +87,7 @@ class CompiledMetaModel:
                     
                     transformed = (p1 * c_limbic) + ((p0 + p2) * c_atyp)
                 elif relation == "sustain_to_ode_stage":
+                    # AD_Metamodeling Customization: Maps pySuStaIn 0-21 stage to ODE 0-2 stage.
                     x = sources[0]
                     p0 = sources[1]
                     p1 = sources[2]
@@ -91,6 +101,8 @@ class CompiledMetaModel:
                     
                     transformed = (p1 * c_limbic) + ((p0 + p2) * c_atyp)
                 elif relation == "clinical_subtype_scorer":
+                    # AD_Metamodeling Customization: Computes patient propensity scores to membership of 
+                    # neo/limbic subtypes using APOE4, rates, and memory.
                     beta_val = float(factor.transform.get("beta", 1.0))
                     apoe4 = sources[0]
                     vel = sources[1]
@@ -107,7 +119,8 @@ class CompiledMetaModel:
                     exp_scores = np.exp(beta_val * raw_scores)
                     transformed = exp_scores / np.sum(exp_scores)
                 elif relation == "velocity_modifier_score":
-                    # Score = sum(P_i * W_i)
+                    # AD_Metamodeling Customization: Computes linear dot product Score = sum(P_i * W_i) 
+                    # of subtype weights to scale biomarker progression rates.
                     weights = factor.transform.get("weights", [])
                     score = sum(s * w for s, w in zip(sources, weights))
                     transformed = score
@@ -115,14 +128,16 @@ class CompiledMetaModel:
                     transformed = source
 
                 if factor.coupling_type == "deterministic_transform":
+                    # AD_Metamodeling Customization: Use np.allclose to compare array-valued targets.
                     if not np.allclose(targets, transformed, atol=_DETERMINISTIC_TOL):
                         total += _DETERMINISTIC_PENALTY
                 elif factor.coupling_type == "directional_potential":
-                    # Directional Potential: Add (1/sigma * Target * Transformed_Score) to the log-probability
-                    # This pushes the sampler to maximize the reward naturally, with larger sigma being weaker.
+                    # AD_Metamodeling Customization: Add (1/sigma * Target * Transformed_Score) to log-prob.
+                    # This works like a soft directional wind to guide sampling parameters.
                     sigma = float(factor.sigma or 1.0)
                     total += (1.0 / sigma) * np.sum(targets * transformed)
                 else:
+                    # AD_Metamodeling Customization: Evaluate Gaussian link residual over multi-variable output arrays.
                     sigma = float(factor.sigma or DEFAULT_COUPLING_SIGMA)
                     var = sigma**2
                     residual = targets - transformed

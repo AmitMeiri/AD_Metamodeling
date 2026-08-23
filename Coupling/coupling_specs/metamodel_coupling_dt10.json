@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "name": "ode_sustain_coupling",
+  "name": "ode_sustain_coupling_dt10",
   "ppl_backend": "pymc",
   "surrogate_refs": [
     "C:/Project/AD_Metamodeling/ode_2023/Surrogate/tmp/surrogate_artifacts/5672e7002b8e4fffa045b6b7ba98de79/artifact.json",
@@ -44,15 +44,19 @@
       "type": "scalar"
     },
     {
+      "name": "memory_result_baseline",
+      "type": "scalar"
+    },
+    {
+      "name": "clinical_stage_baseline",
+      "type": "scalar"
+    },
+    {
       "name": "memory_result_yr5",
       "type": "scalar"
     },
     {
       "name": "clinical_stage_yr5",
-      "type": "scalar"
-    },
-    {
-      "name": "clinical_stage_baseline",
       "type": "scalar"
     },
     {
@@ -109,160 +113,104 @@
       "variable": "age_baseline",
       "distribution": {
         "kind": "normal",
-        "loc": 65.0,
-        "scale": 0.01
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "apoe4_status",
       "distribution": {
         "kind": "normal",
-        "loc": 1.0,
-        "scale": 0.01
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "amyloid_baseline",
       "distribution": {
         "kind": "normal",
-        "loc": -0.98,
-        "scale": 0.01
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "tau_baseline",
       "distribution": {
         "kind": "normal",
-        "loc": 0.28,
-        "scale": 0.01
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "amyloid_2yr",
       "distribution": {
         "kind": "normal",
-        "loc": 0.58,
-        "scale": 0.01
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "tau_2yr",
       "distribution": {
         "kind": "normal",
-        "loc": 260.0,
-        "scale": 0.01
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "region_0_zscore",
       "distribution": {
         "kind": "normal",
-        "loc": 2.5,
-        "scale": 0.05
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "region_1_zscore",
       "distribution": {
         "kind": "normal",
-        "loc": 2.5,
-        "scale": 0.05
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "region_2_zscore",
       "distribution": {
         "kind": "normal",
-        "loc": 2.5,
-        "scale": 0.05
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "region_3_zscore",
       "distribution": {
         "kind": "normal",
-        "loc": 3.5,
-        "scale": 0.05
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "region_4_zscore",
       "distribution": {
         "kind": "normal",
-        "loc": 3.5,
-        "scale": 0.05
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "region_5_zscore",
       "distribution": {
         "kind": "normal",
-        "loc": 3.5,
-        "scale": 0.05
+        "loc": 0.0,
+        "scale": 1.0
       }
     },
     {
       "variable": "region_6_zscore",
       "distribution": {
         "kind": "normal",
-        "loc": 3.5,
-        "scale": 0.05
-      }
-    },
-    {
-      "variable": "tau_self_dynamic",
-      "distribution": {
-        "kind": "normal",
-        "loc": 0.07692992122223385,
-        "scale": 0.01
-      }
-    },
-    {
-      "variable": "memory_result_baseline",
-      "distribution": {
-        "kind": "normal",
-        "loc": -0.028231930055442972,
-        "scale": 1.4323778011698043
-      }
-    },
-    {
-      "variable": "clinical_stage_baseline",
-      "distribution": {
-        "kind": "normal",
-        "loc": 0.8848162140788256,
-        "scale": 0.6522318938222078
-      }
-    },
-    {
-      "variable": "prob_subtype_0",
-      "distribution": {
-        "kind": "normal",
-        "loc": 0.33982268650311254,
-        "scale": 0.15785065207587168
-      }
-    },
-    {
-      "variable": "prob_subtype_1",
-      "distribution": {
-        "kind": "normal",
-        "loc": 0.2720763925411739,
-        "scale": 0.19210307907853427
-      }
-    },
-    {
-      "variable": "prob_subtype_2",
-      "distribution": {
-        "kind": "normal",
-        "loc": 0.33077081713422435,
-        "scale": 0.105309644975989
-      }
-    },
-    {
-      "variable": "expected_stage",
-      "distribution": {
-        "kind": "normal",
-        "loc": 15.769564195381456,
-        "scale": 0.6002349232278931
+        "loc": 0.0,
+        "scale": 1.0
       }
     }
   ],
@@ -285,22 +233,20 @@
       }
     },
     {
-      "kind": "directional_potential",
-      "source": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
-      "target": "tau_self_dynamic",
+      "kind": "gaussian_link",
+      "source": "tau_2yr,tau_self_dynamic",
+      "target": "suStIn_global_tau",
       "transform": {
-        "kind": "velocity_modifier_score",
-        "weights": [
-          1.0,
-          -0.3,
-          0.5
-        ]
+        "kind": "integration",
+        "dt": 10.0,
+        "alpha": 0.025,
+        "beta": 0.0
       },
-      "sigma": 2.0
+      "sigma": 0.2
     },
     {
       "kind": "gaussian_link",
-      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline",
+      "source": "apoe4_status,tau_self_dynamic,tau_2yr,memory_result_baseline",
       "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "transform": {
         "kind": "clinical_subtype_scorer",

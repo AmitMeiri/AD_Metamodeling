@@ -1,3 +1,24 @@
+"""
+Joint Metamodel Coupling Specification Builder
+==============================================
+This script defines the mathematical integration schema between the AD-ODE temporal 
+model and the pySuStaIn spatial model.
+
+It configures two distinct architectural factor types:
+
+1. SurrogateLikelihoodFactorIR ('surrogate_refs'):
+   - Points to the trained ODE and SuStaIn surrogate artifact JSONs.
+   - Evaluates the internal subsystem likelihood P(outputs | inputs) for each model.
+   - Represents the core predictive biological engine of each separate system.
+
+2. CouplingFactorIR ('couplings'):
+   - Defines cross-model mathematical bridges that constrain variables across models:
+     a. 'sustain_to_ode_stage' (Gaussian Link): Maps spatial stage (0-21) to clinical score (0-2).
+     b. 'sum' (Deterministic Link): Sums regional Z-scores into global tau burden.
+     c. 'velocity_modifier_score' (Directional Potential): Modifies tau kinetics based on subtype.
+     d. 'clinical_subtype_scorer' (Gaussian Link): Connects genetics and rates to subtype probabilities.
+"""
+
 import json
 import sys
 from pathlib import Path
@@ -121,7 +142,7 @@ spec = {
       # Evaluates APOE4 status, tau velocity, and memory impairment to generate a Softmax prior.
       # Biologically anchors the SuStaIn subtype probabilities to the patient's temporal clinical severity.
       "kind": "gaussian_link",
-      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_yr5",
+      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline",
       "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "transform": { "kind": "clinical_subtype_scorer", "beta": 1.0 },
       "sigma": 0.25
