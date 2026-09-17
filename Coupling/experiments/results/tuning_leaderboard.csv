@@ -1,0 +1,7 @@
+Total_Score,S1_Subtype1_Drop,S1_Subtype0_Rise,S1_Clin_Stage,S2_Subtype0_Prob,S2_Subtype1_Prob,S2_Tau_Boost,S2_Clin_Stage,Config_ID,Description
+88.0,0.328,0.21,0.904,0.422,0.145,0.0635,1.411,cfg_03_tau_delta_tight,"Tau Delta + APOE 0.25, Beta 2.0, Sig_vel 0.6, Sig_sub 0.15"
+87.7,0.33,0.21,0.828,0.411,0.164,0.0431,1.347,cfg_02_tau_delta_apoe035,"Tau Delta + APOE 0.35, Beta 1.8, Sig_vel 0.8, Sig_sub 0.18"
+87.0,0.331,0.209,0.828,0.404,0.176,0.0406,1.347,cfg_04_balanced_optimal,"Tau Delta + APOE 0.40, Beta 1.6, Sig_vel 0.8, Sig_sub 0.20"
+86.4,0.314,0.2,0.794,0.397,0.189,0.0255,1.287,cfg_05_gentle_optimal,"Tau Delta + APOE 0.45, Beta 1.4, Sig_vel 1.0, Sig_sub 0.22"
+86.0,0.342,0.215,0.794,0.394,0.195,0.0311,1.287,cfg_01_tau_delta_apoe05,"Tau Delta + APOE 0.5, Beta 1.5, Sig_vel 1.0, Sig_sub 0.20"
+79.2,0.363,0.223,0.764,0.343,0.294,0.0102,1.225,cfg_00_baseline,"Baseline (Current settings: w_apoe=1.0, v_scale=1.0, beta=1.0, sig_vel=2.0)"

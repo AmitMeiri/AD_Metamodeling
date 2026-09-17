@@ -25,7 +25,7 @@ htmlcov/
 # NOTE: The following directories are explicitly NOT ignored based on project needs:
 # tmp/ (Used by the metamodel framework for sampling)
 # Library_Changes/ (Contains essential modified library files)
-# surrogate_artifacts/ or other training checkponts are NOT ignored here.
+# surrogate_artifacts/ or other training checkpoints are NOT ignored here.
 # Surrogate model training runs (logs/events)
 SuStaIn_2021/Surrogate_SuStaIn/sustain_joint_project/runs/
 ode_2023/Surrogate/alzheimer_joint_project/runs/
@@ -38,3 +38,24 @@ scratch/
 Coupling/scratch/
 temp_spec_*.json
 
+# LyX source, backups, and LaTeX auxiliary compilation files
+*.lyx
+*.lyx~
+\#*
+*#
+*.aux
+*.log
+*.out
+*.toc
+
+# Bibliography & Document Images
+bibliography.bib
+huji.*
+
+# Large binary installers & document drafts
+*.msi
+*.docx
+
+# Root-level PDF documents (Keep only Project_Overview.pdf at the root)
+/*.pdf
+!/Project_Overview.pdf

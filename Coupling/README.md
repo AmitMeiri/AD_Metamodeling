@@ -74,13 +74,13 @@ We bridged the two models across three core domains using custom mathematical tr
 - **Mathematical Formula (Transform)**:
   First, a `velocity_modifier_score` transform generates the "wind score" ($S$) using a dot product of the Subtype probabilities ($P$) and empirically chosen speed weights ($W$):
   $$ S = \sum_{i=0}^{N-1} (P_i \times W_i) $$
-  For our specific mapping, we use:
-  $$ S = (P_0 \times 1.0) + (P_1 \times -0.3) + (P_2 \times 0.5) $$
+  For our specific calibrated mapping, we use:
+  $$ S = (P_0 \times 1.8) + (P_1 \times -0.6) + (P_2 \times 1.0) $$
   *(Notice how the Classic Limbic subtype $P_1$ receives a negative weight, explicitly pushing its intrinsic velocity down to simulate the biological plateau).*
 - **Mathematical Formula (Directional Potential)**:
   The `directional_potential` coupling constraint then applies this score as a direct penalty/bonus to the PyMC Log-Probability landscape during sampling:
-  $$ \text{Log-Probability\_Bonus} = \frac{1}{\sigma} \times \Big( \text{tau\_self\_dynamic} \times S \Big) $$
-  *(Where $\sigma$ behaves consistently with other soft constraints: a larger $\sigma$ corresponds to a weaker wind push).*
+  $$ \text{Log-Probability\_Bonus} = \frac{1}{\sigma_1} \times \Big( \text{tau\_self\_dynamic} \times S \Big) $$
+  *(Where $\sigma_1 = 0.60$ scales the strength of the directional gradient).*
 
 ---
 
@@ -92,41 +92,43 @@ We bridged the two models across three core domains using custom mathematical tr
 - **Mathematical Formula**: 
   Let $x$ be the SuStaIn `expected_stage`. We define two logistic progression curves targeting a max clinical severity of 2.0:
   
-  **Curve Limbic (Subtype 1):** Rises quickly at lower stages (midpoint anchor 10.0).
-  $$ C_{Limbic}(x) = \frac{2.0}{1 + e^{-0.4(x - 10.0)}} $$
+  **Curve Limbic (Subtype 1):** Rises quickly at lower stages (midpoint anchor 9.5).
+  $$ C_{Limbic}(x) = \frac{2.0}{1 + e^{-0.4(x - 9.5)}} $$
   
-  **Curve Atypical (Subtypes 0 and 2):** Rises slower, reaching dementia at higher stages (midpoint anchor 15.0).
-  $$ C_{Atypical}(x) = \frac{2.0}{1 + e^{-0.4(x - 15.0)}} $$
+  **Curve Atypical (Subtypes 0 and 2):** Rises slower, reaching dementia at higher stages (midpoint anchor 13.5).
+  $$ C_{Atypical}(x) = \frac{2.0}{1 + e^{-0.4(x - 13.5)}} $$
   
   The final expected clinical stage is a weighted interpolation:
-  $$ \text{Expected Clinical Stage} = \Big[ P(\text{Subtype}_1) \cdot C_{Limbic}(x) \Big] + \Big[ (P(\text{Subtype}_0) + P(\text{Subtype}_2)) \cdot C_{Atypical}(x) \Big] $$
-- **⚠️ PLACEHOLDER WARNING / DISCLAIMER**: The midpoint anchors (10.0 for Limbic, 15.0 for Atypical) are pure heuristics. Crucially, they are **highly dependent on the total number of SuStaIn stages and regions** (here assumed to be 21). If the number of stages changes, these anchors MUST be empirically recalibrated against real clinical data.
+  $$ \text{Expected Clinical Stage (ECS)} = \Big[ P(\text{Subtype}_1) \cdot C_{Limbic}(x) \Big] + \Big[ (P(\text{Subtype}_0) + P(\text{Subtype}_2)) \cdot C_{Atypical}(x) \Big] $$
+  
+  Connected via a Gaussian link with tolerance $\sigma_2 = 0.15$:
+  $$ \log \phi_2 = -\frac{(\text{clinical\_stage} - \text{ECS})^2}{2\sigma_2^2} + \text{Constant} $$
+
+---
 
 ### 3. Subtype Prior
 - **Coupled Variables**:
-  - **Sources (ODE)**: `apoe4_status`, `tau_self_dynamic`, `tau_baseline` (passed but ignored), `memory_cognitive_test_result`
+  - **Sources (ODE)**: `apoe4_status`, `tau_self_dynamic`, `tau_baseline`, `memory_cognitive_test_result`, `tau_2yr`
   - **Targets (SuStaIn)**: `prob_subtype_0`, `prob_subtype_1`, `prob_subtype_2`
-- **The Logic**: SuStaIn predicts subtypes purely based on brain scans, but we want to incorporate the patient's longitudinal clinical history as a prior. The **clinical_subtype_scorer** transform synthesizes "Limbic" vs "Neocortical" scores using known empirical associations (e.g., APOE4+ heavily favors Limbic, rapid decline and severe memory deficits favor Atypical/Neocortical). These scores are passed through a Softmax function to generate a probability distribution that acts as a soft constraint on the SuStaIn model's own subtype predictions.
+- **The Logic**: SuStaIn predicts subtypes purely based on brain scans, but we want to incorporate the patient's longitudinal clinical history as a prior. The **clinical_subtype_scorer** transform synthesizes "Limbic" vs "Neocortical" scores using known empirical associations (e.g., APOE4+ favors Limbic, rapid decline and severe memory deficits favor Atypical/Neocortical). These scores are passed through a Softmax function to generate a probability distribution that acts as a soft constraint on the SuStaIn model's own subtype predictions.
 - **Mathematical Formula**:
-  First, we map the continuous velocity $V$ (`tau_self_dynamic`) asymptotically to $[0, 1)$:
-  $$ V_{norm} = 1 - e^{-V} $$
+  First, we compute effective velocity taking 2-year tau progression into account ($v_{\text{eff}} = v_{11} + 0.05 \cdot \max(0, \tau_{2\text{yr}} - \tau_{\text{base}})$) and normalize via a smooth sigmoid:
+  $$ V_{norm} = \frac{1}{1 + e^{-1.2 v_{\text{eff}}}} $$
   Next, we clip the memory test score $M$ (`memory_cognitive_test_result`) to ensure it stays within $[0, 1]$ bounds:
   $$ M_{norm} = \text{clip}(M, 0.0, 1.0) $$
-  Then, using $A$ (`apoe4_status`), we calculate symmetric propensity scores for Limbic and Neocortical phenotypes:
-  $$ S_{limbic} = A + (1 - V_{norm}) + M_{norm} $$
-  $$ S_{neo} = (1 - A) + V_{norm} + (1 - M_{norm}) $$
+  Then, using genetic carrier status $A$ (`apoe4_status`), we calculate symmetric propensity scores with calibrated genetic weight $\alpha_1 = 0.25$:
+  $$ S_{limbic} = 0.25 A + (1 - V_{norm}) + M_{norm} $$
+  $$ S_{neo} = 0.25 (1 - A) + V_{norm} + (1 - M_{norm}) $$
   
   **Biological Rationale for the Formulas:**
-  To make this intuitive for researchers unfamiliar with Alzheimer's subtypes:
-  - **Memory ($M_{norm}$):** A high memory test score means *worse* memory. Because the Limbic subtype specifically damages the memory centers (hippocampus) very early, severe memory loss adds directly to the Limbic score ($+M_{norm}$). If memory is well-preserved (a low score, yielding a high $1 - M_{norm}$), it favors the Atypical/Neocortical pathways, where patients often suffer language or visuospatial failure before memory loss.
-  - **Tau Velocity ($V_{norm}$):** Atypical variants are generally more aggressive and spread tau rapidly across the cortex (high velocity). Thus, high velocity adds directly to the Neocortical score ($+V_{norm}$). The classic Limbic presentation often has a lower, plateauing kinetic rate ($1 - V_{norm}$).
-  - **Genetics ($A$):** Being a carrier of the APOE4 gene ($A = 1$) is overwhelmingly associated with the classic, memory-first Alzheimer's presentation. Thus, APOE4 positivity directly boosts the Limbic score ($+A$), while non-carriers ($1 - A$) receive a boost toward Neocortical.
+  - **Memory ($M_{norm}$):** Severe memory loss adds directly to the Limbic score ($+M_{norm}$). Preserved memory ($1 - M_{norm}$) favors Atypical/Neocortical pathways.
+  - **Tau Velocity ($V_{norm}$):** Fast velocity adds directly to the Neocortical score ($+V_{norm}$). Slower plateauing kinetics favor Classic Limbic ($1 - V_{norm}$).
+  - **Genetics ($A$):** Being an APOE4 carrier ($A = 1$) provides a calibrated prior nudge ($+0.25$) toward Limbic, while non-carriers ($1 - A$) receive a boost toward Neocortical.
 
-  We then construct the raw score array mapping to the specific SuStaIn subtypes (Subtype 0 and 2 are Atypical/Neocortical, Subtype 1 is Limbic):
+  We construct the raw score array mapping to the SuStaIn subtypes ($S_0, S_2$ are Atypical, $S_1$ is Limbic):
   $$ \text{Raw Scores} = [S_{neo}, S_{limbic}, S_{neo}] $$
-  Finally, a Temperature-Scaled Softmax generates the target probabilities:
+  Finally, a Temperature-Scaled Softmax with $\beta = 2.0$ and Gaussian constraint $\sigma_3 = 0.15$ generates the target probabilities:
   $$ P(\text{Subtype}_i) = \frac{\exp(\beta \cdot \text{Raw Scores}[i])}{\sum_{j=0}^{2} \exp(\beta \cdot \text{Raw Scores}[j])} $$
-- **⚠️ TUNNING REQUIRED**: The softmax temperature (`beta=1.0`) and the gaussian constraint variance (`sigma=0.25`) are currently placeholders. If the prior is too strong (the sampler ignores the brain scan), $\sigma$ must be relaxed or $\beta$ decreased. **We must tune these hyperparameters empirically using a real dataset of patients with both clinical history and brain scans. The same goes for how we weighted the variables to calculate the raw scores**
 
 ---
 

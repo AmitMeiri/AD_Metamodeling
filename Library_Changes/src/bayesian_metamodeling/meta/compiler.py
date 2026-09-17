@@ -93,27 +93,40 @@ class CompiledMetaModel:
                     p1 = sources[2]
                     p2 = sources[3]
                     
-                    # DISCLAIMER: The midpoint anchors (10.0 for Limbic, 15.0 for Atypical) are highly 
-                    # dependent on the total number of SuStaIn stages and regions (here assumed 21).
-                    # If the number of stages changes, these anchors MUST be recalibrated.
-                    c_limbic = 2.0 / (1.0 + np.exp(-0.4 * (x - 10.0)))
-                    c_atyp = 2.0 / (1.0 + np.exp(-0.4 * (x - 15.0)))
+                    alpha_val = float(factor.transform.get("alpha", 0.4))
+                    mid_limbic = float(factor.transform.get("midpoint_limbic", 10.0))
+                    mid_atyp = float(factor.transform.get("midpoint_atypical", 15.0))
+                    
+                    c_limbic = 2.0 / (1.0 + np.exp(-alpha_val * (x - mid_limbic)))
+                    c_atyp = 2.0 / (1.0 + np.exp(-alpha_val * (x - mid_atyp)))
                     
                     transformed = (p1 * c_limbic) + ((p0 + p2) * c_atyp)
                 elif relation == "clinical_subtype_scorer":
                     # AD_Metamodeling Customization: Computes patient propensity scores to membership of 
                     # neo/limbic subtypes using APOE4, rates, and memory.
                     beta_val = float(factor.transform.get("beta", 1.0))
+                    w_apoe = float(factor.transform.get("w_apoe", 1.0))
+                    v_scale = float(factor.transform.get("v_scale", 1.0))
+                    w_mem = float(factor.transform.get("w_mem", 1.0))
+                    
                     apoe4 = sources[0]
                     vel = sources[1]
                     burden = sources[2]
                     mem = sources[3]
+                    tau_2yr = sources[4] if len(sources) > 4 else None
                     
-                    vel_norm = 1.0 - np.exp(-vel)
+                    # If tau_2yr is provided, incorporate 2-year tau change into effective velocity
+                    if tau_2yr is not None:
+                        delta_tau = max(0.0, tau_2yr - burden)
+                        v_eff = vel + 0.05 * delta_tau
+                    else:
+                        v_eff = vel
+                        
+                    vel_norm = 1.0 / (1.0 + np.exp(-v_scale * v_eff))
                     mem_norm = np.clip(mem, 0.0, 1.0)
                     
-                    score_limbic = apoe4 + (1.0 - vel_norm) + mem_norm
-                    score_neo = (1.0 - apoe4) + vel_norm + (1.0 - mem_norm)
+                    score_limbic = w_apoe * apoe4 + (1.0 - vel_norm) + w_mem * mem_norm
+                    score_neo = w_apoe * (1.0 - apoe4) + vel_norm + w_mem * (1.0 - mem_norm)
                     
                     raw_scores = np.array([score_neo, score_limbic, score_neo])
                     exp_scores = np.exp(beta_val * raw_scores)

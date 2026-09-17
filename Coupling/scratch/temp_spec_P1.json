@@ -272,9 +272,12 @@
       "source": "expected_stage,prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "target": "clinical_stage_baseline",
       "transform": {
-        "kind": "sustain_to_ode_stage"
+        "kind": "sustain_to_ode_stage",
+        "alpha": 0.4,
+        "midpoint_limbic": 9.5,
+        "midpoint_atypical": 13.5
       },
-      "sigma": 0.2
+      "sigma": 0.15
     },
     {
       "kind": "deterministic",
@@ -291,22 +294,25 @@
       "transform": {
         "kind": "velocity_modifier_score",
         "weights": [
-          1.0,
-          -0.3,
-          0.5
+          1.8,
+          -0.6,
+          1.0
         ]
       },
-      "sigma": 2.0
+      "sigma": 0.6
     },
     {
       "kind": "gaussian_link",
-      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline",
+      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline,tau_2yr",
       "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "transform": {
         "kind": "clinical_subtype_scorer",
-        "beta": 1.0
+        "beta": 2.0,
+        "w_apoe": 0.25,
+        "v_scale": 1.2,
+        "w_mem": 1.0
       },
-      "sigma": 0.25
+      "sigma": 0.15
     }
   ]
 }

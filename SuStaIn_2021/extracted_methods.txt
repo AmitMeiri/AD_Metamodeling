@@ -1,0 +1,405 @@
+
+
+--- PAGE 2 ---
+
+Articles NATUrE MEDiciNETaken together, the examples above suggest that, while the 
+Braak staging system is a good description of tau spreading at the 
+population level, it does not account for systematic variability at 
+the individual level. Variation in tau patterning may be indicative 
+of a distinct underlying neurobiology19,20, which may affect treat -
+ment response. Different subtypes may also have distinct rates and profiles of cognitive decline
+21,22, potentially affecting clinical 
+trials. For these reasons, a systematic description of variation in AD pathological spread is needed. Previous studies have provided 
+invaluable information toward this effort
+12,13,23–26 but carry certain 
+limitations. Pathology studies, for example, are limited by spatial 
+sampling and semiquantitation. Neuroimaging studies have over -
+come some of those limitations but often use nonspecific measure -
+ments and rely on methods designed to parse spatial rather than  
+spatiotemporal variation.
+Here we present a systematic characterization of heterogeneity 
+in tau patterning in AD. We amassed the largest and most diverse 
+sample of tau PET data to date (n = 2,324), covering the full clini -
+cal spectrum from asymptomatic through mild cognitive impair -
+ment (MCI) to AD dementia, allowing unprecedented power to 
+detect and characterize AD subtypes. We fitted these data using the Subtype and Stage Inference (SuStaIn) model, a paradigm-shifting 
+algorithm that combines disease progression modeling with tra
+-
+ditional clustering to achieve probabilistic spatiotemporal parti -
+tioning and classification23. SuStaIn requires only cross-sectional 
+datasets to automatically detect multiple spatiotemporal trajectories 
+and provides probabilistic and quantitative information for individ -
+ualized inference. We applied SuStaIn to our multi-cohort sample of tau PET data to discover systematic spatiotemporal variation in tau spreading. We validated the subtypes across different PET radio
+-
+tracers and validated the progression patterns using serial longitu -
+dinal tau PET data.
+Results
+We compiled an initial sample of 1,667 individuals with flortaucipir PET tau images, spanning 5 separate cohorts. A total of 1,143 indi
+-
+viduals were identified as either cognitively normal (CN) (n = 707) 
+or showing biomarker evidence for Aβ pathology (Aβ + MCI, 
+n = 223; Aβ + AD dementia, n = 213) and were used as a discov -
+ery sample for subsequent analysis. Demographic information and cross-cohort comparisons are shown in Supplementary Table 1.
+Spatiotemporal subtypes of AD. We applied the SuStaIn algo
+-
+rithm (Extended Data Fig. 1a) to the 1,143 flortaucipir PET images 
+to extract distinct spatiotemporal trajectories of tau spreading.  
+As expected, many individuals (n = 700; 61%) did not demon -
+strate any abnormal tau PET signal and were therefore automati -
+cally assigned to a tau− group (S0) (Supplementary Note 1). Using 
+cross-validation, we determined a four subtype solution to best represent the remaining data (n = 443; Methods and Extended Data 
+Fig. 1c–f). The four subtype model was applied to probabilistically assign individuals to 1 of 30 progressive stages along 1 of the 4 sub
+-
+type trajectories (Fig. 1).
+The distribution of clinical diagnoses across stages and subtypes 
+can be found in Extended Data Fig. 2f,g,i. A total of 145 (32.7%) 
+individuals exhibited a limbic-predominant phenotype with a 
+Braak-like spatial progression across SuStaIn stages (S1: limbic). An additional 79 individuals (17.8%) expressed a parietal-dominant and MTL-sparing phenotype, where early precuneus binding accu
+-
+mulated across the temporoparietal and frontal cortex but with relative sparing of the MTL (S2: MTL-sparing). The third subtype consisted of 135 (30.5%) individuals with a predominant posterior 
+occipitotemporal phenotype involving early occipital lobe binding 
+and gradual anterior progression across SuStaIn stage (S3: poste
+-
+rior). The remaining 84 (19.0%) individuals showed an asymmetric temporoparietal phenotype with distinct left-sided lateralization, which was characterized by early left-temporal tau eventually spreading to the parietal and frontal cortex across disease stage (S4: lateral temporal). The differences highlight inconsistencies between tau PET binding and pathological sequencing of specific brain 
+regions found in previous studies, such as the hippocampus, lingual 
+gyrus and insula
+10,11,27, which exhibited different binding patterns 
+across subtypes (Extended Data Fig. 3).
+Stability of AD subtypes. While variation in subtype proportion 
+was observed (and expected) across cohorts, all subtypes were rep -
+resented across all cohorts (Extended Data Fig. 4). Most individ -
+uals fell neatly into the stereotypical progression of each subtype  
+(Fig. 1b), allowing a clean stepwise progression across tau abnor -
+mality events to be observed across each subtype population (Extended Data Fig. 5). However, 12% of individuals did not fall cleanly into any subtype due to having either too little or too much 
+pathology, both of which are uninformative for subtype (Fig. 1b 
+and Extended Data Fig. 2d,h). In general, early-stage and individu
+-
+als who were CN were assigned to subtypes with less confidence, although median subtype probability neared 100% by SuStaIn stage 7 (Extended Data Fig. 2e) and by MCI clinical stage (Extended 
+ 
+Data Fig. 2h). This provides evidence that the earliest phases of each subtype may overlap or that they are difficult to distinguish above measurement error. We further confirmed that the subtypes pro
+-
+duced by SuStaIn were not driven by, or specific to, arbitrary user inputs relating to the anchoring of regional pseudotimes (Methods and Extended Data Fig. 6).
+We next assessed whether the same subtypes could be derived 
+within a separate replication sample of 469 individuals scanned with the RO948 tau PET tracer. The replication cohort, BioFINDER 2 (ref. 
+28), is described in Supplementary Table 1. SuStaIn was run 
+separately on these individuals, constraining the analysis to pro -
+duce four subtypes. Three of the four replication subtypes greatly resembled those derived in the discovery sample (Fig. 2). The only exception involved the S4: lateral temporal subtype, which had a 
+similar overall tau PET pattern but involved right-sided rather 
+than left-sided lateralization. Further analysis determined that this related to the smaller sample size rather than the differing radio
+-
+tracer and further suggested that the S4: lateral temporal subtype had a consistent overall pattern but a high propensity for marked lateralization (Supplementary Note 2 and Extended Data Fig. 7).
+Subtypes characterized by distinct clinical profiles. Next, we 
+compared demographic, cognitive and genetic (that is, APOE4 sta
+-
+tus) variables between the subtypes and the tau− S0 group (Table 1). 
+Individuals across all four subtypes expressed worse Mini-Mental State Examination (MMSE) and worse memory scores compared 
+to S0 individuals. In addition, all subtypes except S1 (limbic) had 
+worse global cognitive composite scores; individuals across all sub
+-
+types except S2 (MTL-sparing) were more likely to be APOE4 carri -
+ers and all subtypes except S4 (lateral temporal) were more likely to be female compared to S0 individuals. Compared to tau
+− individu -
+als in S0, S1 and S3 were older, S2 exhibited poorer executive func -
+tion, S2 and S3 exhibited poorer visuospatial function and S4 had worse language scores.
+Compared to other subtypes (that is, other tau
++ individuals), 
+individuals within the S1 (limbic) subtype were more likely to be APOE4 carriers, had less overall tau with a more right-sided pat
+-
+tern and had better overall cognition but worse memory relative to their overall cognition. S2 (MTL-sparing) individuals were younger, less likely to carry an APOE4 allele, had more overall tau burden, 
+had a more right-sided tau pattern and had worse relative execu
+-
+tive function compared to the other subtypes. S4 (lateral temporal) 
+individuals had more overall tau with a more left-lateralized pat -
+tern. These individuals also tended to have worse overall cognition but had better relative memory and worse relative language scores 
+NATuRE MEDICINE | VOL 27 | MAY 2021 | 871–881 | www.nature.com/naturemedicine 872
+
+--- PAGE 9 ---
+
+Articles NATUrE MEDiciNEdata and code availability are available at https://doi.org/10.1038/
+s41591-021-01309-6.
+Received: 20 August 2020; Accepted: 4 March 2021;  
+Published online: 29 April 2021
+References
+ 1. Hurd, M. D., Martorell, P ., Delavande, A., Mullen, K. J. & Langa, K. M. 
+Monetary costs of dementia in the United States. N. Engl. J. Med. 368, 
+1326–1334 (2013).
+ 2. Alafuzoff, I. et al. Staging of neurofibrillary pathology in Alzheimer’s disease: 
+a study of the BrainNet Europe Consortium. Brain Pathol.  18, 484–496 (2008).
+ 3. Hyman, B. T. et al. National Institute on Aging—Alzheimer’s Association 
+guidelines for the neuropathologic assessment of Alzheimer’s disease. Alzheimers Dement. 8, 1–13 (2012).
+ 4. Hardy, J. & Selkoe, D. J. The amyloid hypothesis of Alzheimer’s disease: 
+progress and problems on the road to therapeutics. Science  297, 353–356 
+(2002).
+ 5. Jack, C. R. Jr et al. Tracking pathophysiological processes in Alzheimer’s 
+disease: an updated hypothetical model of dynamic biomarkers. Lancet Neurol. 12, 207–216 (2013).
+ 6. La Joie, R. et al. Prospective longitudinal atrophy in Alzheimer’s disease 
+correlates with the intensity and topography of baseline tau-PET. Sci. Transl. 
+Med.  12, eaau5732 (2020).
+ 7. Bejanin, A. et al. Tau pathology and neurodegeneration contribute to cognitive impairment in Alzheimer’s disease. Brain  140, 3286–3300 (2017).
+ 8. Braak, H. & Braak, E. Neuropathological stageing of Alzheimer-related 
+changes. Acta Neuropathol. 82, 239–259 (1991).
+ 9. Braak, H., Alafuzoff, I., Arzberger, T., Kretzschmar, H. & Del Tredici, K. 
+Staging of Alzheimer disease-associated neurofibrillary pathology using paraffin sections and immunocytochemistry. Acta Neuropathol. 112, 389–404 (2006).
+ 10. Schöll, M. et al. PET imaging of tau deposition in the aging human brain. Neuron  89, 971–982 (2016).
+ 11. Schwarz, A. Regional profiles of the candidate tau PET ligand 
+18 F-AV-1451 
+recapitulate key features of Braak histopathological stages. Brain  139, 
+1539–1550 (2016).
+ 12. Murray, M. E. et al. Neuropathologically defined subtypes of Alzheimer’s 
+disease with distinct clinical characteristics: a retrospective study. Lancet Neurol. 10, 785–796 (2011).
+ 13. Whitwell, J. L. et al. Neuroimaging correlates of pathologically defined subtypes of Alzheimer’s disease: a case-control study. Lancet Neurol.  11, 
+868–877 (2012).
+ 14. Ferreira, D., Nordberg, A. & Westman, E. Biological subtypes of Alzheimer’s disease: a systematic review and meta-analysis. Neurology 94, 436–448 (2020).
+ 15. Ossenkoppele, R. et al. Tau PET patterns mirror clinical and neuroanatomical variability in Alzheimer’s disease. Brain  139, 1551–1567 (2016).
+ 16. Crutch, S. J. et al. Consensus classification of posterior cortical atrophy. Alzheimers Dement. 13, 870–884 (2017).
+ 17. Gorno-Tempini, M. L. et al. Classification of primary progressive aphasia and its variants. Neurology 76, 1006–1014 (2011).
+ 18. Ossenkoppele, R. et al. The behavioural/dysexecutive variant of Alzheimer’s disease: clinical, neuroimaging and pathological features. Brain  138, 
+2732–2749 (2015).
+ 19. Drummond, E. et al. Proteomic differences in amyloid plaques in rapidly progressive and sporadic Alzheimer’s disease. Acta Neuropathol. 133,  
+933–954 (2017).
+ 20. Crist, A. M. et al. Leveraging selective hippocampal vulnerability among Alzheimer’s disease subtypes reveals a novel tau binding partner SERPINA5. Preprint at bioRxiv https://doi.org/10.1101/2020.12.18.423469 (2020).
+ 21. Risacher, S. L. et al. Alzheimer disease brain atrophy subtypes are associated with cognition and rate of decline. Neurology 89, 2176–2186 (2017).
+ 22. Ossenkoppele, R. et al. Distinct tau PET patterns in atrophy‐defined subtypes of Alzheimer’s disease. Alzheimers Dement. 16, 335–344 (2020).
+ 23. Y oung, A. L. et al. Uncovering the heterogeneity and temporal complexity of neurodegenerative diseases with Subtype and Stage Inference. Nat. Commun.  
+9, 4273 (2018).
+ 24. Dong, A. et al. Heterogeneity of neuroanatomical patterns in prodromal 
+Alzheimer’s disease: links to cognition, progression and biomarkers. Brain  
+140, 735–747 (2017).
+ 25. Noh, Y . et al. Anatomical heterogeneity of Alzheimer disease: based on 
+cortical thickness on MRIs. Neurology 83, 1936–1944 (2014).
+ 26. Tam, A. et al. A highly predictive signature of cognition and brain atrophy for progression to Alzheimer’s dementia. Gigascience 8, giz055 (2019).
+ 27. Vogel, J. W . et al. Data-driven approaches for tau-PET imaging biomarkers in Alzheimer’s disease. Hum. Brain Mapp. 40, 638–651 (2019).
+ 28. Leuzy, A. et al. Diagnostic performance of RO948 F 18 tau positron emission tomography in the differentiation of Alzheimer disease from other neurodegenerative disorders. JAMA Neurol. 77, 955–965 (2020). 29. Vogel, J. W . et al. Spread of pathological tau proteins through communicating neurons in human Alzheimer’s disease. Nat. Commun.  11, 2612 (2020).
+ 30. Marshall, G. A., Fairbanks, L. A., Tekin, S., Vinters, H. V . & Cummings, J. L. Early-onset Alzheimer’s disease is associated with greater pathologic burden. 
+J. Geriatr. Psychiatry Neurol. 20, 29–33 (2007).
+ 31. Whitwell, J. L. et al. The role of age on tau PET uptake and gray matter 
+atrophy in atypical Alzheimer’s disease. Alzheimers Dement. 15,  
+675–685 (2019).
+ 32. Pontecorvo, M. J. et al. A multicentre longitudinal study of flortaucipir (
+18F) 
+in normal ageing, mild cognitive impairment and Alzheimer’s disease dementia. Brain  142, 1723–1735 (2019).
+ 33. Jack, C. R. et al. Predicting future rates of tau accumulation on PET. Brain  
+143, 3136–3150 (2020).
+ 34. La Joie, R. et al. Association of APOE4 and clinical variability in  Alzheimer disease with the pattern of tau- and amyloid-PET. Neurology 96, 
+e650–e661 (2021).
+ 35. Dujardin, S. et al. Tau molecular diversity contributes to clinical heterogeneity in Alzheimer’s disease. Nat. Med. 26, 1256–1263 (2020).
+ 36. Aoyagi, A. et al. Aβ and tau prion-like activities decline with longevity in the Alzheimer’s disease human brain. Sci. Transl. Med. 11, eaat8462 (2019).
+ 37. Koedam, E. L. G. E. et al. Early-versus late-onset Alzheimer’s disease: more than age alone. J. Alzheimers Dis. 19, 1401–1408 (2010).
+ 38. Sun, N., Mormino, E. C., Chen, J., Sabuncu, M. R. & Y eo, B. T. T. Multi-modal latent factor exploration of atrophy, cognitive and tau heterogeneity in Alzheimer’s disease. Neuroimage  201, 116043 (2019).
+ 39. Franzmeier, N. et al. Patient-centered connectivity-based prediction of tau pathology spread in Alzheimer’s disease. Sci. Adv. 6, eabd1327 (2020).
+ 40. Mukaetova-Ladinska, E. B. et al. Regional distribution of paired helical filaments and normal tau proteins in aging and in Alzheimer’s disease with and without occipital lobe involvement. Dement. Geriatr. Cogn. Disord. 3, 
+61–69 (1992).
+ 41. McKee, A. C. et al. Visual association pathology in preclinical Alzheimer disease. J. Neuropathol. Exp. Neurol. 65, 621–630 (2006).
+ 42. Pikkarainen, M., Kauppinen, T. & Alafuzoff, I. Hyperphosphorylated tau in the occipital cortex in aged nondemented subjects. J. Neuropathol. Exp. Neurol. 68, 653–660 (2009).
+ 43. Hanna Al-Shaikh, F. S. et al. Selective vulnerability of the nucleus basalis of Meynert among neuropathologic subtypes of Alzheimer disease. JAMA Neurol. 77, 225–233 (2019).
+ 44. Machado, A. et al. The cholinergic system in subtypes of Alzheimer’s disease: an in vivo longitudinal MRI study. Alzheimers Res. Ther. 12, 51 (2020).
+ 45. Rogalski, E., Johnson, N., Weintraub, S. & Mesulam, M. Increased frequency of learning disability in patients with primary progressive aphasia and their first-degree relatives. Arch. Neurol. 65, 244–248 (2008).
+ 46. Ossenkoppele, R. et al. Discriminative accuracy of [
+18F]flortaucipir positron 
+emission tomography for Alzheimer disease vs other neurodegenerative disorders. JAMA 320, 1151–1162 (2018).
+ 47. Miller, Z. A. Cortical developmental abnormalities in logopenic variant primary progressive aphasia with dyslexia. Brain Commun.  1, fcz027 (2019).
+ 48. Hyman, B. T. Tau propagation, different tau phenotypes, and prion-like properties of tau. Neuron  82, 1189–1190 (2014).
+ 49. He, Z. et al. Transmission of tauopathy strains is independent of their isoform composition. Nat. Commun.  11, 7 (2020).
+ 50. Leng, K. et al. Molecular characterization of selectively vulnerable neurons in Alzheimer’s disease. Nat. Neurosci. 24, 276–287 (2021).
+ 51. Lemoine, L., Leuzy, A., Chiotis, K., Rodriguez-Vieitez, E. & Nordberg, A. Tau positron emission tomography imaging in tauopathies: the added hurdle of off-target binding. Alzheimers Dement. (Amst.) 10, 232–236 (2018).
+ 52. Baker, S. L., Harrison, T. M., Maaß, A., La Joie, R. & Jagust, W . Effect of off-target binding on 18 F-flortaucipir variability in healthy controls across the lifespan. J. Nucl. Med. https://doi.org/10.2967/jnumed.118.224113 (2019).
+ 53. Smith, R. et al. Head-to-head comparison of tau positron emission tomography tracers [
+18F]flortaucipir and [18F]RO948. Eur. J. Nucl. Med. Mol. 
+Imaging  47, 342–354 (2020).
+ 54. Fleisher, A. S. et al. Positron emission tomography imaging with [18F]
+flortaucipir and postmortem assessment of Alzheimer disease neuropathologic changes. JAMA Neurol. 77, 829–839 (2020).
+ 55. Lowe, V . J. et al. Tau-positron emission tomography correlates with neuropathology findings. Alzheimers Dement. 16, 561–571 (2020).
+ 56. Soleimani-Meigooni, D. N. et al. 
+18F-flortaucipir PET to autopsy comparisons 
+in Alzheimer’s disease and other neurodegenerative diseases. Brain  143, 
+3477–3494 (2020).
+ 57. Smith, R., Wibom, M., Pawlik, D., Englund, E. & Hansson, O. Correlation of in vivo [
+18F]flortaucipir with postmortem Alzheimer disease Tau pathology. 
+JAMA Neurol. 76, 310–317 (2019).
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in 
+published maps and institutional affiliations.
+© The Author(s), under exclusive licence to Springer Nature America, Inc. 2021
+NATuRE MEDICINE | VOL 27 | MAY 2021 | 871–881 | www.nature.com/naturemedicine 879
+
+--- PAGE 12 ---
+
+Articles NATUrE MEDiciNEMethods
+Unless otherwise noted, all data analysis was conducted, and all figures were 
+created, using Python v.3.7.3, mostly using the numpy, scipy, pandas, scikit-learn, nilearn, matplotlib, seaborn and statsmodels libraries.
+Sample characteristics. The total sample for the following analyses consisted 
+of flortaucipir tau PET scans from 1,667 individuals from 5 different cohorts (BioFINDER 1, Seoul, AVID, University of California, San Francisco (UCSF), Alzheimer’s Disease Neuroimaging Initiative (ADNI)) and RO948 PET scans from 657 individuals from a sixth cohort (BioFINDER 2). Information pertaining to recruitment, diagnostic criteria and Aβ positivity assessment for the BioFINDER 1 (ref. 
+47), ADNI27, AVID32, Seoul58, UCSF6 and BioFINDER 2 (ref. 28) cohorts 
+have been reported previously. Informed written consent was obtained from all participants or their designated caregiver(s) and all protocols were approved by each cohort’s respective institutional ethical review board. Specifically, all BioFINDER participants provided written informed consent to participate in the study according to the Declaration of Helsinki (2013); ethical approval was given by the ethics committee of Lund University and all methods were carried out in accordance with the approved guidelines. Approval for PET imaging was obtained from the Swedish Medicines and Products Agency and the local radiation safety committee at Skåne University Hospital. For UCSF, the study was approved by the University of California (San Francisco and Berkeley) and Lawrence Berkeley National Laboratory institutional review boards for human research. Data from the AVID sample were collected in compliance with the Declaration of Helsinki (2013) and the International Conference on Harmonization guidelines on good clinical practice. Data collection for the Gangnam Severance Hospital sample was approved by the institutional review board of Gangnam Severance Hospital. Information related to participant consent in ADNI can be found at http://adni.loni.usc.edu . 
+Some of the data used in the preparation of this article were obtained from the ADNI database (http://adni.loni.usc.edu). ADNI was launched in 2003 as a public–private partnership led by principal investigator M. W . Weiner. The primary goal of ADNI has been to test whether serial magnetic resonance imaging (MRI), PET, other biological markers and clinical and neuropsychological assessment can be combined to measure the progression of MCI and early-onset AD. For up-to-date information, see http://adni.loni.usc.edu .
+From this total sample of 1,667 participants with flortaucipir scans, a 
+subsample was derived including (1) all cognitively unimpaired individuals older than 40 years and (2) individuals who had both a diagnosis of MCI or AD and imaging or fluid evidence of brain Aβ pathology. All participants with a primary diagnosis other than cognitively unimpaired, which included subjective cognitive decline, MCI or AD were excluded. This subsample, used for all subsequent analysis, consisted of 1,143 individuals. The same screening procedures were used to filter individuals from BioFINDER 2, reducing the samples size from 657 to 469. The characteristics of all samples, including inter-cohort differences, are detailed in Supplementary Table 1.
+Image acquisition and preprocessing. Tau PET data acquisition procedures 
+for each cohort have been described previously
+6,27,28,32,46,58. All tau PET data were 
+processed centrally in Lund by analysts blinded to demographic and clinical data in a manner described previously
+46. Briefly, resampling procedures were used to 
+harmonize image size and voxel dimension across sites. Each image underwent motion correction using the AFNI program 3dvolreg (https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dvolreg.html) and individual PET volumes were averaged within-participant. Next, each participant’s mean PET image underwent rigid coregistration to its respective skull-stripped native T1 image and images were intensity-normalized using an inferior cerebellar gray reference region, resulting in standardized update value ratio (SUVR) images. T1 images were processed using FreeSurfer v.6.0 (https://surfer.nmr.mgh.harvard.edu/), resulting in native space parcellations of each participant’s brain using the Desikan–Killiany (FreeSurfer) atlas. These parcellations were used to extract mean SUVR values within different ROIs for each participant in native space.
+SuStaIn. Typical efforts to perform data-driven subtyping of neuroimages 
+in AD are limited by the confound of disease stage. In a sample spanning the AD spectrum from healthy to demented such as ours, disease progression represents the main source of variation in MRI and PET images. Therefore, unless disease stage is somehow accounted for, most clustering algorithms will partition individuals based on their disease stage. This is not useful for parsing heterogeneous patterns related to progression subtypes, which are theoretically orthogonal to disease progression itself. The SuStaIn
+23 algorithm surmounts this 
+limitation by combining clustering with disease progression modeling. Detailed formalization of SuStaIn has been published previously
+23.
+SuStaIn models linear transition across discrete points along a progression 
+of indices of severity (typically z-scores) separately across different ROIs (Supplementary Fig. 1a). Input requires a subject x feature matrix where, in this case, features represent the mean tau PET signal within different ROIs. In addition, ‘severity scores’ , indicating different waypoints along the natural progression of ROI severity, must be provided. Whereas the choice of ROI constrains the spatial dimensions along which individuals may vary, severity scores instead constrain the temporal dimension of variation. Therefore, the total number of features is represented by the product of m ROIs by n ROI-specific severity scores. Thus, a balance must be struck between resolution in the spatial and temporal dimensions with respect to overall sample size.
+Our discovery sample boasted scans from 1,143 individuals, but even given 
+our inclusion criteria, we expected from previous work
+29 that most individuals 
+(50–60%) will have minimal tau binding (note that SuStaIn will automatically detect these individuals and exclude them from progression modeling). Therefore, we expected the modeling to be performed on a sample of approximately 450–550. Therefore, we decided on 10 different ROIs (spatial features), each with 3 severity scores (temporal dimension), totaling 30 features. Given an arbitrary rule of 10–20 observations per feature, 300–600 observations should provide sufficient power and our sample size should therefore be sufficient.
+For the ten spatial features, we opted for left and right lobar ROIs: parietal; 
+frontal; occipital; temporal; and MTL. This choice is justified as follows:  (1) previous imaging and pathology subtyping studies have revealed variation in AD pathology to often occur within specific lobes, for example, limbic-predominant (MTL), MTL-sparing (parietal), PCA (occipital), logopenic aphasia (temporal) and behavioral variant AD (perhaps frontal)
+18; (2) hemispheric laterality in AD 
+is understudied perhaps due to pathological staining often occurring on single hemispheres. However, some laterality has been observed in AD clinical variants (that is, logopenic PPA
+15) and may point to differing phenotypes in typical AD; 
+(3) these lobar regions maintain some orthogonality to disease progression since 
+multiple lobes are involved in Braak stages IV–VI8.
+To define severity score cutoffs, we first sought to normalize SUVR values to 
+account for regional differences in PET signal (due to nonuniformity of off-target 
+binding, perfusion, etc. across the brain)29. Two-component Gaussian mixture 
+models were used to define, for each ROI, a normal (Gaussian-shaped noise) and abnormal distribution. We then created tau z-scores by normalizing all values using the mean of the normal distribution (Extended Data Fig. 1b). This procedure centered the z-score values on the normal distribution to allow for more interpretable values (that is, 2 = 2 s.d. from normal) and also accounted for 
+region-specific differences in normal and abnormal SUVR distributions. Uniform values of z = 2, 5 and 10 were arbitrarily chosen as severity score control points for 
+all ROIs (Extended Data Fig. 1b). However, analyses were also run with alternative z-score values (see the Replication analysis section below).
+The number of subtypes (that is, distinct spatiotemporal progressions) was 
+determined through cross-validation. Separately for each k = 1–7 subtypes, 
+tenfold cross-validation was performed where, for each fold, SuStaIn was fitted to 90% of the data and this model was used to evaluate sample likelihood for the 10% left-out participants. For each left-out set, model fit was evaluated using the cross-validation-based information criterion (CVIC; as described in Y oung et al.
+23), as well as out-of-sample log-likelihood. In addition, we used the inner-fold 
+SuStaIn model to assign all outer-fold individuals to a subtype and we evaluated the probability of the maximum likelihood subtype. In theory, a better fit model should produce more high-probability assignments of left-out data, although more subtypes will also make assignment more challenging. k was chosen by evaluating these three metrics in concert (Extended Data Fig. 1c–e). CVIC increased significantly with increasing k, indicating better fit to the data as the number of subtypes increased, although the curve flattened somewhat after k = 4 (Extended 
+Data Fig. 1c). Similarly, log-likelihood increased indicating better model fit up  until k = 4, after which no improvement was seen (Extended Data Fig. 1d).  
+In contrast to these fit statistics, cross-validated maximum likelihood subtype probability decreased with increasing k, indicating less confident assignment of left-out data with more subtypes. This decline was steady, although the median probability dropped below 0.5 after k = 4. Taken together, k = 4 appeared to be the 
+best solution to maximize model fit but minimize detriment to subtype confidence. We also noted that no subtypes after k = 4 had more than one ‘parent’ subtype.  
+In other words, solutions 3 and 4 featured subtypes that were composed of multiple parent subtypes, whereas all solutions thereafter featured only subtypes that split off from a single parent subtype. This could be indicative of a certain level of hierarchical convergence at k = 4 (Extended Data Fig. 1f).
+Finally, SuStaIn was run on the whole sample with the selected k = 4. Note that 
+for model fitting, SuStaIn uses a uniform prior on disease subtype and stage (that is, it assumes all subtype and stage combinations equally likely). Note also that the model is initialized with an expectation–maximization algorithm and therefore does not require a burn-in period
+23. The model uncertainty was estimated using 
+10,000 Markov chain Monte Carlo iterations. SuStaIn calculates the probability that 
+each individual falls into each stage of each subtype and individuals are assigned 
+to their maximum likelihood subtype and stage. Note that individuals who do not express abnormal tau in any region are classified by SuStaIn as ‘stage 0’ and are not assigned to a subtype. The proportion of individuals classified into each subtype 
+was quantified. We also stratified this quantification by clinical diagnosis and by 
+cohort to assess the frequency of subtypes in each contributing dataset. Finally, we 
+quantified the proportion of participants who did not fall well into any subtype (no subtype probability >50%).
+Post hoc subtype correction. Manual inspection of subtype progressions 
+suggested that the early stages of one subtype (S2: MTL-sparing; Results) were 
+NATuRE MEDICINE | www.nature.com/naturemedicine
+
+--- PAGE 13 ---
+
+Articles NATUrE MEDiciNEcomposed mostly of individuals who were CN with abnormally high tau PET 
+binding throughout the cortex but little-to-no tau in typical early-mid AD regions, that is, false (tau) positives. Specifically, these individuals showed elevated binding throughout the cortex, including sensorimotor and frontal regions (regions where tau typically accumulates only in the latest stages of AD
+8) but had low 
+tau levels in the temporal lobes (Extended Data Fig. 1a). On an individual basis, such individuals showed a tau PET signal that was slightly but globally elevated, with several small ‘hotspots’ distributed diffusely throughout the frontal, parietal and occipital cortex. While it is unclear whether this elevated binding represents off-target binding, diffuse low-level target binding or other methodological issues, consensus among coauthors was that these individuals were not consistent with an AD phenotype. We used Gaussian mixture modeling across all individuals as described in Vogel et al.
+29 to define the probability of abnormal tau positivity 
+in each of the left and right entorhinal cortex and precuneus, respectively. We then marked individuals who had <90% probability of tau in all four regions as low-probability tau individuals (T−). These individuals also underwent manual 
+inspection. Next, we identified T− individuals in the MTL-sparing subtype, 
+finding that 40.6% of this subtype was composed of this group and all were 
+classified as stage 5 (of 31) or below. Furthermore, these individuals showed many other indications of being false (tau) positives: they had normal MMSE scores, were older, less likely to be Aβ
++ and less likely to be MCI or AD (Extended Data 
+Fig. 2b,c). We assumed SuStaIn appended this specific group of T− individuals to the MTL-sparing subtype because the individuals (1) had abnormally high tau in at least one ROI as per our calculations (even if that abnormal signal was not driven by pathology); (2) the abnormal tau was located mainly in the isocortex inclusive of the parietal lobe; and (3) these individuals did not have elevated MTL binding. Since SuStaIn is an unsupervised algorithm, the pathological MTL-sparing phenotype became conflated with this specific profile of T− individuals. To correct this issue, we converted all T− individuals classified as MTL-sparing to subtype 0 for all further analysis.
+Visualization of subtype-specific tau PET patterns. To visualize the tau PET 
+patterns for each subtype, we calculated the mean tau z-score for each Desikan–Killiany (FreeSurfer) atlas ROI. To visualize the progression of the subtype pattern across SuStaIn stages, for each subtype, we created mean images for all individuals falling into the following SuStaIn stage bins: 2–6; 7–11; 12–16; 17–21; and 22–26. To deduce regions with relatively greater or less tau signal for each subtype, we created region-wise one-versus-all ordinary least squares (OLS) linear models comparing regional tau in one subtype to all others. This analysis was performed to visualize subtype models inferred by SuStaIn using individual data and explore differences between subtypes. Each model included ROI tau z-scores as the dependent variable, a one-hot dummy variable representing membership in the reference subtype and SuStaIn stage as a covariate. These models were false discovery rate (FDR)-corrected for the number of comparisons (that is, number  of ROIs).
+Subtype characterization. Several demographic, cognitive and genetic variables 
+were available for nearly all individuals across the five cohorts in our main (discovery) cohort. These variables included clinical diagnosis (100%), age (99.8%), sex (100%), years of education (97.1%), MMSE score (97.7%) and APOE4 allele carriage (89.5%). Only the UCSF sample provided diagnoses of clinical AD variants such as PCA
+16 and logopenic PPA17. In addition, most individuals 
+underwent extensive cohort-specific cognitive batteries assessing multiple domains of cognition. To utilize this rich cognitive data, we created cognitive domain scores separately within each cohort by taking the mean of several z-scored tests within the following cognitive domains: memory; executive function; language; and visuospatial function. Supplementary Table 5 indicates which cognitive tests were used in each cognitive domain score across each cohort. We calculated global cognition as the mean between the four domain scores. Finally, we additionally regressed global cognition out of each domain score to create ‘relative’ cognitive domain scores. These scores are useful for assessing the degree of domain-specific impairment above and beyond global impairment. The various absolute and relative domain scores were then aggregated across all cohorts to maximize the sample size available for cognitive tests: memory (86.6%); language (81.3%); executive function (85.5%); and visuospatial function (82.0%). While aggregating scores of different compositions across cohorts of different compositions presents a suboptimal solution, we rest on sample sizes and statistical correction helping to overcome these limitations.
+Subtypes were statistically compared to one another and to tau
+− (that is, 
+stage 0) individuals to determine subtype-specific characteristics. These analyses compared age, sex, education, APOE4 carriage, MMSE, global cognition, total tau and total tau asymmetry. Comparisons between subtypes and stage 0 individuals additionally included the four cognitive domain scores, while comparison between subtypes instead included the four ‘relative’ cognitive domain scores. This statistical comparison involved three steps: (1) comparison to tau
+− individuals: 
+tau− individuals were those characterized as ‘subtype 0’ by SuStaIn, that is, those 
+individuals who did not demonstrate any abnormal tau events. An OLS linear model was fitted with each variable described above as the dependent variable and with dummy-coded subtype entered as the independent variable (with S0 as the reference subtype). The model also included age, sex, education, clinical status (CN, MCI, AD) and cohort as covariates (except when that covariate was the dependent variable). Model t and P values were stored for each model and the latter 
+were FDR-corrected; (2) comparison between subtypes. A one-versus-all approach was applied to subtyped individuals only to assess how different tau progression subtypes differed from one another. Separately for each subtype, models were fitted for each variable with a single dummy variable entered indicating membership to that subtype. Models once again covaried for age, sex, education, clinical status (CN, MCI, AD), cohort and, this time, SuStaIn stage. T and P values were stored and the latter were FDR-corrected for the number of variables assessed; (3) finally, each subtype was compared directly to each other subtype (that is, one-versus-one comparison). OLS models were fitted with dummy-coded subtype variables as the dependent variable, cycling each subtype as the reference subtype. T and P values for each of these models were stored and the latter were FDR-corrected for the number of comparisons (that is, the number of dependent variables). These models were also adjusted for age, sex, education, clinical status (CN, MCI, AD), cohort and SuStaIn stage. For space reasons, the results of (3) are only visible in Extended Data Fig. 8.
+All models were subjected to diagnostics to ensure our data fulfilled the 
+assumptions of the OLS regression models. We found the residuals of all models to be normally distributed (Anderson–Darling tests P > 0.05). Furthermore, 
+we found no strong evidence for autocorrelation (Durbin–Watson test, 1.5 < all 
+models  < 2.5), outliers (Cook’s distance of all participants < 0.5), multicollinearity 
+(variance inflation factor for all covariates < 100; besides age (23–27), sex (8–12) 
+and education (13–17), all variance inflation factor < 10) or heteroscedasticity 
+(visual assessment of distribution around the mean of residuals) in any of our models.
+We also assessed the relationship between SuStaIn stage and two variables: age 
+and MMSE. For these analyses, stage was correlated with age and MMSE and the results were visualized across the whole sample and stratified by subtype. As a post hoc analysis, we separated individuals into different age groups: 65 or younger and older than 65. We then reassessed age by SuStaIn stage correlations within each of these age groups.
+Longitudinal MMSE data were also available for individuals from all cohorts, 
+totaling 735 individuals with at least 2 time points; 195 individuals had an additional third time point, 29 had a fourth and 3 had a fifth. The mean latest follow-up was 1.72 years from PET scan (s.d. = 0.64). Linear mixed-effect models 
+were used to assess the difference in longitudinal MMSE change between subtypes. All models were fitted using the lme4 library in R (v4.0.3), using type III sum of squares, unstructured covariance matrices and Satterthwaite approximation to calculate the denominator degrees of freedom for P values. Models featured MMSE measurements as the dependent variable, interactions between time from baseline and dummy-coded subtype variables as the independent variables of interest (cycling the reference subtype), subject ID as a random effect (allowing for random intercepts and slopes) and age, sex, education, cohort, dummy-coded variables for MCI and AD and SuStaIn stage as covariates of no interest. One-versus-all models were also fitted for each participant using dummy-coded subtype variables and significant effects were reported. We additionally repeated the one-versus-all subtype models within each cohort separately and used this to calculate a meta-analysis by finding a weighted mean of the t values and s.e.m. Since this analysis was confirmatory, we used a one-tailed significance test to calculate  the P values.
+Replication analysis. We performed two types of replication analysis. To ensure 
+that our results were not driven by arbitrary z-score cutoffs, we reran models with completely different cutoffs. To ensure the results were not driven by our sample or unique to the flortaucipir radiotracer, we repeated the analysis de novo in a separate cohort using a different tau PET radiotracer.
+SuStaIn require z-score values to anchor the pseudotime for each ROI (Subtype 
+and stage inference section) and we chose values of 2, 5 and 10 for all ROIs so as not to let any region bias or influence the model unduly and to aid comparability across different regions. To ensure our results were not driven by this choice, we reran the model with a different set of z-score values chosen in a data-driven manner. The object was to allow the distribution of tau PET data in each region to define natural waypoints in the data. For each input region, we fitted Gaussian mixture models to the data, varying the number of components between 1 and 5. We used the model fit (Akaike information criterion) to decide the optimal number of components for each region. Finally, we used fivefold cross-validation to determine the boundaries of these Gaussians to define anchors for each regions. We did this separately for each ROI; as a result, different ROIs had different waypoints and even different numbers of waypoints (Supplementary Table 6). We then refitted the SuStaIn model to the data and compared the results to the original model using spatial correlation (see below).
+While the five cohorts from the main discovery sample all use flortaucipir 
+as the tau PET tracer, a sixth cohort (BioFINDER 2) was available that instead used the RO948 radiotracer. While the two tracers have similar binding patterns, RO948 tends to have less off-target binding in the basal ganglia and better MTL signal but frequently boasts a high meningeal signal that can affect cortical SUVR measurement
+53. Because of these differences, we opted to leave BioFINDER 2 out 
+NATuRE MEDICINE | www.nature.com/naturemedicine
+
+--- PAGE 14 ---
+
+Articles NATUrE MEDiciNEof the discovery sample and instead use it as a replication cohort. This strategy 
+allowed us not only to evaluate the stability of the subtypes in a new cohort, but also allowed us to evaluate whether the subtypes were robust to the tau PET radiotracer.
+We reran SuStaIn de novo in the BioFINDER 2 sample using identical 
+procedures to those described above (Subtype and stage inference section), although using the discovery sample to inform the number of subtypes. The resulting subtypes were visualized and assessed quantitatively using spatial correlations. Specifically, mean within-subtype SUVRs were computed for  each (FreeSurfer) ROI and each discovery subtype ROI vector was correlated  to each replication (BioFINDER 2) subtype ROI vector. To account for  whether different sample sizes contributed to differing results between the discovery and replication datasets, we performed a split-half analysis with the discovery sample. Specifically, we split the discovery sample in half and ran  SuStaIn separately on each half, once again using the original discovery sample  to inform the number of subtypes. We then compared each half, which had a sample size comparable to that of BioFINDER 2, to the BioFINDER 2 samples using spatial correlations.
+Assessment of longitudinal stability. Longitudinal PET data were available for 
+individuals across all cohorts except for the UCSF cohort, totaling 519 individuals with at least 2 time points (mean follow-up time = 1.42 years, s.d. = 0.58). These 
+longitudinal scans were used to validate the stability of subtypes over time under the hypothesis that individuals should remain the same subtype but should advance (or remain stable) in SuStaIn stage over time. ROIs for the longitudinal datasets were z-scored as described above but using the cross-sectional cohort as the cohort for normalization. The SuStaIn model fitted to the cross-sectional dataset was used to infer subtype and stage of longitudinal data (all time points). Confusion matrices were built to assess subtype stability between baseline and first follow-up. Stability was calculated as the proportion of individuals classified as the same subtype at follow-up or who advanced from stage 0 into a subtype, compared to the total number of individuals. Stability was also calculated excluding individuals who were classified as stage 0 at baseline or follow-up. We also assessed the influence of subtype probability (that is, the probability an individual falls into their given subtype) on individual subtype stability. Specifically, we compared the subtype probability of stable to unstable individuals with a t-test. We additionally calculated overall model stability after excluding individuals using various subtype probability thresholds.
+Subtype progression was assessed by observing change in SuStaIn stage over 
+time in stable subtype individuals. We calculated the proportion of individuals who advanced, were stable or regressed in disease stage over time before and after accounting for model uncertainty. Specifically, while stages are generally characterized by advancing abnormality in a given region, uncertainty leads to some stages being characterized by probabilities of progressing abnormalities in more than one region. Therefore, individuals who advanced or regressed to a stage with event probabilities overlapping with their previous stage were considered stable. We also calculated annual change in SuStaIn stage by dividing total change in SuStaIn stage by the number of years between baseline and final available time point. We used a one-sample t-test against zero to assess whether significant change over time was observed across the whole sample and within each subtype. We used analysis of variance and Tukey’s post hoc tests to assess differences in annual change in stage across the different subtypes. We also correlated annual change in stage with baseline stage and with age.
+Individual forecasting of longitudinal tau progression. SuStaIn models 
+spatiotemporal subtype progressions but does so using only cross-sectional data. Therefore, longitudinal data can be used as ‘unseen’ or ‘left-out’ data, which can be used to test whether and to what extent individuals follow the trajectories predicted by SuStaIn. We accomplished this by using an individual’s subtype and stage probability to generate a predicted second time point and comparing the change between baseline and predicted follow-up to change between baseline and actual follow-up.
+To do this, we first sought to predict the rate of change of stage for each 
+individual. We trained a Lasso model to predict individual annualized change in SuStaIn stage (∆stage) using the available data and cross-validation to get out-of-sample predictions for each individual. Features included age, sex, education, amyloid status, APOE4 status, baseline stage MMSE and dummy-coded variables for MCI, AD and each subtype. For each fold, the model was trained on 90% of the data and this model was used to predict ∆stage in the 10% left-out individuals. This process was repeated until predictions were made for each individual. The mean absolute error between the predicted and true ∆stage was 0.91 stages per year. The predicted ∆stage was used for subsequent aspects of the tau prediction. This is important because we are minimizing the amount of longitudinal information leaking into the forecast.
+Using this predicted ∆stage, we were then able to predict an individual’s stage 
+at follow-up k
+i,new given any stage at baseline k, as ki,new = k + ∆stageti, where ti is the 
+time between follow-up visits in years.
+We can then evaluate the SuStaIn-predicted pattern of regional tau deposition 
+at baseline Yi,j as:Yij=C∑
+c=1K∑
+k=0Aj,c,kPi,c,k
+or at follow-up zi,j as:
+Zij=C∑
+c=1K∑
+k=0Aj,c,ki,newPi,c,k
+where Aj,c,k is an ‘archetype’ indicating the expected amount of tau deposition for 
+biomarker j at stage k  of subtype c  and Pi,c,k is the probability subject i  is at stage k  of 
+subtype c. The archetype Aj,c,k is estimated probabilistically from the Markov chain 
+Monte Carlo samples of uncertainty provided by the SuStaIn algorithm, giving an average archetypal pattern accounting for the uncertainty in the progression pattern of each subtype. This means that each SuStaIn-predicted pattern Y
+i,j 
+accounts for both uncertainty in the progression pattern of each subtype as well as uncertainty in the subtype and stage of each individual.
+Therefore, we can represent the predicted change in tau as Z
+i,j − Yi,j. This 
+vector represents the predicted change in tau z-score in each of the ten spatial input features to SuStaIn (that is, left and right temporal, parietal, occipital, frontal and medial temporal lobes). We evaluated the prediction by computing, for each individual, the correlation between the predicted and true regional tau change vectors. We evaluated the overall prediction across the whole sample, and within-subtypes, by comparing the average prediction against chance using one-sample t-tests against a correlation of zero.
+Epidemic spreading model. Perhaps the most prominent hypothesis of tau 
+spread suggests tau oligomers spread directly from neuron to neuron through axonal connections. Under this hypothesis, diverse but systematic variations in tau spreading may be driven by variability in macroscale connectivity, network organization or vulnerable circuits. We tested this idea by investigating whether a network diffusion model simulating tau spread through the human connectome could recapitulate the various subtype patterns discovered by SuStaIn. We have previously applied the epidemic spreading model (ESM)
+59 to tau PET data, showing 
+how diffusion of an agent through human connectivity data (measured with diffusion imaging-based tractography) can explain a majority of the variance of spatial tau patterns across a population of individuals along the AD spectrum
+29. 
+In this study, we conducted the exact same analysis separately for each subtype identified through SuStaIn. We further allowed the ESM to identify regional epicenters separately for each subtype under the hypothesis that different subtype patterns may be driven by prominence of different corticolimbic networks.
+As described in Vogel et al.
+29, each tau PET ROI was converted to tau+ 
+probabilities using mixture modeling. This process is similar to the z-scoring procedure (Extended Data Fig. 1), although in this case, the probability that values fall onto the abnormal distribution is ascertained using fivefold cross-validation. These measures represent the probability that a given ROI exhibits tau in the abnormal range. Connectivity was measured from a dataset of 60 young healthy individuals from the CMU-60 DSI template (https://www.cmu.edu/dietrich/psychology/cognitiveaxon). Deterministic tractography was calculated for each individual by finding connections between ROIs using orientation distribution functions; connectivity was measured using the anatomical connection density metric
+59. Images were assessed for quality and connectomes were averaged 
+across all 60 individuals. For each subtype separately, the ESM was fitted across all individuals, cycling through the average of each left–right pair of cortical ROIs (including the hippocampus and amygdala, 33 pairs in total) as the model epicenter. The best-fitting epicenter was selected by finding the model with the minimum mean Euclidean distance between model-predicted and model-observed tau spatial pattern across individuals. Model accuracy was represented as the r
+2 
+between the mean observed ROI-level tau PET probabilities and mean predicted probabilities across individuals. For each subtype, we compared the r
+2 of the model 
+using the best-fitting epicenter to the r2 of models using an entorhinal epicenter. To 
+gain confidence in the individual-specific epicenter, we bootstrapped the sample 1,000 times and recomputed the best-fitting epicenter for each subtype. Epicenter probability was calculated as the frequency that an epicenter was selected as the best epicenter across bootstrap samples.
+We were additionally interested in how secondary seeding evolved over the 
+course of each subtype progression. While the ESM is designed to ascertain the true pathological epicenter, the selected epicenter reflects the seeding point that best matches the spatial pattern of the dependent variable. As such, it is likely that ‘secondary epicenters’ become important for disease spread at later disease stages. We binned individuals for each subtype into disease stage bins, as with Fig. 1e . 
+Individual epicenters were ascertained for each subject and were aggregated based on lobe (MTL, temporal, frontal, parietal, occipital). We then calculated epicenter frequency among individuals in each stage bin for each subtype. This allowed us to track how the secondary epicenter evolved throughout the disease course for each subtype trajectory.
+We repeated this same analysis with a different connectome based on 
+resting state functional MRI connectivity from an elderly population and using a higher-resolution atlas. The sample consisted of resting state functional MRI 
+NATuRE MEDICINE | www.nature.com/naturemedicine
+
+--- PAGE 17 ---
+
+Articles NATUrE MEDiciNEExtended Data Fig. 1 | Methodological details. Methodological details. a, SuStaIn requires both spatial (for example brain regions) and pseudotemporal 
+(for example Z-score waypoints representing advancing biomarker severity) features as input. SuStaIn models linear change between waypoints across multiple biomarkers and uses clustering to fit subtype trajectories representing distinct biomarker sequences. b, Each spatial feature was z-scored in order to derive interpretable waypoints. Example: (top left), SUVR distribution in the left temporal lobe. (bottom-left) Distribution of standardized residuals after regression of choroid plexus. Gaussian mixture-modeling identifies ‘normal’ (grey) and ‘abnormal’ (red) tau-PET values within this distribution. (bottom right) Mean and SD of ‘normal’ distribution used to normalize the whole distribution, creating ‘T au Z-scores’. T au Z-scores of 2, 5 and 10 are used as waypoints. (top-right) T au-z scores superimposed onto the original SUVR distribution. For each subtype model (k = 1-7), c) distribution of average negative log-likelihood, d) CVIC, and e) distribution of the probability of the maximum-likelihood subtype across cross-validation folds of left-out individuals. Higher log-likelihood, lower CVIC represents better model fit. f, Visualization of subtype solutions k = 2-7. For each subtype, the rendered brains show significant regional tau difference between the subtype and all other subtypes in its solution. Connecting-line thickness indicates how many subjects are shared between a subtype and each subtype from its parent and child solutions. Circle color represents which k = 4 subtypes (outlined in the dashed box) each subtype is most similar to, in terms of the number of overlapping subjects. Red arrowheads indicate subtypes that were formed by pooling individuals from two different parent subtypes. For boxplots in c,e, center line=median, box=inner quartiles, whiskers=extent of data distribution except *=outliers.
+NATuRE MEDICINE | www.nature.com/naturemedicine
+
+--- PAGE 22 ---
+
+Articles NATUrE MEDiciNE
+Extended Data Fig. 6 | Replication using different initial parameters. Replication using different initial parameters. SuStaIn creates nearly identical 
+subtypes when initialized with different parameters (Supplementary T able 5) Methods: Replication Analysis). SuStaIn was rerun allowing a data-driven methodology to determine the number and value of z-score waypoints for each ROI. a) Qualitative contrasts of each subtype as defined using the original (Orig) parameters and the new data-driven (DD) parameters, where maps show regions significantly different between one subtype and all others (excluding S0) within the cohort (after FDR correction). b) Confusion matrix comparing subtypes identified in the original (orig) sample (y-axis), and subtypes separately identified in the data-driven parameter replication sample (x-axis). Values represent spatial correlation between average regional tau for each subtype. Values along the diagonal indicates similarity between the same subtype across both parameter sets.
+NATuRE MEDICINE | www.nature.com/naturemedicine

@@ -11,12 +11,12 @@ from contextlib import redirect_stdout
 import re
 import argparse
 
-# NOTE: The hardcoded `sys.path.insert(0, "C:/Project/...")` paths that were previously here 
-# have been intentionally removed. This script now relies natively on the fact that the 
-# `bayesian_metamodeling` framework is installed in your Python environment (via `pip install -e .`), 
-# which is the standard Python way of doing things. This ensures portability across different machines.
+# Ensure working directory is set to framework root for run_mm_cli
+os.chdir("C:/Project/metamodeler_codex_scaffold_docs-develop")
+
 from bayesian_metamodeling.tutorial import run_mm_cli
 from bayesian_metamodeling.surrogates.backends import load_backend_model
+import bayesian_metamodeling
 
 def get_latest_model_path(base_dir):
     base = Path(base_dir)

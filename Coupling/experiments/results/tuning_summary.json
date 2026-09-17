@@ -1,0 +1,200 @@
+{
+  "cfg_00_baseline": {
+    "config": {
+      "id": "cfg_00_baseline",
+      "desc": "Baseline (Current settings: w_apoe=1.0, v_scale=1.0, beta=1.0, sig_vel=2.0)",
+      "w_apoe": 1.0,
+      "v_scale": 1.0,
+      "w_mem": 1.0,
+      "beta": 1.0,
+      "sigma_subtype": 0.25,
+      "sigma_velocity": 2.0,
+      "vel_weights": [
+        1.0,
+        -0.3,
+        0.5
+      ],
+      "sigma_stage": 0.2,
+      "alpha": 0.4,
+      "midpoint_limbic": 10.0,
+      "midpoint_atypical": 15.0
+    },
+    "metrics": {
+      "Total_Score": 79.2,
+      "S1_Subtype1_Drop": 0.363,
+      "S1_Subtype0_Rise": 0.223,
+      "S1_Clin_Stage": 0.764,
+      "S2_Subtype0_Prob": 0.343,
+      "S2_Subtype1_Prob": 0.294,
+      "S2_Tau_Boost": 0.0102,
+      "S2_Clin_Stage": 1.225,
+      "Config_ID": "cfg_00_baseline",
+      "Description": "Baseline (Current settings: w_apoe=1.0, v_scale=1.0, beta=1.0, sig_vel=2.0)"
+    }
+  },
+  "cfg_01_tau_delta_apoe05": {
+    "config": {
+      "id": "cfg_01_tau_delta_apoe05",
+      "desc": "Tau Delta + APOE 0.5, Beta 1.5, Sig_vel 1.0, Sig_sub 0.20",
+      "w_apoe": 0.5,
+      "v_scale": 1.0,
+      "w_mem": 1.0,
+      "beta": 1.5,
+      "sigma_subtype": 0.2,
+      "sigma_velocity": 1.0,
+      "vel_weights": [
+        1.5,
+        -0.5,
+        0.8
+      ],
+      "sigma_stage": 0.2,
+      "alpha": 0.4,
+      "midpoint_limbic": 10.0,
+      "midpoint_atypical": 14.5
+    },
+    "metrics": {
+      "Total_Score": 86.0,
+      "S1_Subtype1_Drop": 0.342,
+      "S1_Subtype0_Rise": 0.215,
+      "S1_Clin_Stage": 0.794,
+      "S2_Subtype0_Prob": 0.394,
+      "S2_Subtype1_Prob": 0.195,
+      "S2_Tau_Boost": 0.0311,
+      "S2_Clin_Stage": 1.287,
+      "Config_ID": "cfg_01_tau_delta_apoe05",
+      "Description": "Tau Delta + APOE 0.5, Beta 1.5, Sig_vel 1.0, Sig_sub 0.20"
+    }
+  },
+  "cfg_02_tau_delta_apoe035": {
+    "config": {
+      "id": "cfg_02_tau_delta_apoe035",
+      "desc": "Tau Delta + APOE 0.35, Beta 1.8, Sig_vel 0.8, Sig_sub 0.18",
+      "w_apoe": 0.35,
+      "v_scale": 1.0,
+      "w_mem": 1.0,
+      "beta": 1.8,
+      "sigma_subtype": 0.18,
+      "sigma_velocity": 0.8,
+      "vel_weights": [
+        1.5,
+        -0.5,
+        1.0
+      ],
+      "sigma_stage": 0.18,
+      "alpha": 0.4,
+      "midpoint_limbic": 10.0,
+      "midpoint_atypical": 14.0
+    },
+    "metrics": {
+      "Total_Score": 87.7,
+      "S1_Subtype1_Drop": 0.33,
+      "S1_Subtype0_Rise": 0.21,
+      "S1_Clin_Stage": 0.828,
+      "S2_Subtype0_Prob": 0.411,
+      "S2_Subtype1_Prob": 0.164,
+      "S2_Tau_Boost": 0.0431,
+      "S2_Clin_Stage": 1.347,
+      "Config_ID": "cfg_02_tau_delta_apoe035",
+      "Description": "Tau Delta + APOE 0.35, Beta 1.8, Sig_vel 0.8, Sig_sub 0.18"
+    }
+  },
+  "cfg_03_tau_delta_tight": {
+    "config": {
+      "id": "cfg_03_tau_delta_tight",
+      "desc": "Tau Delta + APOE 0.25, Beta 2.0, Sig_vel 0.6, Sig_sub 0.15",
+      "w_apoe": 0.25,
+      "v_scale": 1.2,
+      "w_mem": 1.0,
+      "beta": 2.0,
+      "sigma_subtype": 0.15,
+      "sigma_velocity": 0.6,
+      "vel_weights": [
+        1.8,
+        -0.6,
+        1.0
+      ],
+      "sigma_stage": 0.15,
+      "alpha": 0.4,
+      "midpoint_limbic": 9.5,
+      "midpoint_atypical": 13.5
+    },
+    "metrics": {
+      "Total_Score": 88.0,
+      "S1_Subtype1_Drop": 0.328,
+      "S1_Subtype0_Rise": 0.21,
+      "S1_Clin_Stage": 0.904,
+      "S2_Subtype0_Prob": 0.422,
+      "S2_Subtype1_Prob": 0.145,
+      "S2_Tau_Boost": 0.0635,
+      "S2_Clin_Stage": 1.411,
+      "Config_ID": "cfg_03_tau_delta_tight",
+      "Description": "Tau Delta + APOE 0.25, Beta 2.0, Sig_vel 0.6, Sig_sub 0.15"
+    }
+  },
+  "cfg_04_balanced_optimal": {
+    "config": {
+      "id": "cfg_04_balanced_optimal",
+      "desc": "Tau Delta + APOE 0.40, Beta 1.6, Sig_vel 0.8, Sig_sub 0.20",
+      "w_apoe": 0.4,
+      "v_scale": 1.0,
+      "w_mem": 1.0,
+      "beta": 1.6,
+      "sigma_subtype": 0.2,
+      "sigma_velocity": 0.8,
+      "vel_weights": [
+        1.5,
+        -0.4,
+        0.8
+      ],
+      "sigma_stage": 0.18,
+      "alpha": 0.4,
+      "midpoint_limbic": 10.0,
+      "midpoint_atypical": 14.0
+    },
+    "metrics": {
+      "Total_Score": 87.0,
+      "S1_Subtype1_Drop": 0.331,
+      "S1_Subtype0_Rise": 0.209,
+      "S1_Clin_Stage": 0.828,
+      "S2_Subtype0_Prob": 0.404,
+      "S2_Subtype1_Prob": 0.176,
+      "S2_Tau_Boost": 0.0406,
+      "S2_Clin_Stage": 1.347,
+      "Config_ID": "cfg_04_balanced_optimal",
+      "Description": "Tau Delta + APOE 0.40, Beta 1.6, Sig_vel 0.8, Sig_sub 0.20"
+    }
+  },
+  "cfg_05_gentle_optimal": {
+    "config": {
+      "id": "cfg_05_gentle_optimal",
+      "desc": "Tau Delta + APOE 0.45, Beta 1.4, Sig_vel 1.0, Sig_sub 0.22",
+      "w_apoe": 0.45,
+      "v_scale": 0.8,
+      "w_mem": 1.0,
+      "beta": 1.4,
+      "sigma_subtype": 0.22,
+      "sigma_velocity": 1.0,
+      "vel_weights": [
+        1.2,
+        -0.3,
+        0.6
+      ],
+      "sigma_stage": 0.2,
+      "alpha": 0.4,
+      "midpoint_limbic": 10.0,
+      "midpoint_atypical": 14.5
+    },
+    "metrics": {
+      "Total_Score": 86.4,
+      "S1_Subtype1_Drop": 0.314,
+      "S1_Subtype0_Rise": 0.2,
+      "S1_Clin_Stage": 0.794,
+      "S2_Subtype0_Prob": 0.397,
+      "S2_Subtype1_Prob": 0.189,
+      "S2_Tau_Boost": 0.0255,
+      "S2_Clin_Stage": 1.287,
+      "Config_ID": "cfg_05_gentle_optimal",
+      "Description": "Tau Delta + APOE 0.45, Beta 1.4, Sig_vel 1.0, Sig_sub 0.22"
+    }
+  }
+}

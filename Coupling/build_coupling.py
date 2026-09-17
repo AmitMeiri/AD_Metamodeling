@@ -113,12 +113,16 @@ spec = {
       # Subtype-Conditioned Stage Mapping
       # Maps the SuStaIn continuous spatial event score (expected_stage 0-21)
       # to the ODE clinical severity scale (clinical_stage 0.0-2.0) [scale for CN,MCI,AD]
-      # Different subtypes decline at different spatial burdens.
       "kind": "gaussian_link",
       "source": "expected_stage,prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "target": "clinical_stage_baseline",
-      "transform": { "kind": "sustain_to_ode_stage" },
-      "sigma": 0.2
+      "transform": { 
+          "kind": "sustain_to_ode_stage",
+          "alpha": 0.4,
+          "midpoint_limbic": 9.5,
+          "midpoint_atypical": 13.5
+      },
+      "sigma": 0.15
     },
     {
       "kind": "deterministic", # Direct equality constraint, no Gaussian penalty width
@@ -129,23 +133,29 @@ spec = {
     {
       # Subtype-Driven Velocity Potential
       # Directionally pushes the ODE's intrinsic velocity based on the spatial pathway.
-      # S = (P_0 * 1.0) + (P_1 * -0.3) + (P_2 * 0.5)
+      # S = (P_0 * 1.8) + (P_1 * -0.6) + (P_2 * 1.0)
       # Log-Prob Bonus = (1 / sigma) * tau_self_dynamic * S
       "kind": "directional_potential",
       "source": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
       "target": "tau_self_dynamic",
-      "transform": { "kind": "velocity_modifier_score", "weights": [1.0, -0.3, 0.5] },
-      "sigma": 2.0
+      "transform": { "kind": "velocity_modifier_score", "weights": [1.8, -0.6, 1.0] },
+      "sigma": 0.60
     },
     {
       # Clinical Subtype Prior
-      # Evaluates APOE4 status, tau velocity, and memory impairment to generate a Softmax prior.
+      # Evaluates APOE4 status, tau velocity, memory impairment, and 2yr tau growth to generate a Softmax prior.
       # Biologically anchors the SuStaIn subtype probabilities to the patient's temporal clinical severity.
       "kind": "gaussian_link",
-      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline",
+      "source": "apoe4_status,tau_self_dynamic,tau_baseline,memory_result_baseline,tau_2yr",
       "target": "prob_subtype_0,prob_subtype_1,prob_subtype_2",
-      "transform": { "kind": "clinical_subtype_scorer", "beta": 1.0 },
-      "sigma": 0.25
+      "transform": { 
+          "kind": "clinical_subtype_scorer", 
+          "beta": 2.0,
+          "w_apoe": 0.25,
+          "v_scale": 1.2,
+          "w_mem": 1.0
+      },
+      "sigma": 0.15
     }
   ]
 }

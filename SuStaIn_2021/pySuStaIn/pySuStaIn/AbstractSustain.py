@@ -283,7 +283,7 @@ class AbstractSustain(ABC):
             ml_sequence_prev_EM             = []
             ml_f_prev_EM                    = []
 
-            for s in range(self.N_S_max):
+            for s in tqdm(range(self.N_S_max), desc=f"Fold {fold + 1}/{Nfolds} Subtypes", position=1, leave=False):
 
                 pickle_filename_fold_s      = os.path.join(pickle_dir, self.dataset_name + '_fold' + str(fold) + '_subtype' + str(s) + '.pickle')
                 pickle_filepath             = Path(pickle_filename_fold_s)
@@ -988,9 +988,9 @@ class AbstractSustain(ABC):
     def _optimise_mcmc_settings(self, sustainData, seq_init, f_init):
 
         # Optimise the perturbation size for the MCMC algorithm
-        n_iterations_MCMC_optimisation      = int(1e4)  # FIXME: set externally
+        n_iterations_MCMC_optimisation      = min(max(int(self.N_iterations_MCMC / 2), 500), 5000)
 
-        n_passes_optimisation               = 3
+        n_passes_optimisation               = 2
 
         seq_sigma_currentpass               = 1
         f_sigma_currentpass                 = 0.01  # magic number
